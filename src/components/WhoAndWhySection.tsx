@@ -200,12 +200,12 @@ export default function WhoAndWhySection() {
             <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3.5">
                 <div className="w-12 h-12 rounded-full p-[2px] bg-gradient-to-tr from-[#1D4ED8] via-[#3B82F6] to-[#93C5FD] shadow-[0_4px_14px_rgba(29,78,216,0.22)] shrink-0 flex items-center justify-center">
-                  <div className="w-full h-full rounded-full bg-white flex items-center justify-center p-1.5 overflow-hidden">
+                  <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
                     <Image
-                      src="/logo-mark.png"
+                      src="/swlogocopy.jpeg"
                       alt="The Suwenzo Clinical Team"
-                      width={40}
-                      height={40}
+                      width={44}
+                      height={44}
                       className="w-full h-full object-contain"
                     />
                   </div>

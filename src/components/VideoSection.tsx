@@ -122,12 +122,12 @@ export default function VideoSection() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
             <div className="w-[180px] h-[180px] rounded-full bg-white border-2 border-blue-100 shadow-[0_12px_32px_-6px_rgba(11,27,58,0.06)] flex flex-col items-center justify-center p-4 text-center">
               <div className="w-11 h-11 rounded-[12px] p-[1.5px] bg-gradient-to-tr from-[#1D4ED8] via-[#3B82F6] to-[#93C5FD] shadow-[0_4px_12px_rgba(29,78,216,0.2)] shrink-0 flex items-center justify-center mb-1.5">
-                <div className="w-full h-full rounded-[10.5px] bg-white flex items-center justify-center p-1 overflow-hidden">
+                <div className="w-full h-full rounded-[10.5px] bg-white flex items-center justify-center overflow-hidden">
                   <Image
-                    src="/logo-mark.png"
+                    src="/swlogocopy.jpeg"
                     alt="Suwenzo"
-                    width={36}
-                    height={36}
+                    width={40}
+                    height={40}
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -224,12 +224,12 @@ export default function VideoSection() {
           <div className="bg-white border border-slate-200 rounded-2xl p-4.5 flex items-center justify-between shadow-2xs">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-[10px] p-[1.5px] bg-gradient-to-tr from-[#1D4ED8] via-[#3B82F6] to-[#93C5FD] shadow-[0_2px_8px_rgba(29,78,216,0.2)] shrink-0 flex items-center justify-center">
-                <div className="w-full h-full rounded-[8.5px] bg-white flex items-center justify-center p-0.5 overflow-hidden">
+                <div className="w-full h-full rounded-[8.5px] bg-white flex items-center justify-center overflow-hidden">
                   <Image
-                    src="/logo-mark.png"
+                    src="/swlogocopy.jpeg"
                     alt="Suwenzo"
-                    width={30}
-                    height={30}
+                    width={34}
+                    height={34}
                     className="w-full h-full object-contain"
                   />
                 </div>

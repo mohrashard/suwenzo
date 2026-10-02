@@ -107,12 +107,12 @@ export default function Navbar() {
           >
             {/* Precision Gradient-Framed Brand Mark */}
             <div className="w-8 h-8 rounded-[10px] p-[1.5px] bg-gradient-to-tr from-[#1D4ED8] via-[#3B82F6] to-[#93C5FD] shadow-[0_2px_8px_rgba(29,78,216,0.2)] shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-              <div className="w-full h-full rounded-[8.5px] bg-white flex items-center justify-center p-0.5 overflow-hidden">
+              <div className="w-full h-full rounded-[8.5px] bg-white flex items-center justify-center overflow-hidden">
                 <Image
-                  src="/logo-mark.png"
+                  src="/swlogocopy.jpeg"
                   alt="Suwenzo"
-                  width={28}
-                  height={28}
+                  width={32}
+                  height={32}
                   className="w-full h-full object-contain"
                   priority
                 />
