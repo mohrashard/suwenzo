@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ClinKare — Website Written Content Specification</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #334155;
+      background: #FFFFFF;
+      line-height: 1.55;
+      font-size: 13px;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Cover / Document Header */
+    .doc-header {
+      border-bottom: 2px solid #1D4ED8;
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .brand-logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0B1B3A;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-mark {
+      width: 24px;
+      height: 24px;
+      background: #0B1B3A;
+      color: #fff;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 900;
+    }
+    .doc-badge {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #BFDBFE;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .doc-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0B1B3A;
+      margin: 0 0 6px 0;
+      letter-spacing: -0.3px;
+    }
+    .doc-meta {
+      font-size: 12px;
+      color: #64748B;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Executive Callout */
+    .exec-banner {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-left: 4px solid #1D4ED8;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin-bottom: 28px;
+    }
+    .exec-banner p {
+      margin: 0;
+      font-size: 13.5px;
+      color: #1E293B;
+      line-height: 1.6;
+    }
+    .exec-banner strong {
+      color: #0B1B3A;
+    }
+
+    /* Sections */
+    .section-block {
+      margin-bottom: 30px;
+      page-break-inside: auto;
+    }
+    .section-header-pill {
+      display: inline-block;
+      background: #0F172A;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 17px;
+      font-weight: 750;
+      color: #0B1B3A;
+      margin: 0 0 4px 0;
+      letter-spacing: -0.2px;
+    }
+    .section-subtitle {
+      font-size: 12.5px;
+      color: #64748B;
+      margin: 0 0 14px 0;
+    }
+
+    /* Cards & Grids */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .card-highlight {
+      background: #F8FAFC;
+      border: 1.5px solid #1D4ED8;
+    }
+    .card-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #1D4ED8;
+      margin-bottom: 4px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0B1B3A;
+      margin: 0 0 6px 0;
+    }
+    .card-text {
+      font-size: 12.5px;
+      color: #475569;
+      line-height: 1.5;
+      margin: 0 0 8px 0;
+    }
+    .card-footer-tag {
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 11.5px;
+      color: #334155;
+    }
+    .card-footer-tag strong {
+      color: #0F172A;
+    }
+
+    /* Pricing Table & Cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .price-amount {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0B1B3A;
+      margin: 6px 0 10px 0;
+    }
+    .price-amount span {
+      font-size: 12px;
+      font-weight: 400;
+      color: #64748B;
+    }
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0 0;
+    }
+    .feature-list li {
+      font-size: 12px;
+      color: #334155;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .checkmark {
+      color: #1D4ED8;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    /* FAQ List */
+    .faq-item {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      background: #FAFAFA;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .faq-q {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0B1B3A;
+      margin: 0 0 4px 0;
+    }
+    .faq-a {
+      font-size: 12px;
+      color: #475569;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Step Timeline */
+    .timeline-step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 12px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #1D4ED8;
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-content {
+      flex: 1;
+    }
+
+    /* Footer */
+    .doc-footer {
+      border-top: 1px solid #E2E8F0;
+      padding-top: 14px;
+      margin-top: 24px;
+      font-size: 11px;
+      color: #94A3B8;
+      display: flex;
+      justify-content: space-between;
+      page-break-inside: avoid;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #DBEAFE;
+      margin-right: 6px;
+    }
+
+    .page-break {
+      page-break-before: always;
+      break-before: page;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DOCUMENT HEADER -->
+  <div class="doc-header">
+    <div class="brand-row">
+      <div class="brand-logo">
+        <span class="brand-mark">+</span> ClinKare
+      </div>
+      <div class="doc-badge">Official Website Copy &amp; Content</div>
+    </div>
+    <h1 class="doc-title">Written Content &amp; Copy Specification</h1>
+    <div class="doc-meta">
+      <span><strong>Scope:</strong> All components under <code>src/components/</code></span>
+      <span><strong>Product:</strong> Clinic &amp; Dispensary Management System for Sri Lanka</span>
+      <span><strong>Status:</strong> Active / Production</span>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY & CORE PROPOSITION -->
+  <div class="exec-banner">
+    <p>
+      <strong>What is ClinKare?</strong><br>
+      ClinKare is clinic software for Sri Lanka that connects the doctor, the dispensary, and the stock list in one system. The prescription reaches the dispensary screen instantly, labels print automatically, and the doctor sees what is in stock before prescribing.
+    </p>
+    <p style="margin-top: 8px; font-size: 12px; color: #475569;">
+      <strong>Target Audience:</strong> Private clinics and medical practices in Sri Lanka with an in-house dispensary · 3 months free for founding clinics.<br>
+      <strong>Founder Origin:</strong> Built in Colombo by a founder who sat in these clinics as a patient.
+    </p>
+  </div>
+
+  <!-- SECTION 1: NAVIGATION & GLOBAL SHELL -->
+  <div class="section-block">
+    <span class="section-header-pill">Navigation &amp; Global Shell</span>
+    <h2 class="section-title">Navbar &amp; Support Triggers (Navbar.tsx &amp; FloatingWhatsApp.tsx)</h2>
+    <p class="section-subtitle">Header navigation bar elements, site anchor links, and quick support channels.</p>
+    
+    <div class="card">
+      <div class="card-eyebrow">Main Navigation Menu</div>
+      <p class="card-text">
+        <span class="badge-pill">Home (#home)</span>
+        <span class="badge-pill">How it works (#how-it-works)</span>
+        <span class="badge-pill">Features (#features)</span>
+        <span class="badge-pill">Pricing (#pricing)</span>
+        <span class="badge-pill">FAQ (#faq)</span>
+      </p>
+      <div style="margin-top: 10px; font-size: 12.5px; color: #475569;">
+        <strong>Header Call to Action:</strong> "Book a Demo" (leads directly to 10-minute demo scheduler)<br>
+        <strong>Floating WhatsApp Support:</strong> "Chat on WhatsApp" with pre-filled message: <em>"Hi, I have a question about ClinKare for my clinic."</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: HERO SECTION -->
+  <div class="section-block">
+    <span class="section-header-pill">Section 01</span>
+    <h2 class="section-title">Hero Section (Hero.tsx)</h2>
+    <p class="section-subtitle">Primary landing viewport, headline hook, core value proposition, and primary CTAs.</p>
+    
+    <div class="card card-highlight">
+      <div style="margin-bottom: 8px;">
+        <span class="badge-pill" style="background: #1D4ED8; color: #FFFFFF; border: none;">CLINIC SOFTWARE FOR SRI LANKA</span>
+        <span class="badge-pill">Onboarding 10 founding clinics in Colombo</span>
+      </div>
+      <h3 style="font-size: 18px; font-weight: 800; color: #0B1B3A; margin: 8px 0 6px 0;">
+        "Prescribe once. Your dispensary sees it instantly."
+      </h3>
+      <p style="font-size: 13.5px; color: #1E293B; line-height: 1.6; margin: 0 0 12px 0;">
+        ClinKare connects your doctor, dispensary and stock in one system. Labels print automatically, and you see what's in stock before you prescribe.
+      </p>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+        <span class="badge-pill" style="font-size: 12px; padding: 4px 10px;">Primary CTA: Book a 10-minute demo</span>
+        <span class="badge-pill" style="font-size: 12px; padding: 4px 10px; background: #FFFFFF; color: #0F172A; border-color: #CBD5E1;">Secondary CTA: Watch the 60-second demo</span>
+      </div>
+      <div class="card-footer-tag">
+        <strong>Context Statement:</strong> Built for private clinics and medical practices with an in-house dispensary · 3 months free for founding clinics
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: THE PROBLEM -->
+  <div class="section-block">
+    <span class="section-header-pill">Section 02</span>
+    <h2 class="section-title">The Problem (ProblemSection.tsx)</h2>
+    <p class="section-subtitle">
+      <strong>Headline:</strong> Where a paper-run clinic quietly loses time and money<br>
+      <strong>Subtitle:</strong> Three things repeat every evening session.
+    </p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-eyebrow">Problem 01</div>
+        <h4 class="card-title">Written twice, by two people</h4>
+        <p class="card-text">
+          The doctor writes the prescription. The dispenser reads it, re-enters it, and hand-writes a label for every packet. Same information twice, with a queue watching.
+        </p>
+        <div class="card-footer-tag">
+          <strong>Cost:</strong> Slower queues and more chances for a misread dose.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-eyebrow">Problem 02</div>
+        <h4 class="card-title">Prescribing without seeing stock</h4>
+        <p class="card-text">
+          The doctor can't see what's on the shelf. When a medicine is out, the patient gets sent to a pharmacy down the road.
+        </p>
+        <div class="card-footer-tag">
+          <strong>Cost:</strong> Dispensary revenue the clinic earned and handed away.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-eyebrow">Problem 03</div>
+        <h4 class="card-title">Phone numbers in a drawer</h4>
+        <p class="card-text">
+          Every patient's number sits in a paper file and never gets used. Nobody follows up when a course of medicine ends.
+        </p>
+        <div class="card-footer-tag">
+          <strong>Cost:</strong> Patients who feel better on day 7 and never come back.
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size: 12.5px; color: #0B1B3A; font-weight: 600;">
+      ClinKare connects these. <span style="color: #1D4ED8;">See how it works &rarr;</span>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 4: FEATURES -->
+  <div class="section-block">
+    <span class="section-header-pill">Section 03</span>
+    <h2 class="section-title">Features &amp; System Capabilities (FeaturesSection.tsx)</h2>
+    <p class="section-subtitle">
+      <strong>Headline:</strong> One system for the doctor's desk and the dispensary<br>
+      <strong>Subtitle:</strong> Start with the core flow. The rest plugs in as your clinic is ready for it.
+    </p>
+
+    <div class="card" style="margin-bottom: 12px;">
+      <div class="card-eyebrow">Feature / 01 (Flagship Workflow)</div>
+      <h3 class="card-title" style="font-size: 16px;">Digital prescription to dispensary</h3>
+      <p class="card-text">
+        Write it once. It appears on the dispenser's screen instantly, with clear auto-printed packet labels and zero handwriting to decode.
+      </p>
+      <div style="display: flex; gap: 14px; margin-top: 10px; border-top: 1px solid #F1F5F9; padding-top: 8px;">
+        <span style="font-size: 11.5px;"><strong>Sync Speed:</strong> &lt; 0.2s instant</span>
+        <span style="font-size: 11.5px;"><strong>Paper Saved:</strong> 100% digital</span>
+        <span style="font-size: 11.5px;"><strong>Accuracy:</strong> 0 misread doses</span>
+      </div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-eyebrow">Feature / 02</div>
+        <h4 class="card-title">Live stock visibility &amp; expiry alerts</h4>
+        <p class="card-text">
+          See what's on the shelf before you prescribe, so patients aren't sent to a pharmacy down the road. Know what's expiring before it becomes waste.
+        </p>
+        <div class="card-footer-tag">
+          Real-time shelf counts &middot; 60-day auto warnings
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-eyebrow">Core Engine</div>
+        <h4 class="card-title">Central Clinic Engine</h4>
+        <p class="card-text">
+          ClinKare connects the doctor's desk, dispensary shelves, and thermal printer into one continuous, synchronized workflow.
+        </p>
+        <div class="card-footer-tag">
+          Zero transcription lag &middot; Clinic-wide sync
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-eyebrow">Feature / 03</div>
+        <h4 class="card-title">Patient records &amp; WhatsApp reminders</h4>
+        <p class="card-text">
+          Every visit on file so no consultation starts from zero. Send gentle automated reminders when a course is ending on the app patients already use.
+        </p>
+        <div class="card-footer-tag">
+          Full patient history &middot; Automated WhatsApp nudge
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: HOW IT WORKS -->
+  <div class="section-block">
+    <span class="section-header-pill">Section 04</span>
+    <h2 class="section-title">How It Works (HowItWorks.tsx)</h2>
+    <p class="section-subtitle">
+      <strong>Headline:</strong> From prescription to packet in three steps<br>
+      <strong>Subtitle:</strong> The same evening session, with the handwriting taken out.
+    </p>
+
+    <div class="card">
+      <div class="timeline-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4 style="margin: 0 0 3px 0; font-size: 13.5px; color: #0B1B3A; font-weight: 700;">The doctor prescribes on a tablet</h4>
+          <p style="margin: 0 0 4px 0; font-size: 12.5px; color: #475569;">
+            Pick medicines from your own stock list, with live stock shown beside each one. You see what's on the shelf before you prescribe.
+          </p>
+          <span class="badge-pill" style="font-size: 11px;">Live shelf stock verified in real time</span>
+        </div>
+      </div>
+
+      <div class="timeline-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4 style="margin: 0 0 3px 0; font-size: 13.5px; color: #0B1B3A; font-weight: 700;">The dispensary sees it instantly</h4>
+          <p style="margin: 0 0 4px 0; font-size: 12.5px; color: #475569;">
+            The prescription appears on the dispenser's screen the moment you confirm it. Nothing to read, nothing to re-enter.
+          </p>
+          <span class="badge-pill" style="font-size: 11px;">Instant screen transmission &middot; 0 errors</span>
+        </div>
+      </div>
+
+      <div class="timeline-step" style="margin-bottom: 0;">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4 style="margin: 0 0 3px 0; font-size: 13.5px; color: #0B1B3A; font-weight: 700;">Labels print automatically</h4>
+          <p style="margin: 0 0 4px 0; font-size: 12.5px; color: #475569;">
+            Each packet gets a printed label with the medicine, dose and instructions. The dispenser checks, packs and hands over.
+          </p>
+          <span class="badge-pill" style="font-size: 11px;">Thermal printed packet label with dose &amp; instructions</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 14px; border-top: 1px solid #E2E8F0; padding-top: 10px; font-size: 12px; color: #475569;">
+        <strong>Onboarding Guarantee:</strong> We help you set up your stock list, so you start with a working system.
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 6: PRICING -->
+  <div class="section-block">
+    <span class="section-header-pill">Section 05</span>
+    <h2 class="section-title">Pricing &amp; Plans (PricingSection.tsx)</h2>
+    <p class="section-subtitle">
+      <strong>Headline:</strong> Simple pricing for Sri Lankan clinics<br>
+      <strong>Description:</strong> ClinKare costs LKR 3,500 to LKR 7,000 per month depending on your clinic setup: 3,500 for a clinic where the doctor prescribes, and 7,000 for a clinic with an in-house dispensary. Founding clinics get their first 3 months free.
+    </p>
+
+    <div class="pricing-grid">
+      <!-- Consult Card -->
+      <div class="card">
+        <span class="badge-pill">CONSULT TIER</span>
+        <h3 style="margin: 6px 0 2px 0; font-size: 18px; color: #0B1B3A;">Consult</h3>
+        <p style="font-size: 12px; color: #64748B; margin: 0 0 10px 0;">
+          For clinics where the doctor prescribes and patients collect medicine elsewhere.
+        </p>
+        <div class="price-amount">
+          LKR 3,500 <span>/month</span>
+        </div>
+        <ul class="feature-list">
+          <li><span class="checkmark">&#10003;</span> Digital prescriptions on a tablet</li>
+          <li><span class="checkmark">&#10003;</span> Patient records</li>
+          <li><span class="checkmark">&#10003;</span> WhatsApp medicine reminders</li>
+          <li><span class="checkmark">&#10003;</span> Setup and training included</li>
+        </ul>
+        <div style="margin-top: 12px; font-size: 11.5px; color: #1D4ED8; font-weight: 600;">
+          Action: Book a 10-minute demo
+        </div>
+      </div>
+
+      <!-- Clinic Card -->
+      <div class="card card-highlight">
+        <span class="badge-pill" style="background: #1D4ED8; color: #FFF; border: none;">CLINIC TIER (RECOMMENDED)</span>
+        <h3 style="margin: 6px 0 2px 0; font-size: 18px; color: #0B1B3A;">Clinic</h3>
+        <p style="font-size: 12px; color: #64748B; margin: 0 0 10px 0;">
+          For clinics with an in-house dispensary. This is the full prescription-to-dispensary flow.
+        </p>
+        <div class="price-amount">
+          LKR 7,000 <span>/month</span>
+        </div>
+        <ul class="feature-list">
+          <li><span class="checkmark">&#10003;</span> <strong>Everything in Consult</strong></li>
+          <li><span class="checkmark">&#10003;</span> Prescription appears on dispensary screen instantly</li>
+          <li><span class="checkmark">&#10003;</span> Auto-printed dispensary labels</li>
+          <li><span class="checkmark">&#10003;</span> Live stock visibility</li>
+          <li><span class="checkmark">&#10003;</span> Medicine expiry alerts</li>
+          <li><span class="checkmark">&#10003;</span> We set up your stock list for you</li>
+        </ul>
+        <div style="margin-top: 12px; font-size: 11.5px; color: #1D4ED8; font-weight: 600;">
+          Action: Book a 10-minute demo
+        </div>
+      </div>
+    </div>
+
+    <!-- Special Pass -->
+    <div class="card" style="background: #EFF6FF; border-color: #BFDBFE;">
+      <h4 style="margin: 0 0 4px 0; font-size: 13.5px; color: #1D4ED8; font-weight: 800;">
+        Founding Clinic Pass &middot; 10 Clinics in Colombo
+      </h4>
+      <p style="margin: 0 0 6px 0; font-size: 12.5px; color: #1E3A8A; font-weight: 600;">
+        First 3 months free, then locked monthly rate.
+      </p>
+      <p style="margin: 0 0 8px 0; font-size: 12px; color: #3B82F6;">
+        Price locked for as long as you stay subscribed. Full setup, stock list import, and staff training included.
+      </p>
+      <div style="font-size: 11.5px; color: #1E293B;">
+        <strong>Required Hardware:</strong> Tablet &amp; thermal label printer (compatible devices list provided).<br>
+        <strong>Custom Needs:</strong> <em>"Need something bigger? Talk to us on WhatsApp &rarr;"</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: FAQ -->
+  <div class="section-block">
+    <span class="section-header-pill">Section 06</span>
+    <h2 class="section-title">Frequently Asked Questions (FaqSection.tsx)</h2>
+    <p class="section-subtitle">
+      <strong>Headline:</strong> Questions doctors ask before they book a demo<br>
+      <strong>Subtitle:</strong> Clear, honest answers about pricing, clinic hardware, stock setup, and day-to-day dispensary workflow.
+    </p>
+
+    <div class="faq-item">
+      <div class="faq-q">1. How much does ClinKare cost?</div>
+      <div class="faq-a">
+        ClinKare costs LKR 3,500 per month for a clinic where the doctor prescribes, and LKR 7,000 per month for a clinic with an in-house dispensary. Founding clinics get their first 3 months free. Setup and training are included.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">2. What does the founding clinic offer include?</div>
+      <div class="faq-a">
+        The first 10 clinics in Colombo get 3 months free. After that, you continue at your locked price for as long as you stay. Founding clinics also tell us what to build next.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">3. Who is ClinKare built for?</div>
+      <div class="faq-a">
+        ClinKare is built for private clinics and medical practices in Sri Lanka, especially practices with an in-house dispensary where the doctor prescribes and the dispenser hands out the medicine. It fits single-doctor and growing multi-doctor practices.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">4. What do I need to buy to get started?</div>
+      <div class="faq-a">
+        You need a tablet for the doctor's desk, a label printer at the dispensary, and an internet connection. Before you buy anything, we share the list of printers that work with ClinKare so nothing is wasted.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">5. How long does setup take, and who does it?</div>
+      <div class="faq-a">
+        We do it with you. We enter your stock list, connect your printer and train your dispenser, so you start with a working system, not an empty one. Most clinics are ready in 48 hours from the demo.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">6. Will my dispenser be able to use it?</div>
+      <div class="faq-a">
+        Yes. The dispenser's screen shows the prescription the moment you confirm it, so there's nothing to read and nothing to re-type. We train your dispenser during setup and stay on WhatsApp for the first weeks.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">7. Does ClinKare work without internet?</div>
+      <div class="faq-a">
+        ClinKare needs an internet connection. A standard mobile hotspot or 4G clinic router is enough. If your connection temporarily drops, prescriptions are safely queued and resume the moment signal reconnects.
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 8: FINAL CTA & DEMO CONVERSION -->
+  <div class="section-block">
+    <span class="section-header-pill">Section 07</span>
+    <h2 class="section-title">Demo Conversion &amp; Booking (FinalCta.tsx)</h2>
+    <p class="section-subtitle">
+      <strong>Headline:</strong> See it in your clinic in 10 minutes<br>
+      <strong>Subtitle:</strong> Book a short demo and watch a prescription reach the dispensary screen, then the label print. No commitment. The first 10 founding clinics in Colombo get 3 months free.
+    </p>
+
+    <div class="card card-highlight">
+      <h3 style="font-size: 15px; font-weight: 800; color: #0B1B3A; margin: 0 0 6px 0;">
+        "Ready to test the prescription-to-dispensary flow?"
+      </h3>
+      <p style="font-size: 13px; color: #475569; margin: 0 0 12px 0;">
+        We walk you through the tablet, print a live thermal label, and answer any questions about your current setup.
+      </p>
+
+      <div style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #64748B; margin-bottom: 8px;">
+          What to expect in the 10-Minute Demo:
+        </div>
+        <div style="font-size: 12.5px; color: #1E293B; margin-bottom: 6px;">
+          <strong>1. Prescribe on the tablet:</strong> See live stock beside each medicine as you write.
+        </div>
+        <div style="font-size: 12.5px; color: #1E293B; margin-bottom: 6px;">
+          <strong>2. Instant dispensary sync:</strong> Appears on the screen in &lt; 0.2s with zero handwriting.
+        </div>
+        <div style="font-size: 12.5px; color: #1E293B;">
+          <strong>3. Auto-print thermal label:</strong> Clear patient name, medicine, dose &amp; instructions.
+        </div>
+      </div>
+
+      <div class="card-footer-tag">
+        <strong>Trust Assurance:</strong> Built for private clinics and medical practices with an in-house dispensary. We can demo at your clinic. Zero installation required &middot; Works in any browser.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9: FOOTER & LEGAL -->
+  <div class="section-block">
+    <span class="section-header-pill">Section 08</span>
+    <h2 class="section-title">Footer &amp; Site Architecture (Footer.tsx)</h2>
+    <p class="section-subtitle">Information architecture, navigation taxonomy, and legal notices.</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-eyebrow">Product Taxonomy</div>
+        <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #334155;">
+          <li>Features (#features)</li>
+          <li>Pricing (#pricing)</li>
+          <li>How it works (#how-it-works)</li>
+          <li>Founding clinics (#pricing)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-eyebrow">Company Links</div>
+        <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #334155;">
+          <li>About (/about)</li>
+          <li>Book a demo (WhatsApp trigger)</li>
+          <li>Contact (/contact)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-eyebrow">Legal &amp; Compliance</div>
+        <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #334155;">
+          <li>Privacy Policy (/privacy)</li>
+          <li>Terms of Service (/terms)</li>
+          <li>Security (/security)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 10px; font-size: 12px; color: #64748B;">
+      <strong>Footer Summary Statement:</strong> "ClinKare is clinic software for Sri Lanka that connects the doctor, the dispensary and the stock list in one system."<br>
+      <strong>Copyright Notice:</strong> &copy; 2026 ClinKare. All rights reserved.
+    </div>
+  </div>
+
+  <!-- DOCUMENT FOOTER -->
+  <div class="doc-footer">
+    <span>ClinKare — Clinic &amp; Dispensary Software for Sri Lanka</span>
+    <span>Document Generated: October 2026 &middot; Source: src/components</span>
+  </div>
+
+</body>
+</html>
