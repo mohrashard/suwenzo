@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#EBF3FE" />
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A3A66" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bgGrad)" />
+  
+  <!-- Subtle architectural border -->
+  <rect x="24" y="24" width="1152" height="582" rx="24" fill="none" stroke="#DBEAFE" stroke-width="2" />
+  
+  <!-- Brand Header: Mark + Name -->
+  <g transform="translate(80, 70)">
+    <rect width="64" height="64" rx="16" fill="url(#brandGrad)" />
+    <g transform="scale(0.64)">
+      <circle cx="24" cy="25" r="4.5" fill="#FFFFFF" />
+      <path d="M 28 25
+C 34 25, 43 27, 43 35
+C 43 43, 27 43, 27 52
+C 27 61, 38 63, 44 58
+C 47 55, 49 48, 51 40
+L 57 66
+L 66 38
+L 74 66
+L 81 29" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="51" cy="38" r="3.2" fill="#FFFFFF" />
+      <circle cx="81" cy="27" r="3.2" fill="#FFFFFF" />
+    </g>
+    <text x="80" y="44" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#0B1B3A" letter-spacing="-0.03em">Suwenzo</text>
+    <rect x="230" y="16" width="168" height="32" rx="16" fill="#DBEAFE" />
+    <text x="244" y="38" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#2563EB" letter-spacing="0.04em">SRI LANKA CLINIC</text>
+  </g>
+
+  <!-- Central Content Area (Safe Zone) -->
+  <g transform="translate(80, 210)">
+    <!-- Badge -->
+    <rect x="0" y="0" width="168" height="32" rx="16" fill="#0B1B3A" />
+    <text x="14" y="21" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="0.05em">KNOWLEDGE BASE</text>
+    
+    <!-- Title -->
+    <text x="0" y="85" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="52" font-weight="800" fill="#0B1B3A" letter-spacing="-0.03em">Frequently Asked Questions for Doctors</text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="145" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="24" font-weight="500" fill="#475569" letter-spacing="-0.01em">Clear, honest answers about setup, hardware, offline sync and WhatsApp reminders.</text>
+  </g>
+
+  <!-- Abstract 4-Node Connected Clinic Graphic (Doctor Desk -> Dispensary -> Records -> Reminders) -->
+  <g transform="translate(80, 440)">
+    <!-- Line Connectors -->
+    <line x1="120" y1="40" x2="360" y2="40" stroke="#93C5FD" stroke-width="3" stroke-dasharray="6,4" />
+    <line x1="360" y1="40" x2="600" y2="40" stroke="#93C5FD" stroke-width="3" stroke-dasharray="6,4" />
+    <line x1="600" y1="40" x2="840" y2="40" stroke="#93C5FD" stroke-width="3" stroke-dasharray="6,4" />
+
+    <!-- Node 1: Doctor's Desk -->
+    <rect x="30" y="15" width="180" height="50" rx="25" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="2" />
+    <circle cx="55" cy="40" r="8" fill="#2563EB" />
+    <text x="75" y="46" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#0B1B3A">Doctor's Desk</text>
+
+    <!-- Node 2: Records -->
+    <rect x="270" y="15" width="180" height="50" rx="25" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="2" />
+    <circle cx="295" cy="40" r="8" fill="#2563EB" />
+    <text x="315" y="46" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#0B1B3A">Patient File</text>
+
+    <!-- Node 3: Dispensary -->
+    <rect x="510" y="15" width="180" height="50" rx="25" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="2" />
+    <circle cx="535" cy="40" r="8" fill="#2563EB" />
+    <text x="555" y="46" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#0B1B3A">Dispensary</text>
+
+    <!-- Node 4: WhatsApp -->
+    <rect x="750" y="15" width="180" height="50" rx="25" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="2" />
+    <circle cx="775" cy="40" r="8" fill="#10B981" />
+    <text x="795" y="46" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#0B1B3A">WhatsApp</text>
+  </g>
+
+  <!-- URL watermark -->
+  <text x="1120" y="565" text-anchor="end" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#2563EB">www.suwenzo.com</text>
+</svg>

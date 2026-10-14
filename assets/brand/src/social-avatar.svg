@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A3A66" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bgGrad)" />
+  
+  <!-- Circular Safe Zone Highlight -->
+  <circle cx="540" cy="540" r="480" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="4" />
+  
+  <!-- Scaled Monogram in Center -->
+  <g transform="translate(240, 240) scale(6)">
+    <circle cx="24" cy="25" r="4.5" fill="#FFFFFF" />
+    <path d="M 28 25
+C 34 25, 43 27, 43 35
+C 43 43, 27 43, 27 52
+C 27 61, 38 63, 44 58
+C 47 55, 49 48, 51 40
+L 57 66
+L 66 38
+L 74 66
+L 81 29" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="51" cy="38" r="3.2" fill="#FFFFFF" />
+    <circle cx="81" cy="27" r="3.2" fill="#FFFFFF" />
+  </g>
+</svg>
