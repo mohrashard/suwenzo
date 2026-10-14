@@ -1,12 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getWhatsAppRedirectUrl } from "@/lib/site";
 
 export default function WhoAndWhySection() {
-  const whatsappNumber = "94719382296";
-  const whatsappGeneralMessage = encodeURIComponent("Hi, I would like to inquire about Suwenzo for our medical practice.");
-  const whatsappBranchesMessage = encodeURIComponent("Hi, I would like to discuss Suwenzo for our multi-branch / larger medical centre.");
-  const whatsappBranchesUrl = `https://wa.me/${whatsappNumber}?text=${whatsappBranchesMessage}`;
-  const whatsappDemoUrl = `https://wa.me/${whatsappNumber}?text=${whatsappGeneralMessage}`;
+  const whatsappBranchesUrl = getWhatsAppRedirectUrl("who-and-why", "multi-branch");
+  const whatsappDemoUrl = getWhatsAppRedirectUrl("who-and-why", "demo");
 
   const clinicalProfiles = [
     {
@@ -16,9 +14,10 @@ export default function WhoAndWhySection() {
       headline: "Dispensary → Clinic",
       description:
         "For clinics that stock and dispense their own medicines. Doctor prescribes on tablet, live stock deducts instantly, and clear thermal dosage stickers print automatically.",
-      features: ["Live shelf stock tracking", "Automatic thermal packet stickers", "Zero handwritten dose mistakes"],
+      features: ["Live shelf stock tracking", "Automatic thermal packet stickers", "Legible printed dosage labels"],
       status: "360° Closed Loop",
       highlight: true,
+      link: "/for/clinics-with-dispensary",
     },
     {
       badge: "Consulting Only",
@@ -30,6 +29,7 @@ export default function WhoAndWhySection() {
       features: ["Full Sri Lankan medicine list", "Patient visit & history on file", "Printed or WhatsApp prescription"],
       status: "Pure Consultation",
       highlight: false,
+      link: "/for/consulting-only-practices",
     },
     {
       badge: "Practice Size",
@@ -41,6 +41,7 @@ export default function WhoAndWhySection() {
       features: ["Separate doctor logins", "Shared dispensary queue", "Private patient notes & history"],
       status: "Solo or Group Practice",
       highlight: false,
+      link: "/for/solo-doctors",
     },
     {
       badge: "Larger Operations",
@@ -54,6 +55,7 @@ export default function WhoAndWhySection() {
       highlight: false,
       ctaLink: whatsappBranchesUrl,
       ctaText: "Talk to us on WhatsApp",
+      link: "/for/multi-doctor-practices",
     },
   ];
 
@@ -108,9 +110,21 @@ export default function WhoAndWhySection() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-[0.9375rem] sm:text-[1rem] text-[#475569] leading-[1.6] mb-6">
+                <p className="text-[0.9375rem] sm:text-[1rem] text-[#475569] leading-[1.6] mb-4">
                   {item.description}
                 </p>
+
+                {item.link && (
+                  <div className="mb-4">
+                    <Link
+                      href={item.link}
+                      className="text-[13px] text-[#1D4ED8] font-semibold hover:underline inline-flex items-center gap-1"
+                    >
+                      <span>Read practice workflow</span>
+                      <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                  </div>
+                )}
 
                 {/* Feature Bullets */}
                 <div className="space-y-2.5 mb-6 pt-4 border-t border-slate-100">
@@ -125,20 +139,29 @@ export default function WhoAndWhySection() {
                 </div>
               </div>
 
-              {/* Card Footer / Action */}
-              <div className="pt-4 border-t border-slate-100/90 flex items-center justify-between">
-                <span className="text-[12px] font-semibold text-slate-500">
+              {/* Bottom Row */}
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-[12px] font-medium text-slate-500 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
                   {item.status}
                 </span>
 
-                {item.ctaLink && (
+                {item.ctaLink ? (
                   <a
                     href={item.ctaLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[13.5px] font-bold text-[#1D4ED8] hover:text-[#1e40af] transition-colors"
+                    rel="nofollow noopener"
+                    className="text-[13px] font-semibold text-[#1D4ED8] hover:text-[#1e40af] inline-flex items-center gap-1 transition-colors"
                   >
                     <span>{item.ctaText}</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                ) : (
+                  <a
+                    href={whatsappDemoUrl}
+                    rel="nofollow noopener"
+                    className="text-[13px] font-semibold text-[#1D4ED8] hover:text-[#1e40af] inline-flex items-center gap-1 transition-colors"
+                  >
+                    <span>Book demo</span>
                     <span aria-hidden="true">&rarr;</span>
                   </a>
                 )}
@@ -164,23 +187,20 @@ export default function WhoAndWhySection() {
               Medicine shouldn&apos;t rely on guesswork and carbon paper
             </h2>
             <p className="text-[1rem] sm:text-[1.125rem] text-[#475569] leading-[1.6]">
-              A personal note from our team on why we started Suwenzo in Sri Lanka.
+              A note from our team on why we started Suwenzo in Sri Lanka.
             </p>
           </div>
 
-          {/* Founder Editorial Letter Card */}
+          {/* Letter Card */}
           <article className="w-full bg-[#F8FAFC] border border-blue-100/90 rounded-[24px] sm:rounded-[32px] p-6 sm:p-10 lg:p-12 shadow-[0_12px_40px_-10px_rgba(29,78,216,0.08)] relative overflow-hidden">
-            {/* Ambient Corner Accent */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100/30 rounded-full blur-[80px] pointer-events-none" />
 
-            {/* Core Anchor Pull-Quote */}
             <blockquote className="border-l-4 border-[#1D4ED8] pl-5 sm:pl-6 py-2 mb-8 bg-white/70 rounded-r-2xl border border-blue-50 shadow-2xs">
               <p className="text-[1.08rem] sm:text-[1.28rem] font-semibold text-[#0B1B3A] leading-[1.55] italic">
                 &ldquo;...watching the same prescription written twice, patients sent elsewhere for medicine the clinic had run out of, and doctors starting every consultation from a blank page.&rdquo;
               </p>
             </blockquote>
 
-            {/* Letter Body in Founder's Voice */}
             <div className="text-[0.95rem] sm:text-[1.0625rem] text-[#334155] leading-[1.75] space-y-4 sm:space-y-5">
               <p>
                 In private medical practices across Sri Lanka, evening consultation sessions are intense. A doctor routinely sees thirty to fifty patients in three hours. Every minute spent searching a drawer for a past prescription or scribbling notes is a minute stolen from diagnosis and patient care.
@@ -192,27 +212,27 @@ export default function WhoAndWhySection() {
                 Paper wasn&apos;t failing because doctors or dispensers were careless. It was failing because three separate people were forced to operate from disconnected fragments of information.
               </p>
               <p className="font-medium text-[#0B1B3A]">
-                We built Suwenzo to give private clinics one calm, connected system. Setup takes less than a day, training is provided in-person at your clinic, and your stock list is loaded before you see your first patient.
+                We built Suwenzo to give private clinics one calm, connected system. Most clinics are ready within 48 hours of the demo, training is provided in-person at your clinic, and your stock list is loaded before you see your first patient.
               </p>
             </div>
 
-            {/* Founder Sign-off Block */}
+            {/* Team Sign-off Block */}
             <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3.5">
                 <div className="w-12 h-12 rounded-full p-[2px] bg-gradient-to-tr from-[#1D4ED8] via-[#3B82F6] to-[#93C5FD] shadow-[0_4px_14px_rgba(29,78,216,0.22)] shrink-0 flex items-center justify-center">
-                  <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
+                  <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden p-1">
                     <Image
-                      src="/swlogocopy.jpeg"
-                      alt="The Suwenzo Clinical Team"
-                      width={44}
-                      height={44}
+                      src="/suwenzo-mark.svg"
+                      alt="The Suwenzo team"
+                      width={40}
+                      height={40}
                       className="w-full h-full object-contain"
                     />
                   </div>
                 </div>
                 <div>
                   <div className="text-[15px] sm:text-[16px] font-bold text-[#0B1B3A]">
-                    The Suwenzo Clinical Team
+                    The Suwenzo team
                   </div>
                   <div className="text-[12.5px] sm:text-[13px] text-slate-500">
                     Founded in Colombo · Built specifically for Sri Lankan Healthcare

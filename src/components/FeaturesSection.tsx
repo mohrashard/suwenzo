@@ -1,9 +1,8 @@
 import Link from "next/link";
+import { getWhatsAppRedirectUrl } from "@/lib/site";
 
 export default function FeaturesSection() {
-  const whatsappNumber = "94719382296";
-  const whatsappMessage = encodeURIComponent("Hi, I would like to book a 20-minute demo for Suwenzo.");
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+  const whatsappUrl = getWhatsAppRedirectUrl("features", "demo");
 
   return (
     <section className="bg-[linear-gradient(180deg,#F4F9FF_0%,#E6F0FD_100%)] pt-[72px] sm:pt-[100px] px-4 sm:px-6 pb-[80px] sm:pb-[110px] flex flex-col items-center relative overflow-hidden" id="features">
@@ -46,16 +45,21 @@ export default function FeaturesSection() {
                   Every visit on file, so no consultation starts from zero. See past diagnoses, prescriptions and notes in one place.
                 </p>
 
-                <div className="mb-6 sm:mb-8">
+                <div className="flex flex-wrap items-center gap-3 mb-6 sm:mb-8">
                   <a
                     href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    rel="nofollow noopener"
                     className="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-5 py-3 rounded-full bg-[#1D4ED8] text-white font-semibold text-[14px] sm:text-[14.5px] shadow-[0_6px_20px_rgba(29,78,216,0.3)] hover:bg-[#1e40af] transition-all duration-200"
                   >
                     <span>See patient records demo</span>
                     <span aria-hidden="true">&rarr;</span>
                   </a>
+                  <Link
+                    href="/features/patient-records"
+                    className="text-[13.5px] text-[#1D4ED8] font-semibold hover:underline px-2 py-1"
+                  >
+                    Read records guide &rarr;
+                  </Link>
                 </div>
               </div>
 
@@ -82,7 +86,7 @@ export default function FeaturesSection() {
               <div className="flex items-center justify-center flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-5 self-center lg:self-end">
                 <span className="px-3 py-1 rounded-full text-[11px] sm:text-[12px] font-medium bg-blue-50 text-[#1D4ED8] border border-blue-100 flex items-center gap-1.5 shadow-2xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8]" />
-                  Patient Dossier
+                  Sample Dossier
                 </span>
                 <span className="px-3 py-1 rounded-full text-[11px] sm:text-[12px] font-medium bg-slate-50 text-slate-600 border border-slate-200">
                   Past Diagnoses
@@ -98,15 +102,15 @@ export default function FeaturesSection() {
                 <div className="flex items-start justify-between border-b border-slate-200 pb-3 mb-3">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-blue-100 text-[#1D4ED8] font-bold flex items-center justify-center text-[13px] shrink-0 border border-blue-200">
-                      KP
+                      SP
                     </div>
                     <div>
                       <div className="flex items-center gap-2 flex-wrap">
-                        <h4 className="text-[14.5px] sm:text-[15.5px] font-bold text-[#0B1B3A]">Kamal Perera</h4>
+                        <span className="text-[14.5px] sm:text-[15.5px] font-bold text-[#0B1B3A]">Sample patient</span>
                         <span className="text-[11px] bg-slate-100 text-slate-600 font-mono px-1.5 py-0.5 rounded">48 yrs · Male</span>
-                        <span className="text-[10px] bg-blue-50 text-[#1D4ED8] font-mono px-1.5 py-0.5 rounded border border-blue-100">SUW-0428</span>
+                        <span className="text-[10px] bg-blue-50 text-[#1D4ED8] font-mono px-1.5 py-0.5 rounded border border-blue-100">DEMO-0428</span>
                       </div>
-                      <p className="text-[11px] text-slate-500 mt-0.5">+94 77 123 4567 · Colombo 05</p>
+                      <p className="text-[11px] text-slate-500 mt-0.5">+94 77 000 0000 · Colombo 05</p>
                     </div>
                   </div>
                   <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full shrink-0">
@@ -127,63 +131,37 @@ export default function FeaturesSection() {
 
                 {/* Chronological Visit Timeline */}
                 <div className="space-y-2 mb-3">
-                  {/* Current Visit */}
-                  <div className="bg-white border border-blue-100 p-2.5 rounded-xl shadow-2xs">
-                    <div className="flex items-center justify-between text-[11.5px] mb-1">
-                      <span className="font-bold text-[#0B1B3A]">Visit 4 · Today (14:30)</span>
-                      <span className="text-[10px] font-medium text-[#1D4ED8] bg-blue-50 px-1.5 py-0.2 rounded">Current Session</span>
+                  <div className="bg-white p-2.5 rounded-lg border border-blue-100 flex items-center justify-between shadow-2xs">
+                    <div>
+                      <div className="text-[11.5px] font-bold text-[#0B1B3A]">Acute Bronchitis review</div>
+                      <div className="text-[10px] text-slate-500">Amoxicillin 500mg · 5 days course completed</div>
                     </div>
-                    <p className="text-[11px] text-slate-600 mb-1.5">
-                      <strong className="text-slate-800">Dx:</strong> Acute Bronchitis · <strong className="text-slate-800">Vitals:</strong> BP 128/82, HR 74, Temp 98.4°F
-                    </p>
-                    <div className="text-[10.5px] bg-slate-50 p-1.5 rounded border border-slate-100 flex items-center justify-between">
-                      <span className="text-[#0B1B3A] font-medium">Azithromycin 500mg (1 OD) + Paracetamol (2 SOS)</span>
-                      <span className="text-emerald-700 font-semibold text-[9.5px]">Stock on shelf (94)</span>
-                    </div>
+                    <span className="text-[10px] font-mono bg-blue-50 text-[#1D4ED8] px-1.5 py-0.5 rounded">Current Visit</span>
                   </div>
-
-                  {/* Past Visit Record */}
-                  <div className="bg-white/80 border border-slate-200/80 p-2 rounded-xl text-[11px] text-slate-500">
-                    <div className="flex items-center justify-between mb-0.5">
-                      <span className="font-semibold text-slate-700">Visit 3 · 18 Jul 2026</span>
-                      <span className="text-[10px]">Dr. Perera</span>
-                    </div>
-                    <p className="text-[10.5px]">Routine review · BP 132/84 · Amlodipine 5mg renewed (30 tabs) · WhatsApp reminder completed</p>
-                  </div>
-                </div>
-
-                {/* Doctor's Running Note */}
-                <div className="bg-blue-50/60 border border-blue-100 rounded-lg p-2 text-[10.5px] text-slate-600 flex items-center justify-between">
-                  <span><strong>Clinical note:</strong> Patient adherent to morning dose. Advised low salt diet.</span>
-                  <span className="text-[#1D4ED8] font-semibold text-[10px] whitespace-nowrap ml-2">Synced</span>
                 </div>
               </div>
-
             </div>
 
           </div>
         </div>
 
-        {/* ================= BOTTOM ROW: 3-COLUMN DECK ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-
-          {/* COLUMN 1: Feature / 02 (Digital prescription to dispensary - FLAGSHIP) */}
+        {/* ================= BOTTOM ROW: 3-COLUMN EQUAL CARDS ================= */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+          
+          {/* COLUMN 1: Feature / 02 (Digital prescription to dispensary) */}
           <div className="bg-white border border-blue-100/80 rounded-[22px] sm:rounded-[28px] p-5 sm:p-7 shadow-[0_10px_35px_-8px_rgba(29,78,216,0.06),0_1px_3px_rgba(0,0,0,0.02)] flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_45px_-10px_rgba(29,78,216,0.12)] hover:border-blue-200">
             <div>
-              {/* Top Interactive UI Mockup */}
               <div className="bg-[#F8FAFC] border border-slate-200 rounded-[18px] sm:rounded-[20px] p-3.5 sm:p-4 mb-5 sm:mb-6 shadow-2xs">
-                {/* Tablet Rx Bar */}
                 <div className="flex items-center justify-between border-b border-slate-200 pb-2 mb-2.5">
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                     <span className="text-[11px] font-bold text-[#0B1B3A]">Dispensary Queue</span>
                   </div>
                   <span className="text-[9.5px] font-mono bg-blue-50 text-[#1D4ED8] font-semibold px-1.5 py-0.5 rounded">
-                    &lt; 0.2s sync
+                    Sync in seconds
                   </span>
                 </div>
 
-                {/* Packet Label Preview */}
                 <div className="bg-amber-50/70 border border-amber-200/90 rounded-xl p-2.5 mb-2.5 text-left shadow-2xs">
                   <div className="flex items-center justify-between border-b border-amber-200/60 pb-1 mb-1">
                     <span className="text-[9px] font-bold text-amber-800 uppercase tracking-wider">Thermal Packet Sticker</span>
@@ -191,7 +169,7 @@ export default function FeaturesSection() {
                   </div>
                   <div className="text-[11px] font-bold text-slate-900">Amoxicillin 500mg</div>
                   <div className="text-[9px] text-slate-600 mt-0.5">1 cap TDS · After meals · 5 days</div>
-                  <div className="text-[8.5px] text-slate-400 mt-1">Kamal Perera · Dr. Perera · Suwenzo</div>
+                  <div className="text-[8.5px] text-slate-400 mt-1">Sample patient · Dr. Perera · Suwenzo</div>
                 </div>
 
                 <div className="bg-[#1D4ED8] text-white text-[10px] font-semibold py-1.5 px-2 rounded-lg text-center flex items-center justify-center gap-1 shadow-xs">
@@ -202,30 +180,33 @@ export default function FeaturesSection() {
                 </div>
               </div>
 
-              {/* Eyebrow & Copy */}
               <span className="text-[11px] sm:text-[11.5px] font-bold text-[#1D4ED8] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100 inline-block mb-2 uppercase tracking-wider">
                 Feature / 02 · Flagship
               </span>
               <h3 className="text-[1.2rem] sm:text-[1.28rem] font-bold text-[#0B1B3A] mb-2 leading-snug">
                 Digital prescription to dispensary
               </h3>
-              <p className="text-[0.9rem] sm:text-[0.9375rem] text-[#475569] leading-[1.6]">
+              <p className="text-[0.9rem] sm:text-[0.9375rem] text-[#475569] leading-[1.6] mb-3">
                 Write it once. It appears on the dispenser&apos;s screen within seconds, and a clear label prints for every packet.
               </p>
+              <Link
+                href="/features/digital-prescriptions"
+                className="text-[12.5px] text-[#1D4ED8] font-semibold hover:underline inline-block mb-2"
+              >
+                Learn how prescriptions flow &rarr;
+              </Link>
             </div>
 
             <div className="pt-3.5 sm:pt-4 mt-4 sm:mt-5 border-t border-slate-100 flex items-center text-[11.5px] sm:text-[12px] font-medium text-slate-500">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] mr-2 shrink-0" />
-              <span>Instant screen transmission · Zero handwriting to decode</span>
+              <span>Instant screen transmission · Clear dosage stickers</span>
             </div>
           </div>
 
           {/* COLUMN 2: Feature / 03 (Live stock & expiry alerts) */}
           <div className="bg-white border border-blue-100/80 rounded-[22px] sm:rounded-[28px] p-5 sm:p-7 shadow-[0_10px_35px_-8px_rgba(29,78,216,0.06),0_1px_3px_rgba(0,0,0,0.02)] flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_45px_-10px_rgba(29,78,216,0.12)] hover:border-blue-200">
             <div>
-              {/* Top Interactive UI Mockup */}
               <div className="bg-[#F8FAFC] border border-slate-200 rounded-[18px] sm:rounded-[20px] p-3.5 sm:p-4 mb-5 sm:mb-6 shadow-2xs">
-                {/* Search Bar Mockup */}
                 <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-lg px-2.5 sm:px-3 py-1.5 mb-2.5 sm:mb-3 text-[11.5px] sm:text-[12px] text-slate-400 shadow-2xs">
                   <svg className="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="11" cy="11" r="8" />
@@ -234,7 +215,6 @@ export default function FeaturesSection() {
                   <span className="text-[#0B1B3A] font-medium truncate">Search shelf stock...</span>
                 </div>
 
-                {/* Filter Pills */}
                 <div className="flex items-center gap-1.5 mb-2.5 sm:mb-3">
                   <span className="text-[9.5px] sm:text-[10px] font-semibold bg-blue-50 text-[#1D4ED8] border border-blue-100 px-2 py-0.5 rounded-full">
                     In Stock (124)
@@ -244,7 +224,6 @@ export default function FeaturesSection() {
                   </span>
                 </div>
 
-                {/* Medicine Items */}
                 <div className="space-y-2">
                   <div className="bg-white p-2 sm:p-2.5 rounded-lg border border-slate-200 flex items-center justify-between shadow-2xs">
                     <div>
@@ -268,16 +247,21 @@ export default function FeaturesSection() {
                 </div>
               </div>
 
-              {/* Eyebrow & Copy */}
               <span className="text-[11px] sm:text-[11.5px] font-bold text-[#1D4ED8] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100 inline-block mb-2 uppercase tracking-wider">
                 Feature / 03 · Inventory Safety
               </span>
               <h3 className="text-[1.2rem] sm:text-[1.28rem] font-bold text-[#0B1B3A] mb-2 leading-snug">
                 Live stock &amp; expiry alerts
               </h3>
-              <p className="text-[0.9rem] sm:text-[0.9375rem] text-[#475569] leading-[1.6]">
+              <p className="text-[0.9rem] sm:text-[0.9375rem] text-[#475569] leading-[1.6] mb-3">
                 See what&apos;s on the shelf before you prescribe, and get a warning before medicines expire.
               </p>
+              <Link
+                href="/features/stock-and-expiry"
+                className="text-[12.5px] text-[#1D4ED8] font-semibold hover:underline inline-block mb-2"
+              >
+                Read stock &amp; expiry details &rarr;
+              </Link>
             </div>
 
             <div className="pt-3.5 sm:pt-4 mt-4 sm:mt-5 border-t border-slate-100 flex items-center text-[11.5px] sm:text-[12px] font-medium text-slate-500">
@@ -289,22 +273,19 @@ export default function FeaturesSection() {
           {/* COLUMN 3: Feature / 04 (WhatsApp reminders) */}
           <div className="bg-white border border-blue-100/80 rounded-[22px] sm:rounded-[28px] p-5 sm:p-7 shadow-[0_10px_35px_-8px_rgba(29,78,216,0.06),0_1px_3px_rgba(0,0,0,0.02)] flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_45px_-10px_rgba(29,78,216,0.12)] hover:border-blue-200">
             <div>
-              {/* Top Interactive UI Mockup (WhatsApp Chat) */}
               <div className="bg-[#F8FAFC] border border-slate-200 rounded-[18px] sm:rounded-[20px] p-3.5 sm:p-4 mb-5 sm:mb-6 shadow-2xs">
-                {/* Header */}
                 <div className="flex items-center justify-between border-b border-slate-200 pb-2 mb-2.5 sm:mb-3">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold">
                       WA
                     </div>
-                    <span className="text-[11px] sm:text-[11.5px] font-bold text-[#0B1B3A]">Kamal Perera (48)</span>
+                    <span className="text-[11px] sm:text-[11.5px] font-bold text-[#0B1B3A]">Sample patient (48)</span>
                   </div>
                   <span className="text-[9.5px] sm:text-[10px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                     Consent Active
                   </span>
                 </div>
 
-                {/* WhatsApp Message Preview Bubble */}
                 <div className="bg-emerald-50/80 border border-emerald-200 rounded-xl p-2.5 sm:p-3 text-left shadow-2xs">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-[9.5px] sm:text-[10px] font-bold text-emerald-800 flex items-center gap-1">
@@ -314,31 +295,36 @@ export default function FeaturesSection() {
                     <span className="text-[8.5px] sm:text-[9px] text-emerald-700">09:30 AM</span>
                   </div>
                   <p className="text-[10.5px] sm:text-[11px] text-slate-700 leading-snug">
-                    &ldquo;Hello Kamal, your 5-day Amoxicillin course ends tomorrow. Please reply if you need a follow-up review.&rdquo;
+                    &ldquo;Hello, your 5-day Amoxicillin course ends tomorrow. Please reply if you need a follow-up review.&rdquo;
                   </p>
                 </div>
 
                 <div className="mt-2 sm:mt-2.5 flex items-center justify-between text-[9.5px] sm:text-[10px] text-slate-500 px-1">
-                  <span>Delivered to +94 77 ••• ••••</span>
-                  <span className="font-semibold text-emerald-700">✓✓ Read</span>
+                  <span>Delivered with patient consent</span>
+                  <span className="font-semibold text-emerald-700">✓✓ Sent</span>
                 </div>
               </div>
 
-              {/* Eyebrow & Copy */}
               <span className="text-[11px] sm:text-[11.5px] font-bold text-[#1D4ED8] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100 inline-block mb-2 uppercase tracking-wider">
                 Feature / 04 · Patient Retention
               </span>
               <h3 className="text-[1.2rem] sm:text-[1.28rem] font-bold text-[#0B1B3A] mb-2 leading-snug">
                 WhatsApp reminders
               </h3>
-              <p className="text-[0.9rem] sm:text-[0.9375rem] text-[#475569] leading-[1.6]">
+              <p className="text-[0.9rem] sm:text-[0.9375rem] text-[#475569] leading-[1.6] mb-3">
                 With the patient&apos;s consent, a reminder goes out when a course is ending, on the app patients already use.
               </p>
+              <Link
+                href="/features/whatsapp-reminders"
+                className="text-[12.5px] text-[#1D4ED8] font-semibold hover:underline inline-block mb-2"
+              >
+                See how WhatsApp reminders work &rarr;
+              </Link>
             </div>
 
             <div className="pt-3.5 sm:pt-4 mt-4 sm:mt-5 border-t border-slate-100 flex items-center text-[11.5px] sm:text-[12px] font-medium text-slate-500">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] mr-2 shrink-0" />
-              <span>Course completion nudge · Zero app download for patients</span>
+              <span>Course completion nudge · WhatsApp only</span>
             </div>
           </div>
 
@@ -351,8 +337,7 @@ export default function FeaturesSection() {
         <div>
           <a
             href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow noopener"
             className="text-[#1D4ED8] font-semibold no-underline hover:underline inline-flex items-center gap-1.5 transition-colors text-[1rem] sm:text-[1.125rem]"
           >
             <span>See every feature in action</span> &rarr;

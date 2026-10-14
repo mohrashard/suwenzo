@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { getWhatsAppRedirectUrl } from "@/lib/site";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,11 +15,11 @@ export default function Navbar() {
     { name: "How it works", href: "/#how-it-works", id: "how-it-works" },
     { name: "Features", href: "/#features", id: "features" },
     { name: "Who it's for", href: "/#who-and-why", id: "who-and-why" },
-    { name: "FAQ", href: "/#faq", id: "faq" },
+    { name: "FAQ", href: "/faq", id: "faq" },
   ];
 
   useEffect(() => {
-    const sectionIds = ["home", "how-it-works", "features", "who-and-why", "faq"];
+    const sectionIds = ["home", "how-it-works", "features", "who-and-why"];
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -27,12 +28,6 @@ export default function Navbar() {
       // If near top of page -> always highlight Home
       if (scrollY < 120) {
         setActiveSection("home");
-        return;
-      }
-
-      // Check if user is scrolled near bottom of page -> activate FAQ
-      if (window.innerHeight + Math.round(scrollY) >= document.documentElement.scrollHeight - 60) {
-        setActiveSection("faq");
         return;
       }
 
@@ -57,21 +52,19 @@ export default function Navbar() {
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, id: string) => {
     if (typeof window !== "undefined" && window.location.pathname === "/") {
-      setActiveSection(id);
-      if (id === "home") {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        if (window.location.hash) {
-          history.pushState(null, "", " ");
-        }
-      } else {
-        const el = document.getElementById(id);
+      if (href.startsWith("/#")) {
+        const targetId = href.replace("/#", "");
+        const el = document.getElementById(targetId);
         if (el) {
           e.preventDefault();
-          const headerOffset = 80;
-          const top = el.getBoundingClientRect().top + window.scrollY - headerOffset;
-          window.scrollTo({ top, behavior: "smooth" });
-          history.pushState(null, "", `#${id}`);
+          const headerOffset = 110;
+          const elementPosition = el.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+          setActiveSection(id);
         }
       }
     }
@@ -80,8 +73,7 @@ export default function Navbar() {
     }
   };
 
-  const whatsappUrl =
-    "https://wa.me/94719382296?text=Hi%2C%20I%20would%20like%20to%20book%20a%2020-minute%20demo%20for%20Suwenzo.";
+  const whatsappUrl = getWhatsAppRedirectUrl("navbar", "demo");
 
   return (
     <header className="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 z-50 w-[94%] sm:w-auto max-w-[880px]">
@@ -99,20 +91,21 @@ export default function Navbar() {
           <Link
             href="/"
             onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-              setActiveSection("home");
+              if (typeof window !== "undefined" && window.location.pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                setActiveSection("home");
+              }
             }}
             className="inline-flex items-center gap-2.5 no-underline group"
           >
-            {/* Precision Gradient-Framed Brand Mark */}
             <div className="w-8 h-8 rounded-[10px] p-[1.5px] bg-gradient-to-tr from-[#1D4ED8] via-[#3B82F6] to-[#93C5FD] shadow-[0_2px_8px_rgba(29,78,216,0.2)] shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-              <div className="w-full h-full rounded-[8.5px] bg-white flex items-center justify-center overflow-hidden">
+              <div className="w-full h-full rounded-[8.5px] bg-white flex items-center justify-center overflow-hidden p-0.5">
                 <Image
-                  src="/swlogocopy.jpeg"
+                  src="/suwenzo-mark.svg"
                   alt="Suwenzo"
-                  width={32}
-                  height={32}
+                  width={28}
+                  height={28}
                   className="w-full h-full object-contain"
                   priority
                 />
@@ -124,7 +117,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Center: Precision Floating Dock Navigation (Strictly Single Line) */}
+        {/* Center: Precision Floating Dock Navigation */}
         <div className="hidden md:flex items-center gap-1 bg-slate-100/70 p-1 rounded-full border border-slate-200/50 shrink-0">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
@@ -147,11 +140,9 @@ export default function Navbar() {
 
         {/* Right: Tactile Action Button & Mobile Toggle */}
         <div className="flex items-center gap-2 shrink-0">
-          {/* Primary Demo Button */}
           <a
             href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow noopener"
             className="bg-[#1D4ED8] hover:bg-[#1e40af] text-white text-[13px] font-semibold px-4.5 py-2 rounded-full shadow-[0_2px_8px_rgba(29,78,216,0.25)] hover:shadow-[0_4px_14px_rgba(29,78,216,0.35)] transition-all duration-200 hover:scale-[1.02] whitespace-nowrap"
           >
             Book a Demo
@@ -207,20 +198,11 @@ export default function Navbar() {
           <div className="pt-2 mt-1 border-t border-slate-100 flex flex-col gap-2">
             <a
               href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center bg-[#1D4ED8] text-white font-semibold py-2.5 rounded-xl text-[14px] shadow-xs"
             >
               Book a 20-minute demo
-            </a>
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full text-center bg-slate-100 text-[#0B1B3A] font-semibold py-2.5 rounded-xl text-[14px]"
-            >
-              Message on WhatsApp
             </a>
           </div>
         </div>

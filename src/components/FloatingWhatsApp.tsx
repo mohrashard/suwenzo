@@ -1,13 +1,13 @@
+import { getWhatsAppRedirectUrl } from "@/lib/site";
+
 export default function FloatingWhatsApp() {
-  const whatsappUrl =
-    "https://wa.me/94719382296?text=Hi%2C%20I%20have%20a%20question%20about%20Suwenzo%20for%20my%20clinic.";
+  const whatsappUrl = getWhatsAppRedirectUrl("floating", "question");
 
   return (
     <aside aria-label="WhatsApp quick chat" className="fixed bottom-5 right-5 z-40">
       <a
         href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+        rel="nofollow noopener"
         aria-label="Chat with Suwenzo on WhatsApp"
         className="flex items-center gap-2 bg-[#25D366] text-white px-3.5 sm:px-4 py-3 rounded-full shadow-[0_8px_24px_rgba(37,211,102,0.35)] hover:bg-[#20ba59] transition-all duration-200 hover:scale-105 group focus:outline-hidden"
       >

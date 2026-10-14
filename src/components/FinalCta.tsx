@@ -1,8 +1,10 @@
 "use client";
 
+import { getWhatsAppRedirectUrl } from "@/lib/site";
+
 export default function FinalCta() {
-  const whatsappUrl =
-    "https://wa.me/94719382296?text=Hi%2C%20I%27d%20like%20a%2020-minute%20Suwenzo%20demo%20for%20my%20clinic.";
+  const whatsappDemoUrl = getWhatsAppRedirectUrl("final-cta", "demo");
+  const whatsappQuestionUrl = getWhatsAppRedirectUrl("final-cta-secondary", "question");
 
   const handleCtaClick = (buttonName: string) => {
     if (typeof window !== "undefined" && (window as unknown as { gtag?: Function }).gtag) {
@@ -18,7 +20,7 @@ export default function FinalCta() {
       {/* Ambient background soft glow matching other white sections */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-blue-50/50 blur-[130px] pointer-events-none rounded-full" />
 
-      {/* Centered Heading Block matching Problem, HowItWorks, Features & Pricing */}
+      {/* Centered Heading Block matching Problem, HowItWorks & Features */}
       <div className="text-center mb-10 sm:mb-12 max-w-[760px] relative z-10">
         <span className="bg-[#0f172a] text-white py-1.5 sm:py-2 px-4 sm:px-5 rounded-full text-[0.8125rem] sm:text-[0.875rem] font-medium inline-block mb-6 sm:mb-8 tracking-[0.02em] shadow-xs uppercase">
           DEMO
@@ -31,16 +33,14 @@ export default function FinalCta() {
         </p>
       </div>
 
-      {/* Flagship Suwenzo Showcase Card (Consistent with site design language) */}
+      {/* Flagship Suwenzo Showcase Card */}
       <div className="max-w-[1040px] w-full bg-gradient-to-b from-[#F4F9FF] to-[#EAF3FE] border border-blue-200/90 rounded-[28px] sm:rounded-[36px] p-7 sm:p-12 shadow-[0_16px_45px_-8px_rgba(29,78,216,0.1),0_1px_3px_rgba(0,0,0,0.02)] relative overflow-hidden z-10">
-        {/* Soft Radial Ambient Lighting */}
         <div className="absolute top-0 right-0 w-[400px] h-[300px] bg-blue-200/35 rounded-full blur-3xl pointer-events-none" />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
           
-          {/* Left Column: CTA Actions & Trust Badges (7 cols) */}
+          {/* Left Column: CTA Actions & Trust Badges */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Live Founder Badge */}
             <div className="inline-flex items-center gap-2 text-[12px] font-bold text-[#1D4ED8] bg-white border border-blue-200 px-3 py-1 rounded-full uppercase tracking-wider mb-4 shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>Founding Clinic Offer &middot; 10 Seats Free</span>
@@ -57,9 +57,8 @@ export default function FinalCta() {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto mb-4">
               <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={whatsappDemoUrl}
+                rel="nofollow noopener"
                 onClick={() => handleCtaClick("Book Demo Primary")}
                 className="w-full sm:w-auto bg-[#1D4ED8] hover:bg-[#1e40af] text-white font-semibold px-7 py-3.5 rounded-full text-[15px] sm:text-[15.5px] shadow-[0_6px_20px_rgba(29,78,216,0.3)] transition-all duration-200 hover:scale-[1.02] text-center"
               >
@@ -67,9 +66,8 @@ export default function FinalCta() {
               </a>
 
               <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={whatsappQuestionUrl}
+                rel="nofollow noopener"
                 onClick={() => handleCtaClick("Message WhatsApp Secondary")}
                 className="w-full sm:w-auto bg-white hover:bg-slate-50 text-[#0B1B3A] border border-slate-200/90 font-semibold px-6 py-3.5 rounded-full text-[15px] sm:text-[15.5px] transition-all duration-200 flex items-center justify-center gap-2 text-center shadow-2xs"
               >
@@ -80,13 +78,12 @@ export default function FinalCta() {
               </a>
             </div>
 
-            {/* Small Line Under Buttons */}
             <p className="text-[12.5px] sm:text-[13px] text-[#475569] font-medium">
               Built for private clinics and medical practices with an in-house dispensary. We can demo at your clinic.
             </p>
           </div>
 
-          {/* Right Column: 20-Minute Demo Timeline (5 cols) */}
+          {/* Right Column: 20-Minute Demo Timeline */}
           <div className="lg:col-span-5 w-full bg-white border border-blue-100 rounded-[22px] p-5 sm:p-6 shadow-sm text-left">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
               <span className="text-[11.5px] font-bold text-slate-400 uppercase tracking-wider">
@@ -114,7 +111,7 @@ export default function FinalCta() {
                 </div>
                 <div>
                   <div className="font-bold text-[#0B1B3A]">Instant dispensary sync</div>
-                  <div className="text-slate-500 text-[12.5px]">Appears on the screen in &lt; 0.2s with zero handwriting.</div>
+                  <div className="text-slate-500 text-[12.5px]">Prescriptions appear on dispensary screen within seconds.</div>
                 </div>
               </div>
 

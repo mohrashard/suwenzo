@@ -1,23 +1,25 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
+import HomeFaqAccordion from "@/components/HomeFaqAccordion";
+import { getFaqPageSchema } from "@/lib/schemas";
+import { getWhatsAppRedirectUrl } from "@/lib/site";
 
 export default function FaqSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const toggleFaq = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const whatsappUrl = getWhatsAppRedirectUrl("faq-section", "question");
 
   const faqs = [
+    {
+      question: "What does the founding clinic offer include?",
+      answer:
+        "The first 10 clinics in Colombo get 3 months free. Founding clinics also get direct engineering support and help shape future software features. Pricing is shared during the demo.",
+    },
     {
       question: "How long does setup take, and who does it?",
       answer:
         "We do it with you. We enter your stock list, connect your printer and train your dispenser, so you start with a working system, not an empty one. Most clinics are ready within 48 hours of the demo, and we stay on WhatsApp for the first weeks to help your dispenser settle in.",
     },
     {
-      question: "What do I need to buy to get started?",
+      question: "What hardware do I need to buy to get started?",
       answer:
         "You need a tablet for the doctor's desk, a label printer at the dispensary, and an internet connection. Before you buy anything, we share the list of printers that work with Suwenzo so nothing is wasted.",
     },
@@ -32,32 +34,21 @@ export default function FaqSection() {
         "Suwenzo keeps each patient's visits, prescriptions and notes in one record, so any doctor in the clinic can see the history before the consultation starts. This includes past diagnoses, prescribed medicines, dosages, allergies, and vital signs, with nothing lost between visits.",
     },
     {
-      question: "How do reminders work, and do patients have to agree?",
+      question: "How do WhatsApp reminders work, and do patients have to agree?",
       answer:
         "When a patient's course is ending, Suwenzo sends a WhatsApp reminder, but only to patients who have agreed to receive them. Consent is captured with a single tap during consultation or registration, and reminder messaging is fully included in your subscription.",
     },
   ];
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map((faq) => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer,
-      },
-    })),
-  };
+  const faqJsonLd = getFaqPageSchema(faqs);
 
   return (
-    <section className="bg-[linear-gradient(180deg,#F0F7FF_0%,#E6F1FE_100%)] py-[96px] sm:py-[110px] px-4 sm:px-6 w-full flex flex-col items-center relative overflow-hidden" id="faq">
-      {/* Schema.org FAQPage for AEO and Search Engines */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+    <section
+      className="bg-[linear-gradient(180deg,#F0F7FF_0%,#E6F1FE_100%)] py-[96px] sm:py-[110px] px-4 sm:px-6 w-full flex flex-col items-center relative overflow-hidden"
+      id="faq"
+    >
+      {/* Server-Rendered FAQ Schema */}
+      <JsonLd data={faqJsonLd} />
 
       {/* Ambient background soft glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-blue-200/30 via-white/40 to-transparent blur-[130px] pointer-events-none rounded-full" />
@@ -65,7 +56,7 @@ export default function FaqSection() {
       {/* Main Two-Column Layout */}
       <div className="max-w-[1140px] w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 relative z-10 items-start">
         
-        {/* ================= LEFT COLUMN: HEADING & WHATSAPP NOTE ================= */}
+        {/* Left Column: Heading & Note */}
         <div className="lg:col-span-5 lg:sticky lg:top-28 text-left">
           <span className="bg-[#0f172a] text-white py-1.5 px-4 rounded-full text-[0.8125rem] font-medium inline-block mb-6 sm:mb-8 tracking-[0.02em] shadow-xs uppercase">
             FAQ
@@ -75,16 +66,24 @@ export default function FaqSection() {
             Questions doctors ask before they book a demo
           </h2>
 
-          <p className="text-[1.05rem] text-[#475569] leading-[1.6] mb-8">
+          <p className="text-[1.05rem] text-[#475569] leading-[1.6] mb-6">
             Clear, honest answers about clinic hardware, stock setup, patient records, and day-to-day dispensary workflow.
           </p>
 
-          {/* Refined Editorial Side Note */}
+          <div className="mb-8">
+            <Link
+              href="/faq"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-blue-200 text-[#1D4ED8] text-[13.5px] font-semibold shadow-2xs hover:bg-blue-50 transition-colors"
+            >
+              <span>Explore all 20+ questions in FAQ directory</span>
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
+
           <div className="pt-6 border-t border-blue-200/60">
             <a
-              href="https://wa.me/94719382296?text=Hi%2C%20I%20have%20a%20question%20about%20Suwenzo%20for%20my%20clinic."
-              target="_blank"
-              rel="noopener noreferrer"
+              href={whatsappUrl}
+              rel="nofollow noopener"
               className="inline-flex items-center gap-3 text-left group transition-opacity hover:opacity-90"
             >
               <div className="w-8 h-8 rounded-full bg-white border border-blue-200/80 flex items-center justify-center shrink-0 shadow-2xs group-hover:border-[#1D4ED8] transition-colors">
@@ -103,70 +102,9 @@ export default function FaqSection() {
           </div>
         </div>
 
-        {/* ================= RIGHT COLUMN: ACCORDION LIST ================= */}
-        <div className="lg:col-span-7 flex flex-col gap-3.5 w-full">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <div
-                key={index}
-                className={`bg-white border rounded-[20px] transition-all duration-200 overflow-hidden ${
-                  isOpen
-                    ? "border-blue-300 shadow-[0_12px_28px_-6px_rgba(29,78,216,0.1)]"
-                    : "border-slate-200/90 shadow-[0_4px_16px_-4px_rgba(29,78,216,0.04)] hover:border-blue-200"
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(index)}
-                  className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-hidden group cursor-pointer"
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-answer-${index}`}
-                >
-                  <h3 className="text-[16px] sm:text-[17px] font-bold text-[#0B1B3A] leading-snug tracking-tight group-hover:text-[#1D4ED8] transition-colors">
-                    {faq.question}
-                  </h3>
-
-                  <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors duration-200 ${
-                      isOpen
-                        ? "bg-[#1D4ED8] text-white"
-                        : "bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-[#1D4ED8]"
-                    }`}
-                  >
-                    <span className="text-[18px] font-medium leading-none select-none">
-                      {isOpen ? "−" : "+"}
-                    </span>
-                  </div>
-                </button>
-
-                {/* CSS Grid Transition: Ensures answer is ALWAYS in HTML source for AI/Search engines */}
-                <div
-                  id={`faq-answer-${index}`}
-                  className={`grid transition-[grid-template-rows,opacity] duration-250 ease-out ${
-                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <div className="px-6 pb-5 pt-1.5 text-[14.5px] sm:text-[15px] text-[#475569] leading-[1.65] border-t border-slate-100/80">
-                      {faq.answer}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-
-          {/* Link to Full 10-Question FAQ Directory */}
-          <div className="pt-2 px-1 flex items-center justify-between">
-            <Link
-              href="/faq"
-              className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#1D4ED8] hover:text-[#1e40af] group transition-colors"
-            >
-              <span className="group-hover:underline">Looking for more answers? View all questions in our full FAQ directory</span>
-              <span aria-hidden="true" className="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-            </Link>
-          </div>
+        {/* Right Column: Accessible Interactive Accordion */}
+        <div className="lg:col-span-7 w-full">
+          <HomeFaqAccordion items={faqs} />
         </div>
 
       </div>

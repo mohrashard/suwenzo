@@ -1,10 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getWhatsAppRedirectUrl } from "@/lib/site";
 
 export default function Hero() {
-  const whatsappNumber = "94719382296";
-  const whatsappMessage = encodeURIComponent("Hi, I would like to book a 20-minute demo for Suwenzo.");
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+  const whatsappUrl = getWhatsAppRedirectUrl("hero", "demo");
 
   const gpStatement =
     "For private clinics and medical practices, with or without an in-house dispensary · Setup and training included · 3 months free for founding clinics";
@@ -12,7 +11,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full flex flex-col items-center justify-start pt-[115px] md:pt-[135px] px-6 pb-16 md:pb-24 overflow-hidden scroll-mt-24"
+      className="relative w-full flex flex-col items-center justify-start pt-[115px] md:pt-[135px] px-4 sm:px-6 pb-16 md:pb-24 overflow-hidden scroll-mt-24"
     >
       {/* Full-width Clinic Photograph Background */}
       <Image
@@ -20,6 +19,8 @@ export default function Hero() {
         alt="Doctor using a computer while a nurse uses a tablet in a clinic"
         fill
         priority
+        quality={75}
+        sizes="(max-width: 768px) 100vw, 1280px"
         className="object-cover object-[center_60%] md:object-[center_45%] z-0"
       />
 
@@ -29,7 +30,8 @@ export default function Hero() {
           src="/bluewhite.jpg"
           alt=""
           fill
-          priority
+          quality={70}
+          sizes="(max-width: 768px) 100vw, 1280px"
           className="w-full h-full object-fill"
         />
       </div>
@@ -57,13 +59,13 @@ export default function Hero() {
           <span className="whitespace-normal md:whitespace-nowrap">Remember every patient.</span>
         </h1>
 
-        {/* Subtitle */}
-        <div className="text-[16.5px] sm:text-[18px] md:text-[19px] text-[#0A192F] mb-8 max-w-[880px] leading-[1.6] font-medium mx-auto text-center space-y-1 sm:space-y-1.5">
-          <p className="whitespace-normal md:whitespace-nowrap">
-            Suwenzo connects your doctor&apos;s desk, records, and dispensary in one system.
+        {/* 40-60 Word Answer-First Definition Block */}
+        <div className="bg-white/90 backdrop-blur-md border border-blue-100 rounded-2xl p-4 sm:p-5 mb-8 max-w-[820px] mx-auto text-left sm:text-center shadow-[0_4px_20px_-4px_rgba(29,78,216,0.06)]">
+          <p className="text-[15.5px] sm:text-[17px] text-[#0B1B3A] font-semibold leading-snug mb-1.5">
+            Suwenzo is clinic software for Sri Lanka that connects the doctor&apos;s desk, patient records and dispensary in one system, with WhatsApp reminders so patients return on time.
           </p>
-          <p className="whitespace-normal md:whitespace-nowrap text-[#132A4D]">
-            Prescriptions sync in seconds, and patients get reminded when it&apos;s time to return.
+          <p className="text-[13.5px] sm:text-[14.5px] text-[#475569] leading-relaxed">
+            Prescriptions appear on the dispensary screen within seconds, stock levels deduct automatically, and patient visit history remains instantly accessible at every consultation.
           </p>
         </div>
 
@@ -72,8 +74,7 @@ export default function Hero() {
           <div className="flex flex-row items-center gap-4 w-full md:w-auto justify-center flex-wrap">
             <a
               href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener"
               className="flex items-center justify-center bg-[#1D4ED8] hover:bg-[#1e40af] text-white h-[52px] px-8 rounded-full text-[15px] md:text-[16px] font-semibold transition-all duration-300 shadow-[0_8px_20px_rgba(29,78,216,0.25)] hover:shadow-[0_12px_24px_rgba(29,78,216,0.35)] hover:-translate-y-[1px] whitespace-nowrap"
             >
               Book a 20-minute demo
@@ -93,8 +94,8 @@ export default function Hero() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
               </svg>
             </a>
           </div>
