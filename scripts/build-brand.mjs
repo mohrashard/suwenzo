@@ -13,16 +13,17 @@ if (!fs.existsSync(publicDir)) {
   fs.mkdirSync(publicDir, { recursive: true });
 }
 
-// Stethoscope continuous SW line path
-const SW_PATH = `M 28 25
-C 34 25, 43 27, 43 35
-C 43 43, 27 43, 27 52
-C 27 61, 38 63, 44 58
-C 47 55, 49 48, 51 40
-L 57 66
-L 66 38
-L 74 66
-L 81 29`;
+// 1. Read the authentic Suwenzo SVG logo source
+const swLogoPath = path.join(publicDir, "swlogocopy.svg");
+if (!fs.existsSync(swLogoPath)) {
+  console.error("Error: public/swlogocopy.svg not found!");
+  process.exit(1);
+}
+const swLogoRaw = fs.readFileSync(swLogoPath, "utf-8");
+const pathsMatch = swLogoRaw.substring(
+  swLogoRaw.indexOf("<path"),
+  swLogoRaw.lastIndexOf("</svg>")
+);
 
 function renderSvgToPng(svgString, targetWidth, targetHeight) {
   const resvg = new Resvg(svgString, {
@@ -32,7 +33,7 @@ function renderSvgToPng(svgString, targetWidth, targetHeight) {
     },
     font: {
       loadSystemFonts: true,
-      defaultFontFamily: "Segoe UI, Arial, sans-serif",
+      defaultFontFamily: "Plus Jakarta Sans, Segoe UI, Arial, sans-serif",
     },
   });
   const pngData = resvg.render();
@@ -40,11 +41,9 @@ function renderSvgToPng(svgString, targetWidth, targetHeight) {
 }
 
 function writeAsset(name, svgContent, width, height, exportToPublic = true) {
-  // Save source SVG
   const svgPath = path.join(brandSrcDir, `${name}.svg`);
   fs.writeFileSync(svgPath, svgContent, "utf-8");
 
-  // Rasterize to PNG
   const pngBuffer = renderSvgToPng(svgContent, width, height);
   const targetPngPath = exportToPublic
     ? path.join(publicDir, `${name}.png`)
@@ -56,330 +55,367 @@ function writeAsset(name, svgContent, width, height, exportToPublic = true) {
   return pngBuffer;
 }
 
-// 1. Mark Gradient (White Canvas)
-const markGradientSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <defs>
-    <linearGradient id="swGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A3A66" />
-      <stop offset="100%" stop-color="#2563EB" />
-    </linearGradient>
-  </defs>
-  <rect width="100" height="100" rx="22" fill="#FFFFFF" />
-  <circle cx="24" cy="25" r="4.5" fill="url(#swGrad)" />
-  <path d="${SW_PATH}" fill="none" stroke="url(#swGrad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-  <circle cx="51" cy="38" r="3.2" fill="url(#swGrad)" />
-  <circle cx="81" cy="27" r="3.2" fill="url(#swGrad)" />
-</svg>`;
-
-// 2. Mark White on Gradient
-const markWhiteSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A3A66" />
-      <stop offset="100%" stop-color="#2563EB" />
-    </linearGradient>
-  </defs>
-  <rect width="100" height="100" fill="url(#bgGrad)" />
-  <circle cx="24" cy="25" r="4.5" fill="#FFFFFF" />
-  <path d="${SW_PATH}" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-  <circle cx="51" cy="38" r="3.2" fill="#FFFFFF" />
-  <circle cx="81" cy="27" r="3.2" fill="#FFFFFF" />
-</svg>`;
-
-// 3. Horizontal Logo (Navy on White)
-const logoHorizontalSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 80" width="340" height="80">
-  <defs>
-    <linearGradient id="swGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A3A66" />
-      <stop offset="100%" stop-color="#2563EB" />
-    </linearGradient>
-  </defs>
-  <g transform="translate(10, 8) scale(0.64)">
-    <rect width="100" height="100" rx="22" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" />
-    <circle cx="24" cy="25" r="4.5" fill="url(#swGrad)" />
-    <path d="${SW_PATH}" fill="none" stroke="url(#swGrad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="51" cy="38" r="3.2" fill="url(#swGrad)" />
-    <circle cx="81" cy="27" r="3.2" fill="url(#swGrad)" />
-  </g>
-  <text x="86" y="52" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#0B1B3A" letter-spacing="-0.03em">Suwenzo</text>
-</svg>`;
-
-// 4. Horizontal Logo (White on Gradient)
-const logoHorizontalWhiteSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 80" width="340" height="80">
-  <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A3A66" />
-      <stop offset="100%" stop-color="#2563EB" />
-    </linearGradient>
-  </defs>
-  <rect width="340" height="80" rx="16" fill="url(#bgGrad)" />
-  <g transform="translate(14, 8) scale(0.64)">
-    <circle cx="24" cy="25" r="4.5" fill="#FFFFFF" />
-    <path d="${SW_PATH}" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="51" cy="38" r="3.2" fill="#FFFFFF" />
-    <circle cx="81" cy="27" r="3.2" fill="#FFFFFF" />
-  </g>
-  <text x="90" y="52" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#FFFFFF" letter-spacing="-0.03em">Suwenzo</text>
-</svg>`;
-
-// 5. Favicon SVG
-const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <defs>
-    <linearGradient id="favGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A3A66" />
-      <stop offset="100%" stop-color="#2563EB" />
-    </linearGradient>
-  </defs>
-  <rect width="32" height="32" rx="8" fill="url(#favGrad)" />
-  <g transform="scale(0.32)">
-    <circle cx="24" cy="25" r="5" fill="#FFFFFF" />
-    <path d="${SW_PATH}" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="51" cy="38" r="4" fill="#FFFFFF" />
-    <circle cx="81" cy="27" r="4" fill="#FFFFFF" />
-  </g>
-</svg>`;
+// Helper to scale authentic mark paths
+function markGroup(x, y, size) {
+  const scale = size / 1254;
+  return `<g transform="translate(${x}, ${y}) scale(${scale})">${pathsMatch}</g>`;
+}
 
 function escapeXml(str) {
-  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
 }
 
-// 6. Template for OpenGraph (1200x630)
-function generateOgSvg(badge, title, subtitle) {
-  const safeBadge = escapeXml(badge);
-  const safeTitle = escapeXml(title);
-  const safeSubtitle = escapeXml(subtitle);
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
-  <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F8FAFC" />
-      <stop offset="100%" stop-color="#EBF3FE" />
-    </linearGradient>
-    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A3A66" />
-      <stop offset="100%" stop-color="#2563EB" />
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bgGrad)" />
-  
-  <!-- Subtle architectural border -->
-  <rect x="24" y="24" width="1152" height="582" rx="24" fill="none" stroke="#DBEAFE" stroke-width="2" />
-  
-  <!-- Brand Header: Mark + Name -->
-  <g transform="translate(80, 70)">
-    <rect width="64" height="64" rx="16" fill="url(#brandGrad)" />
-    <g transform="scale(0.64)">
-      <circle cx="24" cy="25" r="4.5" fill="#FFFFFF" />
-      <path d="${SW_PATH}" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-      <circle cx="51" cy="38" r="3.2" fill="#FFFFFF" />
-      <circle cx="81" cy="27" r="3.2" fill="#FFFFFF" />
-    </g>
-    <text x="80" y="44" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#0B1B3A" letter-spacing="-0.03em">Suwenzo</text>
-    <rect x="230" y="16" width="168" height="32" rx="16" fill="#DBEAFE" />
-    <text x="244" y="38" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#2563EB" letter-spacing="0.04em">SRI LANKA CLINIC</text>
-  </g>
+console.log("[Brand] Generating authentic assets from public/swlogocopy.svg...");
 
-  <!-- Central Content Area (Safe Zone) -->
-  <g transform="translate(80, 210)">
-    <!-- Badge -->
-    <rect x="0" y="0" width="${safeBadge.length * 10 + 28}" height="32" rx="16" fill="#0B1B3A" />
-    <text x="14" y="21" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="0.05em">${safeBadge.toUpperCase()}</text>
-    
-    <!-- Title -->
-    <text x="0" y="85" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="52" font-weight="800" fill="#0B1B3A" letter-spacing="-0.03em">${safeTitle}</text>
-    
-    <!-- Subtitle -->
-    <text x="0" y="145" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="24" font-weight="500" fill="#475569" letter-spacing="-0.01em">${safeSubtitle}</text>
-  </g>
-
-  <!-- Abstract 4-Node Connected Clinic Graphic (Doctor Desk -> Dispensary -> Records -> Reminders) -->
-  <g transform="translate(80, 440)">
-    <!-- Line Connectors -->
-    <line x1="120" y1="40" x2="360" y2="40" stroke="#93C5FD" stroke-width="3" stroke-dasharray="6,4" />
-    <line x1="360" y1="40" x2="600" y2="40" stroke="#93C5FD" stroke-width="3" stroke-dasharray="6,4" />
-    <line x1="600" y1="40" x2="840" y2="40" stroke="#93C5FD" stroke-width="3" stroke-dasharray="6,4" />
-
-    <!-- Node 1: Doctor's Desk -->
-    <rect x="30" y="15" width="180" height="50" rx="25" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="2" />
-    <circle cx="55" cy="40" r="8" fill="#2563EB" />
-    <text x="75" y="46" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#0B1B3A">Doctor's Desk</text>
-
-    <!-- Node 2: Records -->
-    <rect x="270" y="15" width="180" height="50" rx="25" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="2" />
-    <circle cx="295" cy="40" r="8" fill="#2563EB" />
-    <text x="315" y="46" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#0B1B3A">Patient File</text>
-
-    <!-- Node 3: Dispensary -->
-    <rect x="510" y="15" width="180" height="50" rx="25" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="2" />
-    <circle cx="535" cy="40" r="8" fill="#2563EB" />
-    <text x="555" y="46" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#0B1B3A">Dispensary</text>
-
-    <!-- Node 4: WhatsApp -->
-    <rect x="750" y="15" width="180" height="50" rx="25" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="2" />
-    <circle cx="775" cy="40" r="8" fill="#10B981" />
-    <text x="795" y="46" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#0B1B3A">WhatsApp</text>
-  </g>
-
-  <!-- URL watermark -->
-  <text x="1120" y="565" text-anchor="end" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#2563EB">www.suwenzo.com</text>
-</svg>`;
-}
-
-// 7. Social Avatar (1080x1080)
-const socialAvatarSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
-  <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A3A66" />
-      <stop offset="100%" stop-color="#2563EB" />
-    </linearGradient>
-  </defs>
-  <rect width="1080" height="1080" fill="url(#bgGrad)" />
-  
-  <!-- Circular Safe Zone Highlight -->
-  <circle cx="540" cy="540" r="480" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="4" />
-  
-  <!-- Scaled Monogram in Center -->
-  <g transform="translate(240, 240) scale(6)">
-    <circle cx="24" cy="25" r="4.5" fill="#FFFFFF" />
-    <path d="${SW_PATH}" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="51" cy="38" r="3.2" fill="#FFFFFF" />
-    <circle cx="81" cy="27" r="3.2" fill="#FFFFFF" />
-  </g>
+// 1. Pure Authentic Mark (1254x1254 viewBox)
+const markSquareSvg = `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254" width="1254" height="1254">
+${pathsMatch}
 </svg>`;
 
-// 8. Facebook Cover (1640x624)
-const facebookCoverSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 624" width="1640" height="624">
-  <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A3A66" />
-      <stop offset="100%" stop-color="#2563EB" />
-    </linearGradient>
-  </defs>
-  <rect width="1640" height="624" fill="url(#bgGrad)" />
-  
-  <!-- Left Side: Brand Mark -->
-  <g transform="translate(140, 162) scale(3)">
-    <circle cx="24" cy="25" r="4.5" fill="#FFFFFF" />
-    <path d="${SW_PATH}" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="51" cy="38" r="3.2" fill="#FFFFFF" />
-    <circle cx="81" cy="27" r="3.2" fill="#FFFFFF" />
-  </g>
+// Save mark SVG to brand src and public
+fs.writeFileSync(path.join(brandSrcDir, "suwenzo-mark.svg"), markSquareSvg, "utf-8");
+fs.writeFileSync(path.join(publicDir, "suwenzo-mark.svg"), markSquareSvg, "utf-8");
+fs.writeFileSync(path.join(publicDir, "favicon.svg"), markSquareSvg, "utf-8");
 
-  <!-- Center Text Content -->
-  <g transform="translate(480, 220)">
-    <text x="0" y="40" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="64" font-weight="800" fill="#FFFFFF" letter-spacing="-0.03em">Suwenzo</text>
-    <text x="0" y="110" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="34" font-weight="700" fill="#93C5FD">Clinic Software for Sri Lanka</text>
-    <text x="0" y="160" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="22" font-weight="500" fill="#E0F2FE">Doctor's Desk · Patient Records · Dispensary · WhatsApp Reminders</text>
-    <text x="0" y="210" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">www.suwenzo.com</text>
-  </g>
-</svg>`;
+// Render standard square icon sizes
+const icon512Png = renderSvgToPng(markSquareSvg, 512, 512);
+fs.writeFileSync(path.join(publicDir, "icon.png"), icon512Png);
+fs.writeFileSync(path.join(publicDir, "icon-512.png"), icon512Png);
+fs.writeFileSync(path.join(publicDir, "suwenzo-mark.png"), icon512Png);
+fs.writeFileSync(path.join(publicDir, "suwenzo-mark-gradient.png"), icon512Png);
 
-// 9. LinkedIn Banner (1584x396)
-const linkedinBannerSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396" width="1584" height="396">
-  <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A3A66" />
-      <stop offset="100%" stop-color="#2563EB" />
-    </linearGradient>
-  </defs>
-  <rect width="1584" height="396" fill="url(#bgGrad)" />
-  
-  <g transform="translate(100, 78) scale(2.4)">
-    <circle cx="24" cy="25" r="4.5" fill="#FFFFFF" />
-    <path d="${SW_PATH}" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="51" cy="38" r="3.2" fill="#FFFFFF" />
-    <circle cx="81" cy="27" r="3.2" fill="#FFFFFF" />
-  </g>
-
-  <g transform="translate(380, 140)">
-    <text x="0" y="30" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="48" font-weight="800" fill="#FFFFFF" letter-spacing="-0.03em">Suwenzo</text>
-    <text x="0" y="85" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="26" font-weight="700" fill="#93C5FD">Connected Clinic Software for Sri Lanka</text>
-    <text x="0" y="130" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="18" font-weight="500" fill="#E0F2FE">Doctor's Desk · Patient Records · Dispensary · WhatsApp Follow-Up Reminders</text>
-    <text x="0" y="170" font-family="Plus Jakarta Sans, Segoe UI, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Colombo, Sri Lanka · www.suwenzo.com</text>
-  </g>
-</svg>`;
-
-console.log("[Brand] Starting asset generation...");
-
-// Generate Marks & Logos
-writeAsset("suwenzo-mark-gradient", markGradientSvg, 512, 512);
-writeAsset("suwenzo-mark-white", markWhiteSvg, 512, 512);
-writeAsset("suwenzo-logo-horizontal", logoHorizontalSvg, 680, 160);
-writeAsset("suwenzo-logo-horizontal-white", logoHorizontalWhiteSvg, 680, 160);
-
-// Copy primary logo & mark to standard public names
-fs.writeFileSync(path.join(publicDir, "suwenzo-logo.png"), renderSvgToPng(logoHorizontalSvg, 680, 160));
-fs.writeFileSync(path.join(publicDir, "suwenzo-logo.svg"), logoHorizontalSvg, "utf-8");
-fs.writeFileSync(path.join(publicDir, "suwenzo-mark.png"), renderSvgToPng(markGradientSvg, 512, 512));
-fs.writeFileSync(path.join(publicDir, "suwenzo-mark.svg"), markGradientSvg, "utf-8");
-
-// Generate Icons
-writeAsset("icon", markGradientSvg, 512, 512);
-writeAsset("icon-512", markGradientSvg, 512, 512);
-writeAsset("icon-192", markGradientSvg, 192, 192);
-writeAsset("apple-icon", markGradientSvg, 180, 180);
-writeAsset("favicon", faviconSvg, 32, 32);
-fs.writeFileSync(path.join(publicDir, "favicon.svg"), faviconSvg, "utf-8");
-fs.writeFileSync(path.join(publicDir, "favicon.png"), renderSvgToPng(faviconSvg, 32, 32));
-
-// Overwrite app icons in src/app if present
+// In src/app/ for Next.js metadata icons
 const appIconPng = path.join(rootDir, "src", "app", "icon.png");
 const appAppleIconPng = path.join(rootDir, "src", "app", "apple-icon.png");
-fs.writeFileSync(appIconPng, renderSvgToPng(markGradientSvg, 512, 512));
-fs.writeFileSync(appAppleIconPng, renderSvgToPng(markGradientSvg, 180, 180));
+fs.writeFileSync(appIconPng, icon512Png);
 
-// Generate OpenGraph Images (1200x630)
-const ogDefaultSvg = generateOgSvg(
-  "Clinic Software",
-  "Prescribe once. Remember every patient.",
-  "Connects the doctor's desk, records and dispensary with WhatsApp reminders."
-);
-writeAsset("og-default", ogDefaultSvg, 1200, 630);
+const icon192Png = renderSvgToPng(markSquareSvg, 192, 192);
+fs.writeFileSync(path.join(publicDir, "icon-192.png"), icon192Png);
 
-const ogHomeSvg = generateOgSvg(
-  "Sri Lanka Healthcare",
-  "Prescribe once. Remember every patient.",
-  "Clinic software connecting doctor desk, records and dispensary in one system."
-);
-writeAsset("og-home", ogHomeSvg, 1200, 630);
+const icon180Png = renderSvgToPng(markSquareSvg, 180, 180);
+fs.writeFileSync(path.join(publicDir, "apple-icon.png"), icon180Png);
+fs.writeFileSync(appAppleIconPng, icon180Png);
 
-const ogFeaturesSvg = generateOgSvg(
-  "System Features",
-  "Desk, Records & Dispensary in One Flow",
-  "Real-time stock checking, thermal packet labels, and automated patient follow-ups."
-);
-writeAsset("og-features", ogFeaturesSvg, 1200, 630);
+const icon32Png = renderSvgToPng(markSquareSvg, 32, 32);
+fs.writeFileSync(path.join(publicDir, "favicon.png"), icon32Png);
 
-const ogForClinicsSvg = generateOgSvg(
-  "Practice Workflows",
-  "Built for How Sri Lankan Clinics Run",
-  "Solo doctors, clinics with dispensaries, and multi-doctor outpatient practices."
-);
-writeAsset("og-for-clinics", ogForClinicsSvg, 1200, 630);
+console.log("[Brand] Icons (favicon, apple-icon, icon-192, icon-512) generated.");
 
-const ogFaqSvg = generateOgSvg(
-  "Knowledge Base",
-  "Frequently Asked Questions for Doctors",
-  "Clear, honest answers about setup, hardware, offline sync and WhatsApp reminders."
-);
-writeAsset("og-faq", ogFaqSvg, 1200, 630);
+// 2. Horizontal Logo (Navy on White with Precision Gradient Frame)
+const logoHorizontalSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <defs>
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="50%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#93C5FD" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="200" fill="#FFFFFF" />
+  <!-- Precision Gradient Frame -->
+  <rect x="30" y="24" width="152" height="152" rx="36" fill="url(#frameGrad)" />
+  <rect x="33" y="27" width="146" height="146" rx="33" fill="#FFFFFF" />
+  ${markGroup(33, 27, 146)}
+  <!-- Brand Wordmark -->
+  <text x="212" y="128" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800" fill="#0B1B3A" letter-spacing="-2">Suwenzo</text>
+</svg>`;
 
-const ogAboutSvg = generateOgSvg(
-  "About Suwenzo",
-  "Built for Private Practices in Sri Lanka",
-  "Why we built Suwenzo to replace paper drawers and handwritten medicine packets."
-);
-writeAsset("og-about", ogAboutSvg, 1200, 630);
+const logoHorizontalPng = renderSvgToPng(logoHorizontalSvg, 800, 200);
+fs.writeFileSync(path.join(publicDir, "suwenzo-logo.png"), logoHorizontalPng);
+fs.writeFileSync(path.join(publicDir, "suwenzo-logo-horizontal.png"), logoHorizontalPng);
+fs.writeFileSync(path.join(publicDir, "suwenzo-logo.svg"), logoHorizontalSvg, "utf-8");
+fs.writeFileSync(path.join(publicDir, "suwenzo-logo-horizontal.svg"), logoHorizontalSvg, "utf-8");
+fs.writeFileSync(path.join(brandSrcDir, "suwenzo-logo.svg"), logoHorizontalSvg, "utf-8");
+fs.writeFileSync(path.join(brandSrcDir, "suwenzo-logo-horizontal.svg"), logoHorizontalSvg, "utf-8");
 
-const ogBlogSvg = generateOgSvg(
-  "Clinical Practice",
-  "Clinic Management & Dispensary Insights",
-  "Articles on paper vs. digital records and modern clinic workflows in Sri Lanka."
-);
-writeAsset("og-blog", ogBlogSvg, 1200, 630);
+// 3. Horizontal Logo White on Blue Gradient
+const logoHorizontalWhiteSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A3A66" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#93C5FD" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="200" fill="url(#bgGrad)" />
+  <rect x="30" y="24" width="152" height="152" rx="36" fill="url(#frameGrad)" />
+  <rect x="33" y="27" width="146" height="146" rx="33" fill="#FFFFFF" />
+  ${markGroup(33, 27, 146)}
+  <text x="212" y="128" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800" fill="#FFFFFF" letter-spacing="-2">Suwenzo</text>
+</svg>`;
+const logoHorizontalWhitePng = renderSvgToPng(logoHorizontalWhiteSvg, 800, 200);
+fs.writeFileSync(path.join(publicDir, "suwenzo-logo-horizontal-white.png"), logoHorizontalWhitePng);
+fs.writeFileSync(path.join(brandSrcDir, "suwenzo-logo-horizontal-white.svg"), logoHorizontalWhiteSvg, "utf-8");
 
-// Generate Social Media Banners
+console.log("[Brand] Horizontal logos generated.");
+
+// 4. Social Avatar (1080x1080) with centered circle-safe mark
+const socialAvatarSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <defs>
+    <linearGradient id="avatarBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A3A66" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="50%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#93C5FD" />
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#avatarBg)" />
+  
+  <!-- Subtle circular guide / glow inside safe area -->
+  <circle cx="540" cy="540" r="480" fill="none" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="2" />
+
+  <!-- Centered Precision Gradient Card -->
+  <rect x="260" y="260" width="560" height="560" rx="130" fill="url(#frameGrad)" />
+  <rect x="270" y="270" width="540" height="540" rx="120" fill="#FFFFFF" />
+  ${markGroup(270, 270, 540)}
+</svg>`;
 writeAsset("social-avatar", socialAvatarSvg, 1080, 1080);
+
+// 5. Facebook Cover (1640x624)
+const facebookCoverSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 624" width="1640" height="624">
+  <defs>
+    <linearGradient id="coverBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06182E" />
+      <stop offset="45%" stop-color="#0A3A66" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="50%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#93C5FD" />
+    </linearGradient>
+  </defs>
+  <rect width="1640" height="624" fill="url(#coverBg)" />
+
+  <!-- Subtle grid lines -->
+  <g stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1">
+    <line x1="200" y1="0" x2="200" y2="624" />
+    <line x1="600" y1="0" x2="600" y2="624" />
+    <line x1="1040" y1="0" x2="1040" y2="624" />
+    <line x1="1440" y1="0" x2="1440" y2="624" />
+  </g>
+
+  <!-- Left: Real Logo Badge -->
+  <g transform="translate(180, 150)">
+    <rect x="0" y="0" width="160" height="160" rx="36" fill="url(#frameGrad)" />
+    <rect x="3" y="3" width="154" height="154" rx="33" fill="#FFFFFF" />
+    ${markGroup(3, 3, 154)}
+  </g>
+
+  <!-- Center Content -->
+  <text x="380" y="235" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="64" font-weight="800" fill="#FFFFFF" letter-spacing="-1.5">Suwenzo</text>
+  <text x="380" y="295" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="28" font-weight="600" fill="#93C5FD">Clinic Software for Sri Lanka</text>
+  <text x="380" y="345" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="19" font-weight="400" fill="#E2E8F0">Doctor's Desk • Patient Records • Dispensary • WhatsApp Reminders</text>
+
+  <!-- Bottom Strip -->
+  <text x="380" y="440" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#93C5FD">Colombo, Sri Lanka • www.suwenzo.com</text>
+</svg>`;
 writeAsset("social-facebook-cover", facebookCoverSvg, 1640, 624);
+
+// 6. LinkedIn Banner (1584x396)
+const linkedinBannerSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396" width="1584" height="396">
+  <defs>
+    <linearGradient id="inBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#08223D" />
+      <stop offset="50%" stop-color="#0A3A66" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="50%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#93C5FD" />
+    </linearGradient>
+  </defs>
+  <rect width="1584" height="396" fill="url(#inBg)" />
+
+  <g transform="translate(140, 95)">
+    <rect x="0" y="0" width="140" height="140" rx="32" fill="url(#frameGrad)" />
+    <rect x="3" y="3" width="134" height="134" rx="29" fill="#FFFFFF" />
+    ${markGroup(3, 3, 134)}
+  </g>
+
+  <text x="320" y="170" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="56" font-weight="800" fill="#FFFFFF" letter-spacing="-1.5">Suwenzo</text>
+  <text x="320" y="222" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#93C5FD">Clinic Software for Sri Lanka</text>
+  <text x="320" y="265" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#E2E8F0">Connects the doctor's desk, patient records and dispensary in one system</text>
+
+  <text x="1200" y="222" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#93C5FD">Colombo, Sri Lanka</text>
+  <text x="1200" y="250" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#E2E8F0">www.suwenzo.com</text>
+</svg>`;
 writeAsset("social-linkedin-banner", linkedinBannerSvg, 1584, 396);
 
-console.log("[Brand] All brand assets successfully generated!");
+// 7. OG Image Generator (1200x630, Safe Area 1000x500)
+function generateOgSvg(eyebrow, headline, subtext) {
+  const safeEyebrow = escapeXml(eyebrow);
+  const safeHeadline = escapeXml(headline);
+  const safeSubtext = escapeXml(subtext);
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="ogBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F0F7FF" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="50%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#93C5FD" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#ogBg)" />
+
+  <!-- Outer frame border -->
+  <rect x="24" y="24" width="1152" height="582" rx="28" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" />
+
+  <!-- Top-left Brand Badge -->
+  <g transform="translate(80, 68)">
+    <rect x="0" y="0" width="64" height="64" rx="16" fill="url(#frameGrad)" />
+    <rect x="2" y="2" width="60" height="60" rx="14" fill="#FFFFFF" />
+    ${markGroup(2, 2, 60)}
+    <text x="80" y="44" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#0B1B3A" letter-spacing="-1">Suwenzo</text>
+    <text x="235" y="44" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#1D4ED8">• Clinic Software for Sri Lanka</text>
+  </g>
+
+  <!-- Central Content (Inside Safe Area) -->
+  <g transform="translate(80, 185)">
+    <!-- Eyebrow Pill -->
+    <rect x="0" y="0" width="180" height="34" rx="17" fill="#0F172A" />
+    <text x="16" y="23" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1">${safeEyebrow.toUpperCase()}</text>
+
+    <!-- Main Headline -->
+    <text x="0" y="86" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="46" font-weight="800" fill="#0B1B3A" letter-spacing="-1.5">${safeHeadline}</text>
+
+    <!-- Subtext -->
+    <text x="0" y="136" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="20" font-weight="400" fill="#475569">${safeSubtext}</text>
+  </g>
+
+  <!-- 4-Node Connected Graphic: Doctor's Desk, Records, Dispensary, Reminders -->
+  <g transform="translate(80, 390)">
+    <line x1="120" y1="40" x2="350" y2="40" stroke="#93C5FD" stroke-width="2" stroke-dasharray="4 4" />
+    <line x1="390" y1="40" x2="620" y2="40" stroke="#93C5FD" stroke-width="2" stroke-dasharray="4 4" />
+    <line x1="660" y1="40" x2="890" y2="40" stroke="#93C5FD" stroke-width="2" stroke-dasharray="4 4" />
+
+    <!-- Node 1: Doctor's Desk -->
+    <rect x="0" y="8" width="160" height="64" rx="16" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
+    <circle cx="28" cy="40" r="12" fill="#1D4ED8" />
+    <text x="28" y="45" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">1</text>
+    <text x="48" y="36" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B1B3A">Doctor Desk</text>
+    <text x="48" y="52" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" fill="#64748B">Tablet Prescribing</text>
+
+    <!-- Node 2: Records -->
+    <rect x="270" y="8" width="160" height="64" rx="16" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
+    <circle cx="298" cy="40" r="12" fill="#1D4ED8" />
+    <text x="298" y="45" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">2</text>
+    <text x="318" y="36" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B1B3A">Patient Files</text>
+    <text x="318" y="52" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" fill="#64748B">Instant History</text>
+
+    <!-- Node 3: Dispensary -->
+    <rect x="540" y="8" width="160" height="64" rx="16" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
+    <circle cx="568" cy="40" r="12" fill="#1D4ED8" />
+    <text x="568" y="45" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3</text>
+    <text x="588" y="36" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B1B3A">Dispensary</text>
+    <text x="588" y="52" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" fill="#64748B">Label Printing</text>
+
+    <!-- Node 4: Reminders -->
+    <rect x="810" y="8" width="170" height="64" rx="16" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5" />
+    <circle cx="838" cy="40" r="12" fill="#16A34A" />
+    <text x="838" y="45" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">4</text>
+    <text x="858" y="36" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#065F46">WhatsApp</text>
+    <text x="858" y="52" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" fill="#16A34A">Return Reminders</text>
+  </g>
+
+  <!-- Bottom Brand Signature Strip -->
+  <text x="80" y="540" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#64748B">Colombo, Sri Lanka • https://www.suwenzo.com</text>
+  <text x="960" y="540" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#1D4ED8">Ready in 48 hours →</text>
+</svg>`;
+}
+
+// Generate all OpenGraph variants
+writeAsset(
+  "og-default",
+  generateOgSvg(
+    "Clinic Software",
+    "Prescribe once. Remember every patient.",
+    "Connects the doctor's desk, records and dispensary with WhatsApp reminders."
+  ),
+  1200,
+  630
+);
+
+writeAsset(
+  "og-home",
+  generateOgSvg(
+    "Sri Lanka Healthcare",
+    "Prescribe once. Remember every patient.",
+    "Clinic software connecting doctor desk, records and dispensary in one system."
+  ),
+  1200,
+  630
+);
+
+writeAsset(
+  "og-features",
+  generateOgSvg(
+    "Clinic Modules",
+    "Desk, Records & Dispensary in One Flow",
+    "Live queue updates, thermal envelope labels, and automated patient follow-ups."
+  ),
+  1200,
+  630
+);
+
+writeAsset(
+  "og-for-clinics",
+  generateOgSvg(
+    "Practice Types",
+    "Built for How Sri Lankan Clinics Run",
+    "Solo doctors, clinics with dispensaries, and multi-doctor outpatient practices."
+  ),
+  1200,
+  630
+);
+
+writeAsset(
+  "og-faq",
+  generateOgSvg(
+    "Knowledge Base",
+    "20 Verified Questions Answered for Doctors",
+    "Clear, honest answers about setup, hardware, offline sync and WhatsApp reminders."
+  ),
+  1200,
+  630
+);
+
+writeAsset(
+  "og-about",
+  generateOgSvg(
+    "About Suwenzo",
+    "Built for Private Practices in Sri Lanka",
+    "Designed in Colombo to replace paper files and handwritten medicine packets."
+  ),
+  1200,
+  630
+);
+
+writeAsset(
+  "og-blog",
+  generateOgSvg(
+    "Clinical Practice",
+    "Clinic Management & Dispensary Insights",
+    "Articles on paper vs. digital records and modern clinic workflows in Sri Lanka."
+  ),
+  1200,
+  630
+);
+
+console.log("[Brand] All brand assets successfully built with the authentic Suwenzo mark!");

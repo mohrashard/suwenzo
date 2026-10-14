@@ -66,9 +66,9 @@ export default function VideoSection() {
         <div className="bg-white border border-slate-200/90 rounded-[22px] p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-[0_4px_20px_-4px_rgba(29,78,216,0.06)]">
           <div className="flex items-center gap-3.5">
             <div className="w-10 h-10 rounded-[12px] p-[1.5px] bg-gradient-to-tr from-[#1D4ED8] via-[#3B82F6] to-[#93C5FD] shadow-[0_2px_8px_rgba(29,78,216,0.2)] shrink-0 flex items-center justify-center">
-              <div className="w-full h-full rounded-[10.5px] bg-white flex items-center justify-center overflow-hidden p-1">
+              <div className="w-full h-full rounded-[10.5px] bg-white flex items-center justify-center overflow-hidden">
                 <Image
-                  src="/suwenzo-mark.png"
+                  src="/swlogocopy.svg"
                   alt="Suwenzo"
                   width={36}
                   height={36}

@@ -222,7 +222,7 @@ export default function WhoAndWhySection() {
                 <div className="w-12 h-12 rounded-full p-[2px] bg-gradient-to-tr from-[#1D4ED8] via-[#3B82F6] to-[#93C5FD] shadow-[0_4px_14px_rgba(29,78,216,0.22)] shrink-0 flex items-center justify-center">
                   <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden p-1">
                     <Image
-                      src="/suwenzo-mark.svg"
+                      src="/swlogocopy.svg"
                       alt="The Suwenzo team"
                       width={40}
                       height={40}
