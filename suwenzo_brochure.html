@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Suwenzo Healthcare Platform</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary: #0A3A66;
+            /* Deep Blue */
+            --accent: #2563EB;
+            /* Bright Blue */
+            --bg-light: #F0F7FD;
+            /* Very light blue */
+            --text-dark: #1E293B;
+            --text-gray: #475569;
+            --border: #E2E8F0;
+        }
+
+        @page {
+            size: A4;
+            margin: 12mm 15mm;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            font-size: 11.5px;
+            line-height: 1.5;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Header Banner */
+        .header-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        .header-content h1 {
+            color: var(--primary);
+            font-size: 26px;
+            font-weight: 800;
+            margin: 0 0 6px 0;
+            line-height: 1.1;
+        }
+
+        .header-content h2 {
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+        }
+
+        .header-logo {
+            text-align: right;
+            margin-left: 20px;
+        }
+
+        .logo {
+            max-height: 45px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 12px 2px rgba(37, 99, 235, 0.25);
+            background: #fff;
+            padding: 4px;
+            margin: 10px;
+        }
+
+        /* Sections */
+        .section-title {
+            color: var(--primary);
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 20px;
+            background-color: var(--accent);
+            border-radius: 3px;
+        }
+
+        .exec-overview {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            font-size: 11.5px;
+            font-weight: 500;
+            color: var(--text-dark);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .exec-overview p {
+            margin: 0 0 10px 0;
+        }
+
+        .exec-overview p:last-child {
+            margin: 0;
+        }
+
+        /* Grid for Modules - Hub and Spoke */
+        .diagram-grid {
+            display: grid;
+            grid-template-columns: 1fr 60px 1fr;
+            grid-template-rows: auto auto;
+            column-gap: 20px;
+            row-gap: 12px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .card-tl {
+            grid-column: 1;
+            grid-row: 1;
+            margin: 0;
+        }
+
+        .card-tr {
+            grid-column: 3;
+            grid-row: 1;
+            margin: 0;
+        }
+
+        .card-bl {
+            grid-column: 1;
+            grid-row: 2;
+            margin: 0;
+        }
+
+        .card-br {
+            grid-column: 3;
+            grid-row: 2;
+            margin: 0;
+        }
+
+        .center-hub {
+            grid-column: 2;
+            grid-row: 1 / span 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .center-hub::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            left: 50%;
+            width: 2px;
+            background: var(--border);
+            z-index: 1;
+            transform: translateX(-50%);
+        }
+
+        .hub-logo {
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 0 6px #fff, 0 4px 15px rgba(37, 99, 235, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hub-logo img {
+            max-width: 40px;
+            max-height: 25px;
+            object-fit: contain;
+            margin: 0;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        /* Connectors from cards to spine */
+        .diagram-grid .card::before {
+            content: '';
+            position: absolute;
+            top: 22px;
+            width: 50px;
+            height: 2px;
+            background: var(--border);
+            z-index: 1;
+        }
+
+        .card-tl::before,
+        .card-bl::before {
+            right: -50px;
+        }
+
+        .card-tr::before,
+        .card-br::before {
+            left: -50px;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--accent);
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            page-break-inside: avoid;
+            position: relative;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            font-size: 13px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card h3 svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent);
+        }
+
+        .card ul {
+            padding-left: 15px;
+            margin: 0;
+        }
+
+        .card li {
+            margin-bottom: 6px;
+            color: var(--text-gray);
+            font-size: 11px;
+        }
+
+        .card li:last-child {
+            margin-bottom: 0;
+        }
+
+        .card li strong {
+            color: var(--text-dark);
+        }
+
+        /* Architecture Diagram */
+        .arch-diagram {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+
+        .arch-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .arch-header h3 {
+            margin: 0;
+            font-size: 17px;
+            color: var(--primary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .arch-modules {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .arch-module {
+            background: #fff;
+            border: 2px solid var(--accent);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .arch-module h4 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        .arch-modules-desc {
+            text-align: center;
+            font-size: 11.5px;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .arch-layer {
+            background: var(--primary);
+            padding: 22px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .arch-layer h4 {
+            margin: 0 0 15px 0;
+            color: #fff;
+            font-size: 14.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 14px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .pill-cloud {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+        }
+
+        .arch-list {
+            padding-left: 20px;
+            margin-top: 0;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .arch-list li {
+            margin-bottom: 12px;
+            color: var(--text-gray);
+        }
+
+        .arch-list li strong {
+            color: var(--text-dark);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10.5px;
+            font-weight: 600;
+            color: var(--text-gray);
+            page-break-inside: avoid;
+        }
+
+        .footer strong {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        svg {
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+            margin-right: 4px;
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header-banner">
+            <div class="header-content">
+                <h1>Suwenzo Healthcare Platform</h1>
+                <h2>Cloud-Native SaaS Intelligence for Integrated Clinic, Pharmacy & Lab Networks</h2>
+            </div>
+            <div class="header-logo">
+                <img src="LOGO_SRC_PLACEHOLDER" class="logo" alt="Suwenzo Logo" onerror="this.style.display='none'" />
+            </div>
+        </div>
+
+        <!-- Section 1 -->
+        <h2 class="section-title">1. Executive Overview</h2>
+        <div class="exec-overview no-break" style="display: flex; gap: 20px; align-items: center;">
+            <div style="flex: 1.5;">
+                <p><strong>Suwenzo</strong> is a modern, cloud-native Software-as-a-Service (SaaS) platform engineered
+                    to connect consultation rooms, pharmacy counters, and a fully-fledged laboratory system in real
+                    time. Designed to be accessed and operated from anywhere on any device or web browser, Suwenzo
+                    eliminates operational bottlenecks and provides complete visibility across multi-branch healthcare
+                    ecosystems.</p>
+                <p>By seamlessly orchestrating patient flow, prescription fulfillment, and lab requisitions, Suwenzo
+                    enables healthcare enterprises to deliver faster, safer, and higher-quality care at scale.</p>
+            </div>
+            <div style="flex: 1; text-align: center;">
+                <!-- Image Placeholder -->
+                <div style="
+                background: #ffffff; 
+                border-radius: 8px; 
+                width: 100%; 
+                height: 140px; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                border: 2px dashed #94A3B8;
+                box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+                overflow: hidden;
+            ">
+                    <img src="DASHBOARD_SRC_PLACEHOLDER" alt="Suwenzo Platform"
+                        style="width: 100%; height: 100%; object-fit: cover; display: none;"
+                        onload="this.style.display='block'; this.parentNode.style.border='none';" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <h2 class="section-title">2. Core System Modules & Features</h2>
+        <div class="diagram-grid">
+            <!-- Clinic -->
+            <div class="card card-tl">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                    Smart Clinic & Consultation Engine
+                </h3>
+                <ul>
+                    <li><strong>Multi-Input Prescription Workflows:</strong> Supports quick-tap buttons for common
+                        medications and instant search, ensuring frictionless prescribing for doctors.</li>
+                    <li><strong>Live Inventory Visibility:</strong> Real-time stock matching alerts doctors to medicine
+                        availability during consultations.</li>
+                    <li><strong>Dedicated Printing Features:</strong> Explicitly supports patient ID card issuing, queue
+                        number printing, and prescription printing directly from the system.</li>
+                    <li><strong>Unified Electronic Medical Records (EMR):</strong> Instant access to complete patient
+                        medical histories and clinical notes.</li>
+                </ul>
+            </div>
+
+            <!-- Pharmacy -->
+            <div class="card card-tr">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M10.5 20.5l-6-6a4.24 4.24 0 0 1 6-6l6 6a4.24 4.24 0 0 1-6 6z"></path>
+                        <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"></line>
+                    </svg>
+                    High-Speed Pharmacy & Inventory
+                </h3>
+                <ul>
+                    <li><strong>Smart Drug Swapping:</strong> Ability to swap drugs seamlessly based on active real-time
+                        inventory availability.</li>
+                    <li><strong>Dosage & Stock Balancing:</strong> In-built features that allow for precise dosage
+                        changes, alongside separate, dedicated methods for drug balancing across shelves.</li>
+                    <li><strong>Automated Configurable Expiry Alerts:</strong> System alerts for upcoming drug expiries
+                        that are fully configurable, such as sending notifications at 3 months instead of 30 days.</li>
+                    <li><strong>Drug Consumption Tracking:</strong> Tracks and displays drug consumption so users can
+                        estimate their remaining drug balances by the end of the month.</li>
+                </ul>
+            </div>
+
+            <!-- Center Hub -->
+            <div class="center-hub">
+                <div class="hub-logo">
+                    <img src="LOGO_SRC_PLACEHOLDER" alt="Suwenzo Logo" onerror="this.style.display='none'" />
+                </div>
+            </div>
+
+            <!-- Lab -->
+            <div class="card card-bl">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M10 2v7.31"></path>
+                        <path d="M14 9.3V1.99"></path>
+                        <path d="M8.5 2h7"></path>
+                        <path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path>
+                        <path d="M5.5 16.5h13"></path>
+                    </svg>
+                    Connected Laboratory System
+                </h3>
+                <ul>
+                    <li><strong>Fully-Fledged Laboratory System:</strong> A complete diagnostic module tightly
+                        integrated into the primary clinical workflow.</li>
+                    <li><strong>Analyzer Device Interfacing:</strong> Capability to integrate directly with analyzers
+                        (machines that analyze tests) to generate direct reports.</li>
+                    <li><strong>Direct Order Requisition Sync:</strong> Laboratory test orders created by doctors sync
+                        directly to the lab queue without manual hand-offs.</li>
+                </ul>
+            </div>
+
+            <!-- Engagement -->
+            <div class="card card-br">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
+                    Patient Engagement
+                </h3>
+                <ul>
+                    <li><strong>Automated Notifications:</strong> Keep patients engaged with automated appointment
+                        reminders and treatment follow-ups (configurable for email, WhatsApp, and SMS).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <h2 class="section-title" style="page-break-before: always;">3. Modular System Architecture & Deployment</h2>
+
+        <div class="arch-diagram no-break">
+            <div class="arch-header">
+                <h3>Suwenzo Software Ecosystem</h3>
+            </div>
+
+            <div class="arch-modules">
+                <div class="arch-module">
+                    <h4>Clinic Module</h4>
+                </div>
+                <div class="arch-module">
+                    <h4>Pharmacy Module</h4>
+                </div>
+                <div class="arch-module">
+                    <h4>Lab Module</h4>
+                </div>
+            </div>
+            <div class="arch-modules-desc">* Individual modules can be seamlessly enabled or disabled based on clinic
+                requirements.</div>
+
+            <div class="arch-layer">
+                <h4>Enterprise Cloud Infrastructure (Microsoft Azure)</h4>
+
+                <div class="pills">
+                    <div class="pill pill-cloud">Cloud-Native (Azure)</div>
+                    <div class="pill pill-cloud">React</div>
+                    <div class="pill pill-cloud">Node.js</div>
+                    <div class="pill pill-cloud">PostgreSQL</div>
+                </div>
+                <div class="pills" style="margin-bottom: 0;">
+                    <div class="pill">Built to Health Standards</div>
+                    <div class="pill">HIPAA Compliant</div>
+                    <div class="pill">FHIR Compatible</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SaaS Commercials -->
+        <div class="saas-pricing no-break"
+            style="background: var(--bg-light); border-radius: 12px; border: 1px solid var(--border); padding: 35px; display: flex; justify-content: space-between; margin-bottom: 35px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+            <div style="flex: 1; text-align: center; border-right: 1px solid var(--border); padding: 0 10px;">
+                <div style="font-size: 16px; font-weight: 800; color: var(--primary);">Zero Initial Cost</div>
+                <div style="font-size: 11px; color: var(--text-gray); margin-top: 8px; line-height: 1.4;">No software setup fees or heavy upfront licensing costs.</div>
+            </div>
+            <div style="flex: 1; text-align: center; border-right: 1px solid var(--border); padding: 0 10px;">
+                <div style="font-size: 16px; font-weight: 800; color: var(--accent);">First 3 Months Free</div>
+                <div style="font-size: 11px; color: var(--text-gray); margin-top: 8px; line-height: 1.4;">Risk-free onboarding & full data migration completely on us.</div>
+            </div>
+            <div style="flex: 1; text-align: center; padding: 0 10px;">
+                <div style="font-size: 16px; font-weight: 800; color: var(--primary);">Pay Per User</div>
+                <div style="font-size: 11px; color: var(--text-gray); margin-top: 8px; line-height: 1.4;">Scalable OPEX commercial structure that grows with your clinic.</div>
+            </div>
+        </div>
+
+        <!-- Founding Clinic Offer / Traction Tagline -->
+        <div class="founding-banner no-break" style="
+        background: linear-gradient(135deg, #0A3A66 0%, #2563EB 100%);
+        color: #ffffff;
+        border-radius: 10px;
+        padding: 30px;
+        margin: 40px 0 35px 0;
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2);
+    ">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <span style="
+                    background: rgba(255, 255, 255, 0.2);
+                    border: 1px solid rgba(255, 255, 255, 0.4);
+                    padding: 4px 12px;
+                    border-radius: 14px;
+                    font-size: 10px;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">Founding Clinic Program</span>
+                    <h4 style="margin: 12px 0 6px 0; font-size: 16px; font-weight: 800; color: #fff;">
+                        Be One of Our First 10 Founding Partner Clinics
+                    </h4>
+                    <p style="margin: 0; font-size: 12px; opacity: 0.9; line-height: 1.5; max-width: 90%;">
+                        Receive dedicated white-glove onboarding, custom inventory migration, and locked-in preferential
+                        lifetime enterprise SLA support.
+                    </p>
+                </div>
+                <div style="text-align: right; min-width: 140px; margin-left: 20px;">
+                    <div style="font-size: 22px; font-weight: 800; color: #93C5FD;">10 SLOTS</div>
+                    <div style="font-size: 11px; opacity: 0.85; font-weight: 500;">Limited Cohort</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer"
+            style="margin-top: 40px; padding-top: 20px; border-top: 2px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end;">
+            <div>
+                <div style="color: var(--primary); font-size: 15px; font-weight: 800; margin-bottom: 6px;">Suwenzo
+                    Healthcare Technologies</div>
+                <div style="font-size: 12px; font-weight: 700; color: var(--text-dark); margin-bottom: 3px;">
+                    Mohamed Rashard Rizmi <span style="font-weight: 500; color: var(--accent);">— Startup CEO</span>
+                </div>
+            </div>
+            <div class="footer-links"
+                style="display: flex; gap: 18px; font-size: 10.5px; font-weight: 600; color: var(--text-gray);">
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round"
+                        style="width: 13px; height: 13px; vertical-align: middle; color: var(--accent);">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
+                    +94 71 938 2296
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round"
+                        style="width: 13px; height: 13px; vertical-align: middle; color: var(--accent);">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    info@suwenzo.com
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round"
+                        style="width: 13px; height: 13px; vertical-align: middle; color: var(--accent);">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                    suwenzo.com
+                </span>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
