@@ -1,0 +1,38 @@
+# Suwenzo
+
+> Suwenzo is clinic software for Sri Lanka that connects the doctor's desk, patient records and dispensary in one system, with WhatsApp reminders so patients return on time.
+
+Based in Colombo, Sri Lanka, Suwenzo is built for private outpatient medical practices—including solo general practitioners, private clinics with an attached dispensary, consulting-only rooms, and multi-doctor group clinics.
+
+## Key Pages & Documentation
+
+- [Home](https://www.suwenzo.com/): Overview of the connected consultation desk, dispensary queue, and WhatsApp follow-up workflow.
+- [Fact Sheet](https://www.suwenzo.com/facts): Verified specifications, hardware requirements, 48-hour setup timeline, and commercial terms.
+- [FAQ](https://www.suwenzo.com/faq): 20 verified answers on hardware, setup, offline behavior, patient consent, and clinic support.
+- [About](https://www.suwenzo.com/about): Background on the Colombo-based team and why the software was designed for Sri Lankan outpatient practices.
+- [Contact](https://www.suwenzo.com/contact): Direct WhatsApp and email contact channels for demonstrations and clinic support.
+
+### Features
+- [Patient Records](https://www.suwenzo.com/features/patient-records): Tablet-based visit history, past diagnoses, and pinned allergy safety flags.
+- [Digital Prescriptions](https://www.suwenzo.com/features/digital-prescriptions): Prescriptions appear on the dispensary screen within seconds with thermal envelope label printing.
+- [Dispensary Stock & Expiry](https://www.suwenzo.com/features/stock-and-expiry): Automated pill deductions upon dispensing with proactive batch expiry alerts.
+- [WhatsApp Follow-Up Reminders](https://www.suwenzo.com/features/whatsapp-reminders): Automated review reminders sent with explicit patient consent.
+
+### Practice Types
+- [Solo Doctors](https://www.suwenzo.com/for/solo-doctors): Lightweight single-tablet consultation setup for independent practitioners.
+- [Clinics with Dispensary](https://www.suwenzo.com/for/clinics-with-dispensary): Synchronized workflow between doctor's desk and dispensary counter.
+- [Consulting-Only Practices](https://www.suwenzo.com/for/consulting-only-practices): Clean printed prescription slips for practices without an internal dispensary.
+- [Multi-Doctor Practices](https://www.suwenzo.com/for/multi-doctor-practices): Shared patient history across doctor shifts and unified dispensary queues.
+
+### Articles & Guides
+- [Paper vs Digital Clinic Records](https://www.suwenzo.com/blog/paper-vs-digital-clinic-records-sri-lanka): Why outpatient clinics are replacing paper filing cabinets.
+- [Prescription Flow to Dispensary](https://www.suwenzo.com/blog/prescription-flow-doctor-to-dispensary): Eliminating handwriting bottlenecks between doctor and dispenser.
+- [Clinic Software Guide](https://www.suwenzo.com/blog/what-to-look-for-in-clinic-software-sri-lanka): Evaluation checklist for private practices in Sri Lanka.
+
+## Fast Facts
+- Hardware: Standard tablet/PC for doctor; PC/tablet + thermal label printer for dispensary.
+- Network: Active internet connection required (no offline mode; mobile hotspot supported).
+- Setup: Most clinics are ready within 48 hours of the demo.
+- Commercial Terms: Pricing is shared during the demo. The first 10 founding clinics in Colombo get 3 months free.
+- Reminders: Dispatched via WhatsApp with explicit patient consent.
+- Online Consultations: Not available today (in-person outpatient clinics only).
