@@ -8,10 +8,12 @@ interface FaqItem {
 }
 
 interface HomeFaqAccordionProps {
-  items: FaqItem[];
+  items?: FaqItem[];
+  faqs?: FaqItem[];
 }
 
-export default function HomeFaqAccordion({ items }: HomeFaqAccordionProps) {
+export default function HomeFaqAccordion({ items, faqs }: HomeFaqAccordionProps) {
+  const faqList = items || faqs || [];
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFaq = (index: number) => {
@@ -20,7 +22,7 @@ export default function HomeFaqAccordion({ items }: HomeFaqAccordionProps) {
 
   return (
     <div className="flex flex-col gap-3.5 w-full">
-      {items.map((faq, index) => {
+      {faqList.map((faq, index) => {
         const isOpen = openIndex === index;
         const buttonId = `home-faq-btn-${index}`;
         const panelId = `home-faq-panel-${index}`;

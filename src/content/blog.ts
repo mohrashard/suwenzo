@@ -103,7 +103,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     title: "Sri Lanka's data protection law and your clinic: what changes on 1 January 2027",
     description:
-      "What the Personal Data Protection Act (PDPA) means for Sri Lankan private clinics: lawful processing, patient consent, controller duties and digital records.",
+      "What the Personal Data Protection Act means for Sri Lankan private clinics: lawful processing, patient consent, controller duties and digital records.",
     slug: "sri-lanka-data-protection-law-clinic-2027",
     datePublished: "2026-10-16T08:00:00+05:30",
     dateModified: "2026-10-23T08:00:00+05:30",

@@ -75,7 +75,7 @@ export default function FaqSection() {
         {/* Right Column: 6 Interactive Accordion FAQs */}
         <div className="lg:col-span-7 w-full">
           <HomeFaqAccordion
-            faqs={homeFaqs.map((f) => ({
+            items={homeFaqs.map((f) => ({
               question: f.question,
               answer: f.answer,
             }))}
