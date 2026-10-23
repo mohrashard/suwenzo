@@ -250,6 +250,89 @@ if (brokenLinks === 0) {
   console.log(`  [PASS] All ${allFoundLinks.size} discovered internal links resolve to valid destinations.`);
 }
 
+// 10. Unpublished Posts Assertions
+console.log("\nChecking unpublished posts noindex & exclusion assertions...");
+const UNPUBLISHED_ROUTES = [
+  "/blog/paper-vs-digital-prescriptions-sri-lanka",
+  "/blog/manage-medicine-stock-expiry-clinic-dispensary",
+  "/blog/how-to-bring-patients-back-medicine-course-ends",
+  "/blog/clinic-hardware-digital-prescriptions",
+];
+
+for (const unpubRoute of UNPUBLISHED_ROUTES) {
+  const matchingRoute = ROUTES.find((r) => r.urlPath === unpubRoute);
+  if (!matchingRoute || !fs.existsSync(matchingRoute.filePath)) {
+    console.error(`  [FAIL] Unpublished route file missing: ${unpubRoute}`);
+    totalErrors++;
+    continue;
+  }
+  const html = fs.readFileSync(matchingRoute.filePath, "utf-8");
+  const hasNoindex = /<meta[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html);
+  if (!hasNoindex) {
+    console.error(`  [FAIL] Unpublished post ${unpubRoute} does NOT return noindex!`);
+    totalErrors++;
+  } else {
+    console.log(`  [PASS] Unpublished post ${unpubRoute} verified returns noindex`);
+  }
+
+  // Confirm not in internal nav/footer/in-content links
+  if (allFoundLinks.has(unpubRoute)) {
+    console.error(`  [FAIL] Unpublished post ${unpubRoute} found in internal nav/footer/in-content links!`);
+    totalErrors++;
+  } else {
+    console.log(`  [PASS] Unpublished post ${unpubRoute} is NOT reachable from internal links`);
+  }
+}
+
+// 11. Sitemap Assertions
+console.log("\nChecking sitemap.xml assertions...");
+const sitemapBodyPath = path.join(serverAppDir, "sitemap.xml.body");
+const sitemapPath = path.join(serverAppDir, "sitemap.xml");
+const sitemapFileToRead = fs.existsSync(sitemapBodyPath) ? sitemapBodyPath : sitemapPath;
+
+if (!fs.existsSync(sitemapFileToRead)) {
+  console.error(`  [FAIL] sitemap.xml build artifact not found at ${sitemapFileToRead}`);
+  totalErrors++;
+} else {
+  const sitemapXml = fs.readFileSync(sitemapFileToRead, "utf-8");
+  const locMatches = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const sitemapCount = locMatches.length;
+  const EXPECTED_COUNT = 21;
+
+  if (sitemapCount !== EXPECTED_COUNT) {
+    console.error(`  [FAIL] sitemap URL count is ${sitemapCount} (expected exactly ${EXPECTED_COUNT})`);
+    totalErrors++;
+  } else {
+    console.log(`  [PASS] sitemap URL count verified: exactly ${sitemapCount} URLs (matches 21 indexable routes)`);
+  }
+
+  // Assert none of the unpublished posts are in sitemap
+  for (const unpubRoute of UNPUBLISHED_ROUTES) {
+    const fullUnpubUrl = `https://www.suwenzo.com${unpubRoute}`;
+    if (locMatches.includes(fullUnpubUrl)) {
+      console.error(`  [FAIL] Unpublished post found in sitemap.xml: ${fullUnpubUrl}`);
+      totalErrors++;
+    } else {
+      console.log(`  [PASS] Unpublished post excluded from sitemap: ${unpubRoute}`);
+    }
+  }
+
+  // Assert that no noindex page appears in sitemap
+  for (const loc of locMatches) {
+    const urlObj = new URL(loc);
+    const routePath = urlObj.pathname === "" ? "/" : urlObj.pathname;
+    const matchedRoute = ROUTES.find((r) => r.urlPath === routePath);
+    if (matchedRoute && fs.existsSync(matchedRoute.filePath)) {
+      const pageHtml = fs.readFileSync(matchedRoute.filePath, "utf-8");
+      if (/<meta[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(pageHtml)) {
+        console.error(`  [FAIL] Noindex page found in sitemap: ${loc}`);
+        totalErrors++;
+      }
+    }
+  }
+  console.log("  [PASS] Verified: Zero noindex pages present in sitemap.xml");
+}
+
 console.log("\n================================================================================");
 console.log(`SEO CHECK SUMMARY: ${totalErrors === 0 ? "PASSED (0 ERRORS)" : `FAILED (${totalErrors} ERRORS)`}`);
 console.log(`Total Pages Validated: ${ROUTES.length}`);

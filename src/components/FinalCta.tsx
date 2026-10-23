@@ -86,7 +86,7 @@ export default function FinalCta() {
           {/* Right Column: 20-Minute Demo Timeline */}
           <div className="lg:col-span-5 w-full bg-white border border-blue-100 rounded-[22px] p-5 sm:p-6 shadow-sm text-left">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
-              <span className="text-[11.5px] font-bold text-slate-400 uppercase tracking-wider">
+              <span className="text-[11.5px] font-bold text-slate-600 uppercase tracking-wider">
                 What to expect
               </span>
               <span className="text-[11px] font-semibold text-[#1D4ED8] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">
@@ -126,7 +126,7 @@ export default function FinalCta() {
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-100 text-[11.5px] text-slate-400 flex items-center gap-1.5">
+            <div className="mt-4 pt-3 border-t border-slate-100 text-[12px] text-slate-600 font-medium flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               <span>Zero installation required &middot; Works in any browser</span>
             </div>

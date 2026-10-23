@@ -25,14 +25,16 @@ const nextConfig: NextConfig = {
         destination: "/blog/how-to-choose-clinic-software-sri-lanka",
         permanent: true,
       },
+      // Note: Repoint to /blog/paper-vs-digital-prescriptions-sri-lanka when post is published
       {
         source: "/blog/paper-vs-digital-clinic-records-sri-lanka",
-        destination: "/blog/paper-vs-digital-prescriptions-sri-lanka",
+        destination: "/features/digital-prescriptions",
         permanent: true,
       },
+      // Note: Repoint to /blog/manage-medicine-stock-expiry-clinic-dispensary when post is published
       {
         source: "/blog/prescription-flow-doctor-to-dispensary",
-        destination: "/blog/manage-medicine-stock-expiry-clinic-dispensary",
+        destination: "/how-it-works",
         permanent: true,
       },
     ];

@@ -10,10 +10,12 @@ import {
 import { BRAND, DEFINITION } from "@/content/site";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  weight: ["400", "500", "600", "700"],
   variable: "--font-plus-jakarta",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
+  fallback: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+  adjustFontFallback: true,
 });
 
 const defaultTitle = "Clinic Software for Sri Lanka | Suwenzo";

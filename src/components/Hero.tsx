@@ -19,23 +19,17 @@ export default function Hero() {
         alt="Doctor examining patient records on a tablet and desktop computer in a clinic consultation room"
         fill
         priority
+        fetchPriority="high"
         quality={70}
         sizes="100vw"
         className="object-cover object-[center_60%] md:object-[center_45%] z-0"
       />
 
       {/* Signature White & Blue Gradient overlay spread across the entire Hero section */}
-      <div className="absolute inset-0 z-[1] pointer-events-none opacity-85">
-        <Image
-          src="/bluewhite.jpg"
-          alt=""
-          aria-hidden="true"
-          fill
-          quality={70}
-          sizes="100vw"
-          className="w-full h-full object-fill"
-        />
-      </div>
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.94)_0%,rgba(235,244,255,0.88)_50%,rgba(59,130,246,0.65)_100%)]"
+        aria-hidden="true"
+      />
 
       {/* Subtle text halo strictly behind the headline for clarity */}
       <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[80%] max-w-[760px] h-[220px] bg-white/30 blur-[60px] rounded-full pointer-events-none z-[2]" />

@@ -108,7 +108,7 @@ export default function FeaturesSection() {
                   <span>Take after meals</span>
                   <span>Qty: 15 caps &bull; 5 days</span>
                 </div>
-                <div className="mt-2 text-[9px] text-slate-400 text-center">
+                <div className="mt-2 text-[10px] text-slate-600 font-medium text-center">
                   Thermal Adhesive Packet Label
                 </div>
               </div>
