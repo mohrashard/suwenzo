@@ -202,6 +202,24 @@ for (const route of ROUTES) {
     totalErrors++;
   }
 
+  // Legal wording assertions for /privacy and /terms
+  if (route.urlPath === "/privacy" || route.urlPath === "/terms") {
+    if (!renderedHtml.includes("Data Controller contact")) {
+      console.error(`  [FAIL] Missing required "Data Controller contact" on ${route.urlPath}`);
+      totalErrors++;
+    } else {
+      console.log(`  [PASS] Required "Data Controller contact" present on ${route.urlPath}`);
+    }
+    if (/Grievance\s+Officer/i.test(renderedHtml)) {
+      console.error(`  [FAIL] Indian law term "Grievance Officer" found on ${route.urlPath}`);
+      totalErrors++;
+    }
+    if (/Data\s+Protection\s+Officer\s+has\s+been\s+appointed/i.test(renderedHtml)) {
+      console.error(`  [FAIL] Unverified claim of appointed DPO on ${route.urlPath}`);
+      totalErrors++;
+    }
+  }
+
   // Em dash test
   const emDashRegex = new RegExp("[" + String.fromCharCode(8212) + String.fromCharCode(8211) + "]");
   if (emDashRegex.test(renderedHtml)) {

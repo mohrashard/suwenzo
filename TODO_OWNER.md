@@ -14,6 +14,7 @@ This document tracks all decisions, editorial items, and external tasks requirin
   - *Action required:* If you wish to display "Reviewed by Dr. [Name], MBBS", provide the doctor's name, credentials, and SLMC registration number. Until provided, YMYL rules mandate using "Suwenzo team".
 
 ## 2. Legal Review
+- [ ] **Counsel to confirm controller/processor wording and any DPO duty under the PDPA before 1 Jan 2027**
 - [ ] **Privacy Policy (`/privacy`):**
   - *Current assumption:* Drafted as a plain, truthful summary of outpatient data handling and one-tap WhatsApp reminder consent.
   - *Action required:* Have a Sri Lankan legal advisor review this policy, particularly regarding the Personal Data Protection Act (PDPA), No. 9 of 2022.

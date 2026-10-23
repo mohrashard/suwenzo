@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { buildMetadata } from "@/lib/metadata";
 import { getBreadcrumbSchema } from "@/lib/schemas";
+import { getWhatsAppRedirectUrl } from "@/lib/site";
 import { BRAND, DEFINITION } from "@/content/site";
 
 export const metadata: Metadata = buildMetadata({
@@ -15,6 +16,7 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function TermsPage() {
+  const whatsappUrl = getWhatsAppRedirectUrl("terms", "inquiry");
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: "Home", item: "/" },
     { name: "Terms of Service", item: "/terms" },
@@ -102,11 +104,34 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-[1.25rem] font-bold text-[#0B1B3A] mb-3">
-                5. Contact and Inquiries
+                5. Data Controller Contact and Inquiries
               </h2>
-              <p>
-                For terms inquiries, onboarding agreements, or account administration, contact our team via WhatsApp or email info@suwenzo.com.
+              <p className="mb-3">
+                For terms inquiries, onboarding agreements, practice subscription questions, or data governance queries, clinics may reach our Data Controller contact:
               </p>
+              <ul className="list-disc pl-5 space-y-1.5 text-[#475569]">
+                <li>
+                  Direct messaging:{" "}
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1D4ED8] underline font-medium hover:text-blue-800"
+                  >
+                    Contact via WhatsApp
+                  </a>
+                </li>
+                <li>
+                  Web contact form:{" "}
+                  <Link
+                    href="/contact"
+                    className="text-[#1D4ED8] underline font-medium hover:text-blue-800"
+                  >
+                    Submit an inquiry via our contact form
+                  </Link>
+                </li>
+                <li>Email: info@suwenzo.com</li>
+              </ul>
             </section>
           </div>
         </div>
