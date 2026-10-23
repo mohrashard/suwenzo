@@ -1,7 +1,7 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import HomeFaqAccordion from "@/components/HomeFaqAccordion";
-import { getFaqPageSchema } from "@/lib/schemas";
+import { getFaqPageSchema, buildGraphSchema } from "@/lib/schemas";
 import { getWhatsAppRedirectUrl } from "@/lib/site";
 import { getHomepageFaqs } from "@/content/site";
 
@@ -9,9 +9,11 @@ export default function FaqSection() {
   const whatsappUrl = getWhatsAppRedirectUrl("faq-section", "question");
   const homeFaqs = getHomepageFaqs();
 
-  const faqJsonLd = getFaqPageSchema(
-    homeFaqs.map((f) => ({ question: f.question, answer: f.answer }))
-  );
+  const faqJsonLd = buildGraphSchema([
+    getFaqPageSchema(
+      homeFaqs.map((f) => ({ question: f.question, answer: f.answer }))
+    ),
+  ]);
 
   return (
     <section

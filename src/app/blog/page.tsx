@@ -9,7 +9,7 @@ import {
   buildGraphSchema,
 } from "@/lib/schemas";
 import { BRAND } from "@/content/site";
-import { BLOG_POSTS } from "@/content/blog";
+import { getPublishedBlogPosts } from "@/content/blog";
 import { getWhatsAppRedirectUrl } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
@@ -91,7 +91,7 @@ export default function BlogIndexPage() {
 
           {/* Post Grid */}
           <div className="grid grid-cols-1 gap-6 text-left mb-12">
-            {BLOG_POSTS.map((post) => (
+            {getPublishedBlogPosts().map((post) => (
               <article
                 key={post.slug}
                 className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs hover:border-blue-300 transition-all group"

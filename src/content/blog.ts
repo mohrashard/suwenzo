@@ -12,6 +12,7 @@ export interface BlogPost {
   relatedPracticeAnchor: string;
   readingTime: string;
   isFull: boolean;
+  published: boolean;
   outline?: Array<{ heading: string; summary: string }>;
 }
 
@@ -31,6 +32,7 @@ export const BLOG_POSTS: BlogPost[] = [
     relatedPracticeAnchor: "solo doctor software in Sri Lanka",
     readingTime: "7 min read",
     isFull: true,
+    published: true,
   },
   {
     title: "Paper vs digital prescriptions in a Sri Lankan clinic",
@@ -47,6 +49,7 @@ export const BLOG_POSTS: BlogPost[] = [
     relatedPracticeAnchor: "clinic dispensary software",
     readingTime: "4 min read",
     isFull: false,
+    published: false,
     outline: [
       {
         heading: "1. The handwriting bottleneck in Sri Lankan evening surgeries",
@@ -81,6 +84,7 @@ export const BLOG_POSTS: BlogPost[] = [
     relatedPracticeAnchor: "dispensary management system",
     readingTime: "4 min read",
     isFull: false,
+    published: false,
     outline: [
       {
         heading: "1. Why manual inventory notebooks fail busy clinic dispensaries",
@@ -115,6 +119,7 @@ export const BLOG_POSTS: BlogPost[] = [
     relatedPracticeAnchor: "multi-doctor clinic software",
     readingTime: "8 min read",
     isFull: true,
+    published: true,
   },
   {
     title: "How to bring patients back when a medicine course ends",
@@ -131,6 +136,7 @@ export const BLOG_POSTS: BlogPost[] = [
     relatedPracticeAnchor: "software for doctors in Sri Lanka",
     readingTime: "4 min read",
     isFull: false,
+    published: false,
     outline: [
       {
         heading: "1. The silent dropout in outpatient follow-up care",
@@ -165,6 +171,7 @@ export const BLOG_POSTS: BlogPost[] = [
     relatedPracticeAnchor: "doctor consultation software",
     readingTime: "4 min read",
     isFull: false,
+    published: false,
     outline: [
       {
         heading: "1. Doctor desk hardware: iPad, Android tablet or laptop",
@@ -188,4 +195,8 @@ export const BLOG_POSTS: BlogPost[] = [
 
 export function getBlogPost(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((p) => p.slug === slug);
+}
+
+export function getPublishedBlogPosts(): BlogPost[] {
+  return BLOG_POSTS.filter((p) => p.published);
 }

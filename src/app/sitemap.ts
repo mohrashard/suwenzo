@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { BRAND } from "@/content/site";
-import { BLOG_POSTS } from "@/content/blog";
+import { getPublishedBlogPosts } from "@/content/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date("2026-10-23T08:00:00+05:30");
@@ -41,7 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/terms", changeFrequency: "monthly", priority: 0.4 },
   ];
 
-  const blogRoutes = BLOG_POSTS.map((post) => ({
+  const blogRoutes = getPublishedBlogPosts().map((post) => ({
     url: `${BRAND.canonicalUrl}/blog/${post.slug}`,
     lastModified: new Date(post.dateModified),
     changeFrequency: "monthly" as const,

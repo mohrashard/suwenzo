@@ -1,8 +1,8 @@
-import { BLOG_POSTS } from "@/content/blog";
+import { getPublishedBlogPosts } from "@/content/blog";
 import { BRAND, DEFINITION } from "@/content/site";
 
 export async function GET() {
-  const rssItems = BLOG_POSTS.map((post) => {
+  const rssItems = getPublishedBlogPosts().map((post) => {
     const pubDate = new Date(post.datePublished).toUTCString();
     return `    <item>
       <title><![CDATA[${post.title}]]></title>

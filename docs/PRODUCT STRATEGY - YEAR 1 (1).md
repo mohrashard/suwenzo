@@ -1,6 +1,6 @@
 # **PRODUCT STRATEGY** 
 
-## **— YEAR 1**
+## ** -  YEAR 1**
 
 ## **ClinKare (clinkare.com)**  **Mohamed Rashard Rizmi, CEO**  **September 2026**
 
@@ -34,7 +34,7 @@
 
 *Problem 2: The Doctor Has No Memory of His Own Patients*
 
-*Every visit is a cold start. The doctor sees 50 patients a day, has no history on any of them, and is making treatment decisions from scratch each time. When a patient returns, the doctor doesn't know what was prescribed before, what worked, what didn't. The patient feels like a stranger every single time. That is not a relationship — that is a transaction. And patients feel it, even if they can't articulate it.*
+*Every visit is a cold start. The doctor sees 50 patients a day, has no history on any of them, and is making treatment decisions from scratch each time. When a patient returns, the doctor doesn't know what was prescribed before, what worked, what didn't. The patient feels like a stranger every single time. That is not a relationship  -  that is a transaction. And patients feel it, even if they can't articulate it.*
 
 *What it hurts: Patient trust. Clinical quality. The doctor's ability to build the kind of reputation that fills a waiting room without paid advertising.*
 
@@ -74,7 +74,7 @@
 
 *Problem 7: The Lab and the Clinic are Two Separate Islands*
 
-*Some clinics have an in-house lab. The doctor writes a test request on paper. The patient walks to the lab. The lab registers them from scratch — name, phone number, details the clinic already has — runs the test, prints the digital result on paper, and hands it back to the patient to carry to the doctor. A digital result becomes paper. The patient is the courier. If they lose it, the result is gone. The lab and the clinic share the same building but operate with zero connection. The doctor is making treatment decisions without complete information because the patient's history never travels with them.*
+*Some clinics have an in-house lab. The doctor writes a test request on paper. The patient walks to the lab. The lab registers them from scratch  -  name, phone number, details the clinic already has  -  runs the test, prints the digital result on paper, and hands it back to the patient to carry to the doctor. A digital result becomes paper. The patient is the courier. If they lose it, the result is gone. The lab and the clinic share the same building but operate with zero connection. The doctor is making treatment decisions without complete information because the patient's history never travels with them.*
 
 *What it hurts: Clinical continuity. Patient experience. The doctor's ability to deliver quality care when half the picture is missing.*
 
@@ -159,7 +159,7 @@
 
 ***Objection: We are fine with paper***
 
-*"Totally understand. Let me ask you something — when a patient finishes their medicine and needs a refill, does your clinic reach out to them or do they have to remember to come back themselves? Because in 2026 every other service they use is already sending them reminders. Their bank. Their pharmacy down the road. Even their supermarket. ClinKare makes your clinic do the same thing. Automatically. No extra work from you or your staff."*
+*"Totally understand. Let me ask you something  -  when a patient finishes their medicine and needs a refill, does your clinic reach out to them or do they have to remember to come back themselves? Because in 2026 every other service they use is already sending them reminders. Their bank. Their pharmacy down the road. Even their supermarket. ClinKare makes your clinic do the same thing. Automatically. No extra work from you or your staff."*
 
 ***Objection: Price***
 
@@ -260,7 +260,7 @@ To get 20 paying clinics we need to reach 50 to 100 doctors. No single method ge
 
 Walk in between 9AM and 12PM on a weekday. Talk to the front desk first, not the doctor. Do not pitch. Say: "I'm working with clinics in this area on something that helps the dispensary run faster. I'd love 5 minutes with the doctor when he has a moment."
 
-The front desk is the gatekeeper. Bring something small — a box of biscuits, a notepad with the clinic name printed on it. Nothing expensive. Just enough to be remembered. If the doctor is available you get your 5 minutes. If not, leave a one-pager and come back the next morning.
+The front desk is the gatekeeper. Bring something small  -  a box of biscuits, a notepad with the clinic name printed on it. Nothing expensive. Just enough to be remembered. If the doctor is available you get your 5 minutes. If not, leave a one-pager and come back the next morning.
 
 The approach: you are not selling. You are a young founder who is genuinely curious about how their clinic runs. Doctor ego works in your favour here. They love talking about their practice to someone who listens without interrupting. Let them talk. Ask questions. Then show the demo.
 
@@ -294,7 +294,7 @@ Target: 5 activated referrals from the rep network by end of Month 2\.
 
 Suppliers visit clinics to restock medicine and deliver equipment. They have deeper relationships than reps because money changes hands directly between them and the clinic. A supplier who vouches for you carries serious weight.
 
-Approach 3 to 5 Colombo-based medicine suppliers. Offer them a co-branded one-pager — "ClinKare, recommended by \[Supplier Name\]." When they deliver stock they leave it on the dispensary counter. No pitch needed from them. The supplier's name on the material does the work.
+Approach 3 to 5 Colombo-based medicine suppliers. Offer them a co-branded one-pager  -  "ClinKare, recommended by \[Supplier Name\]." When they deliver stock they leave it on the dispensary counter. No pitch needed from them. The supplier's name on the material does the work.
 
 If a supplier is willing to mention it verbally during their delivery visit, even better. Offer LKR 2,000 per activated clinic for any supplier willing to do this.
 
@@ -312,9 +312,9 @@ This method costs nothing and scales automatically with every new clinic you onb
 
 **Method 6: Doctor WhatsApp Groups**
 
-Every area in Colombo has doctor WhatsApp groups — alumni networks, area medical officer groups, GMOA community pages. You cannot get into these directly. Your founding clinic doctors can.
+Every area in Colombo has doctor WhatsApp groups  -  alumni networks, area medical officer groups, GMOA community pages. You cannot get into these directly. Your founding clinic doctors can.
 
-Once you have 2 to 3 founding clinic doctors who are happy with the product, ask them to share one piece of your educational content in their doctor groups. Not a product pitch. Just: "This video explains something I deal with every day in my clinic — thought you'd find it interesting."
+Once you have 2 to 3 founding clinic doctors who are happy with the product, ask them to share one piece of your educational content in their doctor groups. Not a product pitch. Just: "This video explains something I deal with every day in my clinic  -  thought you'd find it interesting."
 
 One share in a 50 person doctor WhatsApp group is 50 warm impressions at zero cost. This is why the founding clinic relationship matters beyond just the subscription revenue.
 
@@ -324,9 +324,9 @@ Activate this in Month 2 once founding clinic doctors have enough experience wit
 
 **Method 7: Facebook Doctor Communities**
 
-Sri Lankan doctors are heavily active in Facebook groups — alumni communities, specialist groups, area practitioner networks. You can post directly in these groups without needing an introduction.
+Sri Lankan doctors are heavily active in Facebook groups  -  alumni communities, specialist groups, area practitioner networks. You can post directly in these groups without needing an introduction.
 
-Post one genuinely useful piece of content per week. Not about ClinKare. About the problems — dispensary revenue leakage, patient dropout, stock management, what modern clinic software should do. Build name recognition before you pitch anything. When doctors see your name and your content consistently they will come to you. Inbound leads from Facebook communities convert faster than any cold outreach because the doctor already knows who you are before you walk in.
+Post one genuinely useful piece of content per week. Not about ClinKare. About the problems  -  dispensary revenue leakage, patient dropout, stock management, what modern clinic software should do. Build name recognition before you pitch anything. When doctors see your name and your content consistently they will come to you. Inbound leads from Facebook communities convert faster than any cold outreach because the doctor already knows who you are before you walk in.
 
 Start this on day one. It takes 60 days to build momentum so the earlier you start the earlier it pays off.
 
@@ -384,7 +384,7 @@ Never lead with the product. Lead with the problem. A doctor who feels understoo
 
 They are motivated by money first. The LKR 2,000 commission is the real gift. But to make them feel like partners rather than contractors give them something with status.
 
-* A clean printed referral kit — not a flyer, a proper folder with the one-pager, referral cards, and a QR code card. Something that looks professional enough that they are not embarrassed to hand it to a doctor.  
+* A clean printed referral kit  -  not a flyer, a proper folder with the one-pager, referral cards, and a QR code card. Something that looks professional enough that they are not embarrassed to hand it to a doctor.  
 * A ClinKare branded pen or small notebook. Reps carry these everywhere. Every time they use it in front of a doctor it is a brand impression.  
 * A WhatsApp group just for reps with weekly updates on activations. Public recognition when a rep gets a clinic to activate. "This week's activation came through \[Rep Name\]." Status matters to reps as much as money.
 
@@ -394,20 +394,20 @@ Budget per rep: LKR 500 to 1,000 one time for the kit. The commission does the r
 
 These are your most important relationships in Year 1\. The gift needs to feel personal, not corporate. A doctor who receives something thoughtful tells colleagues. A doctor who receives a branded pen forgets you by Tuesday.
 
-* A framed certificate — "ClinKare Founding Clinic, 2026." Doctors display things on their walls. Every patient who sits in that consultation room sees it. It is free advertising and free status for the doctor simultaneously.  
-* A quality pen — not cheap, not flashy. A Uni-ball or Pilot that actually writes well. Doctors write all day. A pen they reach for every day is a daily brand touchpoint.  
-* A small food gift on your Month 1 visit — a box of quality chocolates or a tin of biscuits for the clinic staff. Not for the doctor specifically. For the team. The dispenser and front desk will remember you for it and they are the ones using your product 80% of the time.  
-* On Month 3 visit bring something slightly more personal. If you know the doctor has children, a small age appropriate gift. If he mentioned something in conversation — a book, a hobby — acknowledge it. This is relationship building not marketing.
+* A framed certificate  -  "ClinKare Founding Clinic, 2026." Doctors display things on their walls. Every patient who sits in that consultation room sees it. It is free advertising and free status for the doctor simultaneously.  
+* A quality pen  -  not cheap, not flashy. A Uni-ball or Pilot that actually writes well. Doctors write all day. A pen they reach for every day is a daily brand touchpoint.  
+* A small food gift on your Month 1 visit  -  a box of quality chocolates or a tin of biscuits for the clinic staff. Not for the doctor specifically. For the team. The dispenser and front desk will remember you for it and they are the ones using your product 80% of the time.  
+* On Month 3 visit bring something slightly more personal. If you know the doctor has children, a small age appropriate gift. If he mentioned something in conversation  -  a book, a hobby  -  acknowledge it. This is relationship building not marketing.
 
 Budget per founding clinic doctor: LKR 1,500 to 3,000 across the full 90 days split across visits.
 
-**FUTURE DOCTORS — MEDICAL STUDENTS AND JUNIOR DOCTORS**
+**FUTURE DOCTORS  -  MEDICAL STUDENTS AND JUNIOR DOCTORS**
 
 They have no money and enormous influence within their networks. The gift here is not physical. It is access and recognition.
 
 * Free access to ClinKare for any clinic they start or work in for the first 6 months. Frame it as the student founder offer. They remember who gave them a break when they were starting out.  
-* A proper talk or workshop — not a sales pitch, a genuine session on AI in medicine, building a private practice, technology for the modern GP. Bring them real information they cannot get in a lecture hall. That is worth more than any physical gift.  
-* ClinKare branded items that are actually useful — a quality notebook, a phone stand for their desk, a laptop sticker that is design-forward enough that they actually want to put it on their laptop. Medical students are young. They respond to things that look good.  
+* A proper talk or workshop  -  not a sales pitch, a genuine session on AI in medicine, building a private practice, technology for the modern GP. Bring them real information they cannot get in a lecture hall. That is worth more than any physical gift.  
+* ClinKare branded items that are actually useful  -  a quality notebook, a phone stand for their desk, a laptop sticker that is design-forward enough that they actually want to put it on their laptop. Medical students are young. They respond to things that look good.  
 * Public recognition on your social media. If a junior doctor helps you get a clinic referral or shares your content, tag them. Thank them publicly. In a community where reputation matters enormously, being publicly associated with a founder building something real carries weight.
 
 Budget per medical school engagement: LKR 3,000 to 5,000 for the session including printed materials. Individual gifts LKR 300 to 500 per person for large groups.
@@ -436,7 +436,7 @@ Budget per medical school engagement: LKR 3,000 to 5,000 for the session includi
 
 ---
 
-**5\. GMOA — Government Medical Officers Association**  
+**5\. GMOA  -  Government Medical Officers Association**  
  The most powerful doctor body in Sri Lanka. Getting any kind of recognition or mention from GMOA gives you instant credibility across the entire medical community. Hard to access early but worth pursuing from Month 3 onwards.
 
 ---
@@ -447,7 +447,7 @@ Budget per medical school engagement: LKR 3,000 to 5,000 for the session includi
 ---
 
 **7\. Ceylon Medical College Council (CMCC) and Sri Lanka Medical Association (SLMA)**  
- Professional bodies that run CME — Continuing Medical Education — sessions for GPs. Doctors attend these regularly to maintain their registration. Getting ClinKare in front of a room at a CME session is getting in front of 50 to 100 GPs at once with their guard completely down because they came to learn.
+ Professional bodies that run CME  -  Continuing Medical Education  -  sessions for GPs. Doctors attend these regularly to maintain their registration. Getting ClinKare in front of a room at a CME session is getting in front of 50 to 100 GPs at once with their guard completely down because they came to learn.
 
 ---
 
@@ -457,7 +457,7 @@ Budget per medical school engagement: LKR 3,000 to 5,000 for the session includi
 ---
 
 **9\. Label Printer and POS Hardware Suppliers**  
- This one is underrated. ClinKare needs a label printer in every clinic. If you partner with a local hardware supplier — someone already selling POS systems or label printers to small businesses — they can bundle the hardware with ClinKare as the software. They get a new product to sell. You get hardware distribution handled.
+ This one is underrated. ClinKare needs a label printer in every clinic. If you partner with a local hardware supplier  -  someone already selling POS systems or label printers to small businesses  -  they can bundle the hardware with ClinKare as the software. They get a new product to sell. You get hardware distribution handled.
 
 ---
 
@@ -466,7 +466,7 @@ Budget per medical school engagement: LKR 3,000 to 5,000 for the session includi
 
 # STRATEGIC PARTNERSHIP: CEYLON COLLEGE OF PHYSICIANS
 
-The Ceylon College of Physicians is Sri Lanka's premier professional body for physicians. Every serious doctor in Sri Lanka is connected to this institution through membership, examinations, or training. A relationship with CCP does not just open doors to individual doctors — it opens doors to the entire medical community at once.
+The Ceylon College of Physicians is Sri Lanka's premier professional body for physicians. Every serious doctor in Sri Lanka is connected to this institution through membership, examinations, or training. A relationship with CCP does not just open doors to individual doctors  -  it opens doors to the entire medical community at once.
 
 This is not a sales channel. This is a credibility channel. One association with CCP is worth more than 6 months of cold walk-ins.
 
@@ -484,11 +484,11 @@ CCP's 2026 theme is "Achieving Health Excellence through Person-Centred Care." C
 
 CCP runs monthly events that doctors attend voluntarily with their guard completely down because they came to learn. These are not conferences the doctor was sent to. These are sessions the doctor chose.
 
-The Beyond Medicine Lecture series is the primary target. These sessions are specifically designed for non-clinical topics — technology, business of medicine, leadership, innovation. A talk titled "How Sri Lankan GPs are using AI and digital systems to grow their private practice in 2026" fits this slot perfectly. CCP provides the room, the credibility, and the audience. ClinKare provides the content.
+The Beyond Medicine Lecture series is the primary target. These sessions are specifically designed for non-clinical topics  -  technology, business of medicine, leadership, innovation. A talk titled "How Sri Lankan GPs are using AI and digital systems to grow their private practice in 2026" fits this slot perfectly. CCP provides the room, the credibility, and the audience. ClinKare provides the content.
 
 Other events worth targeting over time:
 
-The Young Physician Forum brings together junior doctors and registrars — the next generation of private GP clinic owners. Getting in front of them before they open their first clinic means ClinKare is the system they already know when they need one.
+The Young Physician Forum brings together junior doctors and registrars  -  the next generation of private GP clinic owners. Getting in front of them before they open their first clinic means ClinKare is the system they already know when they need one.
 
 The Regional Academic Sessions take CCP events outside Colombo to outstation physicians. When ClinKare is ready to expand beyond the Colombo belt, these sessions are already doing the geographic distribution work.
 
@@ -510,11 +510,11 @@ We ask for a Beyond Medicine Lecture slot. Free of charge to CCP and their membe
 
 The workshop is never a product demo. It is a genuine educational session with three parts:
 
-Part 1 — What AI in medicine actually means for a private GP in Sri Lanka today. Not theory. Not future speculation. What exists right now and how it applies to a solo clinic in Colombo.
+Part 1  -  What AI in medicine actually means for a private GP in Sri Lanka today. Not theory. Not future speculation. What exists right now and how it applies to a solo clinic in Colombo.
 
-Part 2 — The business problems every GP clinic has that technology already solves. Dispensary workflows. Patient retention. Stock management. Expiry tracking. Patient history. We name every problem the doctors in the room already feel but have never heard articulated this clearly.
+Part 2  -  The business problems every GP clinic has that technology already solves. Dispensary workflows. Patient retention. Stock management. Expiry tracking. Patient history. We name every problem the doctors in the room already feel but have never heard articulated this clearly.
 
-Part 3 — A live demonstration of what a connected clinic looks like. Doctor selects medicines on a tablet. Dispensary screen updates instantly. Label prints. Patient record pulls up on the next visit. WhatsApp reminder goes out on day 8\. Five minutes. No jargon. No pitch. Just the reality of what a modern GP clinic can look like.
+Part 3  -  A live demonstration of what a connected clinic looks like. Doctor selects medicines on a tablet. Dispensary screen updates instantly. Label prints. Patient record pulls up on the next visit. WhatsApp reminder goes out on day 8\. Five minutes. No jargon. No pitch. Just the reality of what a modern GP clinic can look like.
 
 The doctors who want to know more will find us after the session. We do not chase them. We let the content do the work.
 
@@ -546,7 +546,7 @@ These are all the major specialist colleges operating under the same ecosystem a
 
 **1\. College of General Practitioners of Sri Lanka (CGPSL)**  
  Website: cgpsl.lk  
- This is your single most important target. CGPSL is the professional body specifically for GPs and Family Physicians — exactly the doctors ClinKare is built for. Every solo GP running a private clinic in Colombo is either a member or connected to this college. They run annual academic sessions, CME programs, and regular workshops. Getting into a CGPSL event is getting directly in front of your exact ICP in a room they chose to be in.
+ This is your single most important target. CGPSL is the professional body specifically for GPs and Family Physicians  -  exactly the doctors ClinKare is built for. Every solo GP running a private clinic in Colombo is either a member or connected to this college. They run annual academic sessions, CME programs, and regular workshops. Getting into a CGPSL event is getting directly in front of your exact ICP in a room they chose to be in.
 
 **2\. Ceylon College of Physicians (CCP)**  
  Already covered. Internal medicine specialists. Senior doctors. Credibility channel.
@@ -578,7 +578,7 @@ These are all the major specialist colleges operating under the same ecosystem a
 
 **11\. Sri Lanka Medical Association (SLMA)**  
  Website: slma.lk  
- This is the umbrella body — over 130 years old, connects all doctors across all specialties. Not a college but a professional association. Getting mentioned or featured by SLMA reaches every doctor in Sri Lanka simultaneously. Long term play but worth knowing about.
+ This is the umbrella body  -  over 130 years old, connects all doctors across all specialties. Not a college but a professional association. Getting mentioned or featured by SLMA reaches every doctor in Sri Lanka simultaneously. Long term play but worth knowing about.
 
 **12\. College of Pathologists of Sri Lanka**  
  Not directly relevant.
@@ -618,7 +618,7 @@ ClinKare is Rashard. A young, sharp, passionate founder who understands medicine
 
 # BRAND VOICE
 
-The tone is "වෛද්‍යවරුනි" — respectful but warm. Peer level. Like a smart younger colleague addressing the room. Not formal enough to feel distant. Not casual enough to feel unqualified.
+The tone is "වෛද්‍යවරුනි"  -  respectful but warm. Peer level. Like a smart younger colleague addressing the room. Not formal enough to feel distant. Not casual enough to feel unqualified.
 
 In English: Clear, confident, no jargon. Short sentences. Direct points.
 
@@ -641,7 +641,7 @@ ClinKare is not a software company that sells to doctors.
 
 That positioning makes us impossible to copy. A competitor can copy our features. They cannot copy two years of educational content that made every doctor in Colombo trust Rashard before they ever heard the product name.
 
-# Against competitors — indirect positioning:
+# Against competitors  -  indirect positioning:
 
 We never name DocPP, BISTEC, or MocDoc. We educate doctors on what a modern clinic system should do. We show what good looks like. When a doctor is on a bad system, they will figure it out themselves. Our job is to raise the standard in their mind, not attack the competition by name.
 
@@ -695,7 +695,7 @@ Example topics:
  "Why your patients wait 40 minutes and what it is costing you"  
  "The dispensary bottleneck every Sri Lankan GP has but nobody talks about"  
  "How one clinic in Colombo cut patient wait time from 40 minutes to 10"  
- "The hole in the wall is costing you money — here is why"
+ "The hole in the wall is costing you money  -  here is why"
 
 Frequency: 2 videos per week
 
@@ -705,9 +705,9 @@ Frequency: 2 videos per week
 Example topics:  
  "How AI can help a private GP in Sri Lanka in 2026"  
  "5 things your clinic software should do that yours probably does not"  
- "What happens when your prescription goes digital — a 60 second explanation"  
+ "What happens when your prescription goes digital  -  a 60 second explanation"  
  "Why the most successful doctors in Colombo are adopting tech right now"  
- "ChatGPT for doctors — how to use it ethically in your practice"
+ "ChatGPT for doctors  -  how to use it ethically in your practice"
 
 Frequency: 2 videos per week
 
@@ -716,8 +716,8 @@ Frequency: 2 videos per week
 
 Example topics:  
  "Why half your patients walk out the door and never come back to your dispensary"  
- "The medicine refill problem — how clinics lose recurring revenue every month"  
- "Your patient's phone number is sitting in a paper file doing nothing — here is what it should be doing"  
+ "The medicine refill problem  -  how clinics lose recurring revenue every month"  
+ "Your patient's phone number is sitting in a paper file doing nothing  -  here is what it should be doing"  
  "How to calculate the real revenue per patient in your clinic"  
  "What a 10% improvement in dispensary capture rate means for your annual income"
 
@@ -727,16 +727,16 @@ Frequency: 1 video per week
  Show the journey of building ClinKare. Rashard visiting clinics, talking to doctors, fixing problems, iterating. This builds authenticity, trust, and a community of doctors who feel invested in the product before it launches publicly.
 
 Example topics:  
- "I visited 20 clinics in Grandpass last week — here is what I found"  
- "A doctor showed me exactly where his system breaks down — we fixed it"  
- "Building a HIMS from scratch in Sri Lanka — week 3 update"  
+ "I visited 20 clinics in Grandpass last week  -  here is what I found"  
+ "A doctor showed me exactly where his system breaks down  -  we fixed it"  
+ "Building a HIMS from scratch in Sri Lanka  -  week 3 update"  
  "The feedback that changed how we built the dispensary module"
 
 Frequency: 1 video per week
 
 ---
 
-# CONTENT CALENDAR — FIRST MONTH
+# CONTENT CALENDAR  -  FIRST MONTH
 
 Post 4 to 5 times per week minimum. Consistency beats quality in the first 90 days on TikTok. Every video is 30 to 60 seconds. Subtitles always. Mix Sinhala and English across the week.
 
@@ -752,7 +752,7 @@ Repeat the cycle. Go deeper each month. Introduce product content only after Mon
 # ORGANIC GROWTH STRATEGY
 
 **TikTok Algorithm**  
- Post consistently. 3 to 5 times per week minimum. The first 3 seconds must stop the scroll. Use pattern interrupts — start with a surprising fact, a bold statement, or a direct question to doctors. Never start with "Hi I am Rashard from ClinKare." Start with the pain point.
+ Post consistently. 3 to 5 times per week minimum. The first 3 seconds must stop the scroll. Use pattern interrupts  -  start with a surprising fact, a bold statement, or a direct question to doctors. Never start with "Hi I am Rashard from ClinKare." Start with the pain point.
 
 Hook examples:  
  "වෛද්‍යවරුනි, ඔබේ රෝගීන් 40 minutes බලාගෙන ඉන්නේ ඔබ නිසා නෙමෙයි."  
@@ -762,7 +762,7 @@ Hook examples:
 **Doctor Community Infiltration**  
  Every area in Colombo has doctor WhatsApp groups, Facebook groups, and alumni networks. The founding clinic doctors are your entry point. One doctor sharing a video in the Grandpass doctors WhatsApp group reaches 50 potential customers instantly. This is more valuable than any paid ad.
 
-Ask founding clinic doctors to share your content in their groups. Not to sell. Just to share useful content. "This video explains something I see every day in my clinic — thought you would find it interesting."
+Ask founding clinic doctors to share your content in their groups. Not to sell. Just to share useful content. "This video explains something I see every day in my clinic  -  thought you would find it interesting."
 
 **Hashtag and SEO on TikTok**  
  Use Sinhala and English hashtags together.  
@@ -784,7 +784,7 @@ Never run ads on cold audiences before organic content has proven what resonates
 
 # SEO STRATEGY
 
-Target: Doctors Googling solutions to their problems. Not "HIMS Sri Lanka" — that is a competitor search. Target problem-based keywords.
+Target: Doctors Googling solutions to their problems. Not "HIMS Sri Lanka"  -  that is a competitor search. Target problem-based keywords.
 
 Primary keywords:  
  "clinic management software Sri Lanka"  

@@ -202,9 +202,10 @@ for (const route of ROUTES) {
     totalErrors++;
   }
 
-  // Em dash test (— = \u2014, – = \u2013)
-  if (renderedHtml.includes("—") || renderedHtml.includes("–")) {
-    console.error("  [FAIL] Hard Rule 6 violation: Em dash (—) or En dash (–) found in rendered HTML!");
+  // Em dash test
+  const emDashRegex = new RegExp("[" + String.fromCharCode(8212) + String.fromCharCode(8211) + "]");
+  if (emDashRegex.test(renderedHtml)) {
+    console.error("  [FAIL] Hard Rule 6 violation: Em dash or En dash found in rendered HTML!");
     totalErrors++;
   }
 

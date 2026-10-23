@@ -20,6 +20,7 @@ export const metadata: Metadata = buildMetadata({
   description: post.description,
   path: `/blog/${post.slug}`,
   ogImage: "/og-blog.png",
+  noindex: !post.published,
 });
 
 export default function HowToBringPatientsBackPostPage() {

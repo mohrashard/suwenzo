@@ -54,7 +54,7 @@ export default function Hero() {
         {/* Single H1 strictly matching specification */}
         <h1 className="text-[38px] sm:text-[50px] md:text-[58px] lg:text-[64px] font-[800] leading-[1.08] tracking-tight text-[#0B1B3A] mb-5 max-w-[1000px] w-full text-center">
           <span className="eyebrow block text-[13px] md:text-[14px] font-bold text-[#1D4ED8] tracking-[0.1em] uppercase mb-3">
-            Clinic software for Sri Lanka
+            Clinic software for Sri Lanka:
           </span>
           Prescribe once. <br className="hidden sm:inline" />
           <span className="whitespace-normal md:whitespace-nowrap">Remember every patient.</span>

@@ -182,6 +182,10 @@ export function getBlogPostingSchema(article: {
     datePublished: article.datePublished,
     dateModified: article.dateModified,
     image: article.image || `${BRAND.siteUrl}/og-blog.png`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": fullUrl,
+    },
     author: {
       "@type": "Organization",
       name: "Suwenzo",
