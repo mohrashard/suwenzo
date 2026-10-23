@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
-import { getOrganizationSchema, getWebSiteSchema } from "@/lib/schemas";
-import { SITE_URL } from "@/lib/site";
+import {
+  getOrganizationSchema,
+  getWebSiteSchema,
+  buildGraphSchema,
+} from "@/lib/schemas";
+import { BRAND, DEFINITION } from "@/content/site";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700"],
@@ -12,29 +16,25 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const defaultTitle = "Suwenzo | Clinic Software for Sri Lanka";
+const defaultTitle = "Clinic Software for Sri Lanka | Suwenzo";
 const defaultDescription =
-  "Clinic software for Sri Lanka that connects the doctor's desk, patient records and dispensary, with WhatsApp reminders so patients return on time.";
+  "Suwenzo is clinic software for Sri Lanka: patient records, digital prescriptions, live stock and WhatsApp reminders in one system. Book a 20-minute demo.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(BRAND.canonicalUrl),
   title: {
     default: defaultTitle,
     template: "%s | Suwenzo",
   },
   description: defaultDescription,
   alternates: {
-    canonical: SITE_URL,
-    languages: {
-      "en-LK": SITE_URL,
-      "x-default": SITE_URL,
-    },
+    canonical: BRAND.canonicalUrl,
   },
   openGraph: {
     type: "website",
     locale: "en_LK",
-    url: SITE_URL,
-    siteName: "Suwenzo",
+    url: BRAND.canonicalUrl,
+    siteName: BRAND.name,
     title: defaultTitle,
     description: defaultDescription,
     images: [
@@ -72,6 +72,19 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google:
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+      process.env.GOOGLE_SITE_VERIFICATION ||
+      undefined,
+    other: {
+      "msvalidate.01": [
+        process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ||
+          process.env.BING_SITE_VERIFICATION ||
+          "",
+      ],
+    },
+  },
 };
 
 export default function RootLayout({
@@ -79,16 +92,25 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const organizationSchema = getOrganizationSchema();
-  const websiteSchema = getWebSiteSchema();
+  const rootGraph = buildGraphSchema([
+    getOrganizationSchema(),
+    getWebSiteSchema(),
+  ]);
 
   return (
-    <html lang="en" className={plusJakartaSans.variable}>
+    <html lang="en-LK" className={plusJakartaSans.variable} suppressHydrationWarning>
       <head>
-        <JsonLd data={organizationSchema} />
-        <JsonLd data={websiteSchema} />
+        <JsonLd data={rootGraph} />
       </head>
-      <body>{children}</body>
+      <body className="antialiased selection:bg-blue-100 selection:text-blue-900">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#1D4ED8] focus:text-white focus:rounded-full focus:shadow-lg focus:outline-hidden text-sm font-semibold"
+        >
+          Skip to main content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

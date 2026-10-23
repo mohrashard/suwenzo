@@ -1,14 +1,14 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/site";
+import { BRAND } from "@/content/site";
 
 export default function robots(): MetadataRoute.Robots {
   const aiBots = [
     "GPTBot",
     "OAI-SearchBot",
     "ChatGPT-User",
+    "PerplexityBot",
     "ClaudeBot",
     "Claude-SearchBot",
-    "PerplexityBot",
     "Google-Extended",
     "Applebot-Extended",
   ];
@@ -26,7 +26,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/go/", "/api/"],
       })),
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
+    sitemap: `${BRAND.canonicalUrl}/sitemap.xml`,
+    host: BRAND.canonicalUrl,
   };
 }

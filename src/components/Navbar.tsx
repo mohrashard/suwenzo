@@ -3,46 +3,24 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { getWhatsAppRedirectUrl } from "@/lib/site";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("home");
+  const pathname = usePathname();
 
   const navLinks = [
-    { name: "Home", href: "/", id: "home" },
-    { name: "How it works", href: "/#how-it-works", id: "how-it-works" },
-    { name: "Features", href: "/#features", id: "features" },
-    { name: "Who it's for", href: "/#who-and-why", id: "who-and-why" },
-    { name: "FAQ", href: "/faq", id: "faq" },
+    { name: "How it works", href: "/how-it-works" },
+    { name: "Features", href: "/features" },
+    { name: "Who it's for", href: "/for" },
+    { name: "FAQ", href: "/faq" },
   ];
 
   useEffect(() => {
-    const sectionIds = ["home", "how-it-works", "features", "who-and-why"];
-
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setScrolled(scrollY > 20);
-
-      // If near top of page -> always highlight Home
-      if (scrollY < 120) {
-        setActiveSection("home");
-        return;
-      }
-
-      const headerOffset = 180;
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const id = sectionIds[i];
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.offsetTop - headerOffset;
-          if (scrollY >= top) {
-            setActiveSection(id);
-            break;
-          }
-        }
-      }
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -50,34 +28,21 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, id: string) => {
-    if (typeof window !== "undefined" && window.location.pathname === "/") {
-      if (href.startsWith("/#")) {
-        const targetId = href.replace("/#", "");
-        const el = document.getElementById(targetId);
-        if (el) {
-          e.preventDefault();
-          const headerOffset = 110;
-          const elementPosition = el.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-          setActiveSection(id);
-        }
-      }
-    }
-    if (mobileMenuOpen) {
-      setMobileMenuOpen(false);
-    }
-  };
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   const whatsappUrl = getWhatsAppRedirectUrl("navbar", "demo");
 
+  const isLinkActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
+
   return (
     <header className="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 z-50 w-[94%] sm:w-auto max-w-[880px]">
-      {/* ================= HIGH-END FLOATING GLASS CAPSULE ================= */}
+      {/* Floating Glass Capsule Navigation */}
       <nav
         className={`w-full bg-white/80 backdrop-blur-2xl border border-white/80 ring-1 ring-slate-200/70 rounded-full px-4 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between gap-4 sm:gap-7 transition-all duration-300 ${
           scrolled
@@ -86,17 +51,11 @@ export default function Navbar() {
         }`}
         aria-label="Main Navigation"
       >
-        {/* Left: Brand Mark */}
+        {/* Left: Brand Mark (Serves as Home link) */}
         <div className="flex items-center gap-3 shrink-0">
           <Link
             href="/"
-            onClick={(e) => {
-              if (typeof window !== "undefined" && window.location.pathname === "/") {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-                setActiveSection("home");
-              }
-            }}
+            aria-label="Suwenzo Home"
             className="inline-flex items-center gap-2.5 no-underline group"
           >
             <div className="w-8 h-8 rounded-[10px] p-[1.5px] bg-gradient-to-tr from-[#1D4ED8] via-[#3B82F6] to-[#93C5FD] shadow-[0_2px_8px_rgba(29,78,216,0.2)] shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
@@ -117,28 +76,28 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Center: Precision Floating Dock Navigation */}
+        {/* Center: Precision Floating Dock Navigation (Exactly 4 links) */}
         <div className="hidden md:flex items-center gap-1 bg-slate-100/70 p-1 rounded-full border border-slate-200/50 shrink-0">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.id;
+            const active = isLinkActive(link.href);
             return (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href, link.id)}
+                aria-current={active ? "page" : undefined}
                 className={`text-[13.5px] px-3.5 py-1.5 rounded-full transition-all duration-200 select-none whitespace-nowrap flex items-center justify-center leading-none outline-none focus:outline-none focus-visible:outline-none ring-0 ${
-                  isActive
+                  active
                     ? "bg-white text-[#1D4ED8] font-semibold shadow-xs border border-slate-200/60"
                     : "text-[#475569] hover:text-[#0B1B3A] hover:bg-white/60 font-medium border border-transparent"
                 }`}
               >
                 {link.name}
-              </a>
+              </Link>
             );
           })}
         </div>
 
-        {/* Right: Tactile Action Button & Mobile Toggle */}
+        {/* Right: Tactile Action Button and Mobile Toggle */}
         <div className="flex items-center gap-2 shrink-0">
           <a
             href={whatsappUrl}
@@ -172,27 +131,28 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* ================= MOBILE EXPANDED DROPDOWN ================= */}
+      {/* Mobile Expanded Dropdown (Exactly 4 links plus CTA) */}
       {mobileMenuOpen && (
         <div className="md:hidden mt-2 w-full bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-[22px] p-4 shadow-[0_16px_40px_-6px_rgba(29,78,216,0.15)] flex flex-col gap-2">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.id;
+            const active = isLinkActive(link.href);
             return (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href, link.id)}
+                aria-current={active ? "page" : undefined}
+                onClick={() => setMobileMenuOpen(false)}
                 className={`text-[14px] px-3.5 py-2.5 rounded-xl transition-colors flex items-center justify-between font-semibold ${
-                  isActive
+                  active
                     ? "bg-blue-50 text-[#1D4ED8]"
                     : "text-[#0B1B3A] hover:text-[#1D4ED8] hover:bg-slate-50"
                 }`}
               >
                 <span>{link.name}</span>
-                {isActive && (
+                {active && (
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8]" />
                 )}
-              </a>
+              </Link>
             );
           })}
           <div className="pt-2 mt-1 border-t border-slate-100 flex flex-col gap-2">

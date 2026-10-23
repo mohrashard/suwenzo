@@ -1,12 +1,12 @@
-import Link from "next/link";
 import Image from "next/image";
 import { getWhatsAppRedirectUrl } from "@/lib/site";
+import { DEFINITION } from "@/content/site";
 
 export default function Hero() {
   const whatsappUrl = getWhatsAppRedirectUrl("hero", "demo");
 
   const gpStatement =
-    "For private clinics and medical practices, with or without an in-house dispensary · Setup and training included · 3 months free for founding clinics";
+    "For private clinics and medical practices, with or without an in-house dispensary, Setup and training included, 3 months free for founding clinics";
 
   return (
     <section
@@ -16,11 +16,11 @@ export default function Hero() {
       {/* Full-width Clinic Photograph Background */}
       <Image
         src="/clinic-hero.jpg"
-        alt="Doctor using a computer while a nurse uses a tablet in a clinic"
+        alt="Doctor examining patient records on a tablet and desktop computer in a clinic consultation room"
         fill
         priority
-        quality={75}
-        sizes="(max-width: 768px) 100vw, 1280px"
+        quality={70}
+        sizes="100vw"
         className="object-cover object-[center_60%] md:object-[center_45%] z-0"
       />
 
@@ -29,9 +29,10 @@ export default function Hero() {
         <Image
           src="/bluewhite.jpg"
           alt=""
+          aria-hidden="true"
           fill
           quality={70}
-          sizes="(max-width: 768px) 100vw, 1280px"
+          sizes="100vw"
           className="w-full h-full object-fill"
         />
       </div>
@@ -39,30 +40,30 @@ export default function Hero() {
       {/* Subtle text halo strictly behind the headline for clarity */}
       <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[80%] max-w-[760px] h-[220px] bg-white/30 blur-[60px] rounded-full pointer-events-none z-[2]" />
 
-      {/* Seamless transition shade into What is Suwenzo section */}
+      {/* Seamless transition shade into next section */}
       <div className="absolute bottom-0 left-0 right-0 h-28 sm:h-36 bg-gradient-to-b from-transparent via-[#FAFCFF]/40 to-[#FAFCFF] pointer-events-none z-[2]" />
 
       <div className="relative z-10 w-full max-w-[1000px] text-center flex flex-col items-center">
-        {/* Eyebrow row */}
-        <div className="flex flex-row items-center gap-3 mb-6 justify-center flex-wrap">
-          <span className="text-[13px] md:text-[14px] font-bold text-[#1D4ED8] tracking-[0.1em] uppercase">
-            Clinic Software for Sri Lanka
-          </span>
-          <div className="bg-white text-[#1D4ED8] px-3.5 py-1 rounded-full text-[13px] font-medium shadow-sm border border-blue-100 whitespace-nowrap">
+        {/* Founding badge */}
+        <div className="flex flex-row items-center gap-3 mb-5 justify-center flex-wrap">
+          <div className="bg-white text-[#1D4ED8] px-3.5 py-1 rounded-full text-[13px] font-medium shadow-xs border border-blue-100 whitespace-nowrap">
             Onboarding 10 founding clinics in Colombo
           </div>
         </div>
 
-        {/* Headline */}
+        {/* Single H1 strictly matching specification */}
         <h1 className="text-[38px] sm:text-[50px] md:text-[58px] lg:text-[64px] font-[800] leading-[1.08] tracking-tight text-[#0B1B3A] mb-5 max-w-[1000px] w-full text-center">
+          <span className="eyebrow block text-[13px] md:text-[14px] font-bold text-[#1D4ED8] tracking-[0.1em] uppercase mb-3">
+            Clinic software for Sri Lanka
+          </span>
           Prescribe once. <br className="hidden sm:inline" />
           <span className="whitespace-normal md:whitespace-nowrap">Remember every patient.</span>
         </h1>
 
-        {/* 40-60 Word Answer-First Definition Block */}
+        {/* Canonical Definition Verbatim */}
         <div className="bg-white/90 backdrop-blur-md border border-blue-100 rounded-2xl p-4 sm:p-5 mb-8 max-w-[820px] mx-auto text-left sm:text-center shadow-[0_4px_20px_-4px_rgba(29,78,216,0.06)]">
           <p className="text-[15.5px] sm:text-[17px] text-[#0B1B3A] font-semibold leading-snug mb-1.5">
-            Suwenzo is clinic software for Sri Lanka that connects the doctor&apos;s desk, patient records and dispensary in one system, with WhatsApp reminders so patients return on time.
+            {DEFINITION}
           </p>
           <p className="text-[13.5px] sm:text-[14.5px] text-[#475569] leading-relaxed">
             Prescriptions appear on the dispensary screen within seconds, stock levels deduct automatically, and patient visit history remains instantly accessible at every consultation.
@@ -82,7 +83,7 @@ export default function Hero() {
 
             <a
               href="#how-it-works"
-              className="flex items-center justify-center gap-2 bg-white hover:bg-[#F8FAFC] text-[#1D4ED8] border border-[#1D4ED8] h-[52px] px-8 rounded-full text-[15px] md:text-[16px] font-semibold transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-[1px] whitespace-nowrap group"
+              className="flex items-center justify-center gap-2 bg-white hover:bg-[#F8FAFC] text-[#1D4ED8] border border-[#1D4ED8] h-[52px] px-8 rounded-full text-[15px] md:text-[16px] font-semibold transition-all duration-300 shadow-xs hover:shadow-md hover:-translate-y-[1px] whitespace-nowrap group"
             >
               <span>See how it works</span>
               <svg
@@ -105,7 +106,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Static 3-Column Value Cards: Remembered · Reminded · Recommended */}
+        {/* Remembered, Reminded, Recommended Cards */}
         <section
           aria-label="Core Patient Experience Pillars"
           className="w-full max-w-[1000px] mt-9 md:mt-11 grid grid-cols-1 md:grid-cols-3 gap-4 text-left"
@@ -120,12 +121,12 @@ export default function Hero() {
                   <polyline points="16 11 18 13 22 9" />
                 </svg>
               </div>
-              <h3 className="text-[16px] sm:text-[16.5px] font-bold text-[#0B1B3A] tracking-tight">
+              <div className="text-[16px] sm:text-[16.5px] font-bold text-[#0B1B3A] tracking-tight">
                 Remembered.
-              </h3>
+              </div>
             </div>
             <p className="text-[13.5px] sm:text-[14px] text-[#475569] leading-[1.6]">
-              Greet every patient like you&apos;ve never forgotten them.
+              Greet every patient like you have never forgotten them.
             </p>
           </article>
 
@@ -138,9 +139,9 @@ export default function Hero() {
                   <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
                 </svg>
               </div>
-              <h3 className="text-[16px] sm:text-[16.5px] font-bold text-[#0B1B3A] tracking-tight">
+              <div className="text-[16px] sm:text-[16.5px] font-bold text-[#0B1B3A] tracking-tight">
                 Reminded.
-              </h3>
+              </div>
             </div>
             <p className="text-[13.5px] sm:text-[14px] text-[#475569] leading-[1.6]">
               No patient slips away after the first visit. A gentle reminder brings them back on time.
@@ -158,9 +159,9 @@ export default function Hero() {
                   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
               </div>
-              <h3 className="text-[16px] sm:text-[16.5px] font-bold text-[#0B1B3A] tracking-tight">
+              <div className="text-[16px] sm:text-[16.5px] font-bold text-[#0B1B3A] tracking-tight">
                 Recommended.
-              </h3>
+              </div>
             </div>
             <p className="text-[13.5px] sm:text-[14px] text-[#475569] leading-[1.6]">
               Patients who feel known are the ones who tell their neighbours.

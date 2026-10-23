@@ -1,71 +1,57 @@
-import {
-  SITE_URL,
-  CANONICAL_DEFINITION,
-  SOCIAL_LINKS,
-  INCLUDE_PHONE_IN_SCHEMA,
-  INCLUDE_FOUNDER_IN_SCHEMA,
-  SCHEMA_PHONE,
-  SCHEMA_FOUNDER_NAME,
-} from "./site";
+import { DEFINITION, BRAND, SOCIALS, FEATURES } from "@/content/site";
 
 export function getOrganizationSchema() {
-  const schema: Record<string, unknown> = {
-    "@context": "https://schema.org",
+  return {
     "@type": "Organization",
-    "@id": `${SITE_URL}/#organization`,
-    name: "Suwenzo",
-    url: SITE_URL,
-    logo: `${SITE_URL}/suwenzo-logo.png`,
-    image: `${SITE_URL}/suwenzo-mark.png`,
-    description: CANONICAL_DEFINITION,
-    email: "info@suwenzo.com",
-    areaServed: {
-      "@type": "Country",
-      name: "Sri Lanka",
+    "@id": `${BRAND.siteUrl}/#organization`,
+    name: BRAND.name,
+    url: BRAND.siteUrl,
+    logo: {
+      "@type": "ImageObject",
+      url: `${BRAND.siteUrl}/icon-512.png`,
+      width: 512,
+      height: 512,
+    },
+    description: DEFINITION,
+    sameAs: [
+      SOCIALS.facebook,
+      SOCIALS.instagram,
+      SOCIALS.tiktok,
+      SOCIALS.linkedin,
+    ],
+    telephone: BRAND.phoneSchema,
+    founder: {
+      "@type": "Person",
+      name: BRAND.founderName,
+    },
+    foundingLocation: {
+      "@type": "Place",
+      name: BRAND.city,
     },
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Colombo",
+      addressLocality: BRAND.city,
       addressCountry: "LK",
     },
-    sameAs: [
-      SOCIAL_LINKS.facebook,
-      SOCIAL_LINKS.instagram,
-      SOCIAL_LINKS.tiktok,
-      SOCIAL_LINKS.linkedin,
-    ],
-  };
-
-  if (INCLUDE_PHONE_IN_SCHEMA) {
-    schema.telephone = SCHEMA_PHONE;
-    schema.contactPoint = {
+    contactPoint: {
       "@type": "ContactPoint",
-      contactType: "customer service",
-      telephone: SCHEMA_PHONE,
-      availableLanguage: ["en"],
-    };
-  }
-
-  if (INCLUDE_FOUNDER_IN_SCHEMA) {
-    schema.founder = {
-      "@type": "Person",
-      name: SCHEMA_FOUNDER_NAME,
-    };
-  }
-
-  return schema;
+      contactType: "sales",
+      areaServed: "LK",
+      availableLanguage: "English",
+      telephone: BRAND.phoneSchema,
+    },
+  };
 }
 
 export function getWebSiteSchema() {
   return {
-    "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": `${SITE_URL}/#website`,
-    url: SITE_URL,
-    name: "Suwenzo",
-    description: CANONICAL_DEFINITION,
+    "@id": `${BRAND.siteUrl}/#website`,
+    url: BRAND.siteUrl,
+    name: BRAND.name,
+    description: DEFINITION,
     publisher: {
-      "@id": `${SITE_URL}/#organization`,
+      "@id": `${BRAND.siteUrl}/#organization`,
     },
     inLanguage: "en-LK",
   };
@@ -73,26 +59,44 @@ export function getWebSiteSchema() {
 
 export function getSoftwareApplicationSchema() {
   return {
-    "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "@id": `${SITE_URL}/#software`,
-    name: "Suwenzo",
-    applicationCategory: "HealthApplication",
-    operatingSystem: "Web",
-    description: CANONICAL_DEFINITION,
-    url: SITE_URL,
-    provider: {
-      "@id": `${SITE_URL}/#organization`,
+    "@id": `${BRAND.siteUrl}/#software`,
+    name: BRAND.name,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web browser",
+    description: DEFINITION,
+    url: BRAND.siteUrl,
+    featureList: FEATURES.map((f) => f.name),
+    areaServed: {
+      "@type": "Country",
+      name: "Sri Lanka",
     },
-    // STRICT RULE: No offers, no price, no aggregateRating, no review
+    audience: {
+      "@type": "Audience",
+      audienceType: "Private clinics, doctors and medical practices in Sri Lanka",
+    },
+    provider: {
+      "@id": `${BRAND.siteUrl}/#organization`,
+    },
   };
 }
 
-export function getFaqPageSchema(
-  faqs: Array<{ question: string; answer: string }>
-) {
+export function getBreadcrumbSchema(items: Array<{ name: string; item: string }>) {
   return {
-    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.item.startsWith("http")
+        ? crumb.item
+        : `${BRAND.siteUrl}${crumb.item}`,
+    })),
+  };
+}
+
+export function getFaqPageSchema(faqs: Array<{ question: string; answer: string }>) {
+  return {
     "@type": "FAQPage",
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
@@ -105,53 +109,94 @@ export function getFaqPageSchema(
   };
 }
 
-export function getBreadcrumbSchema(
-  items: Array<{ name: string; item: string }>
-) {
+export function getAboutPageSchema() {
   return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((crumb, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: crumb.name,
-      item: crumb.item.startsWith("http")
-        ? crumb.item
-        : `${SITE_URL}${crumb.item}`,
-    })),
+    "@type": "AboutPage",
+    "@id": `${BRAND.siteUrl}/about/#webpage`,
+    url: `${BRAND.siteUrl}/about`,
+    name: "About Suwenzo",
+    description: DEFINITION,
+    isPartOf: {
+      "@id": `${BRAND.siteUrl}/#website`,
+    },
+    about: {
+      "@id": `${BRAND.siteUrl}/#organization`,
+    },
   };
 }
 
-export function getArticleSchema(article: {
-  headline?: string;
-  title?: string;
+export function getContactPageSchema() {
+  return {
+    "@type": "ContactPage",
+    "@id": `${BRAND.siteUrl}/contact/#webpage`,
+    url: `${BRAND.siteUrl}/contact`,
+    name: "Contact Suwenzo",
+    description: "Book a 20-minute clinic demo or message the Suwenzo team on WhatsApp.",
+    isPartOf: {
+      "@id": `${BRAND.siteUrl}/#website`,
+    },
+    about: {
+      "@id": `${BRAND.siteUrl}/#organization`,
+    },
+  };
+}
+
+export function getCollectionPageSchema({
+  name,
+  description,
+  url,
+}: {
+  name: string;
+  description: string;
+  url: string;
+}) {
+  const fullUrl = url.startsWith("http") ? url : `${BRAND.siteUrl}${url}`;
+  return {
+    "@type": "CollectionPage",
+    "@id": `${fullUrl}/#webpage`,
+    url: fullUrl,
+    name,
+    description,
+    isPartOf: {
+      "@id": `${BRAND.siteUrl}/#website`,
+    },
+  };
+}
+
+export function getBlogPostingSchema(article: {
+  headline: string;
   description: string;
   url: string;
   datePublished: string;
   dateModified: string;
   image?: string;
 }) {
-  const headline = article.headline || article.title || "";
+  const fullUrl = article.url.startsWith("http")
+    ? article.url
+    : `${BRAND.siteUrl}${article.url}`;
   return {
-    "@context": "https://schema.org",
     "@type": "BlogPosting",
-    headline,
+    headline: article.headline,
     description: article.description,
-    url: article.url.startsWith("http") ? article.url : `${SITE_URL}${article.url}`,
+    url: fullUrl,
     datePublished: article.datePublished,
     dateModified: article.dateModified,
-    image: article.image || `${SITE_URL}/og-blog.png`,
+    image: article.image || `${BRAND.siteUrl}/og-blog.png`,
     author: {
       "@type": "Organization",
       name: "Suwenzo",
-      url: SITE_URL,
+      url: BRAND.siteUrl,
     },
     publisher: {
-      "@id": `${SITE_URL}/#organization`,
+      "@id": `${BRAND.siteUrl}/#organization`,
     },
     inLanguage: "en-LK",
   };
 }
 
-export const getBlogPostingSchema = getArticleSchema;
-
+export function buildGraphSchema(elements: Record<string, unknown>[]) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": elements,
+  };
+}

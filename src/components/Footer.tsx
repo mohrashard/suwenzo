@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { CANONICAL_DEFINITION, SOCIAL_LINKS, getWhatsAppRedirectUrl } from "@/lib/site";
+import { DEFINITION, TAGLINE, SOCIALS, BRAND } from "@/content/site";
+import { getWhatsAppRedirectUrl } from "@/lib/site";
 
 export default function Footer() {
   const whatsappUrl = getWhatsAppRedirectUrl("footer", "inquiry");
@@ -17,7 +18,7 @@ export default function Footer() {
         {/* Main Columns Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
-          {/* Left Column: Logo, Description & Socials */}
+          {/* Left Column: Logo, Tagline, Canonical Definition and Socials */}
           <div className="lg:col-span-4 flex flex-col items-start text-left">
             {/* Logo */}
             <Link href="/" className="inline-flex items-center gap-2.5 mb-2 no-underline group">
@@ -39,23 +40,19 @@ export default function Footer() {
 
             {/* Tagline Strip */}
             <div className="text-[12px] font-semibold text-[#1D4ED8] tracking-wide mb-3 flex items-center gap-1.5">
-              <span>Remembered</span>
-              <span>&middot;</span>
-              <span>Reminded</span>
-              <span>&middot;</span>
-              <span>Recommended</span>
+              <span>{TAGLINE}</span>
             </div>
 
             {/* Canonical Definition Verbatim */}
             <p className="text-[13.5px] sm:text-[14px] leading-[1.6] text-[#475569] mb-5 max-w-[340px]">
-              {CANONICAL_DEFINITION}
+              {DEFINITION}
             </p>
 
             {/* Verified Social Media Icons */}
             <div className="flex items-center gap-2 text-slate-700">
               {/* Facebook */}
               <a
-                href={SOCIAL_LINKS.facebook}
+                href={SOCIALS.facebook}
                 target="_blank"
                 rel="me noopener"
                 aria-label="Suwenzo on Facebook"
@@ -69,7 +66,7 @@ export default function Footer() {
 
               {/* Instagram */}
               <a
-                href={SOCIAL_LINKS.instagram}
+                href={SOCIALS.instagram}
                 target="_blank"
                 rel="me noopener"
                 aria-label="Suwenzo on Instagram"
@@ -83,7 +80,7 @@ export default function Footer() {
 
               {/* TikTok */}
               <a
-                href={SOCIAL_LINKS.tiktok}
+                href={SOCIALS.tiktok}
                 target="_blank"
                 rel="me noopener"
                 aria-label="Suwenzo on TikTok"
@@ -97,7 +94,7 @@ export default function Footer() {
 
               {/* LinkedIn */}
               <a
-                href={SOCIAL_LINKS.linkedin}
+                href={SOCIALS.linkedin}
                 target="_blank"
                 rel="me noopener"
                 aria-label="Suwenzo on LinkedIn"
@@ -126,11 +123,11 @@ export default function Footer() {
 
           {/* Right Navigation Columns */}
           <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 text-left">
-            {/* Features Navigation */}
+            {/* Features (4 spokes) */}
             <div>
-              <h4 className="text-[13.5px] font-bold text-[#0B1B3A] mb-3 tracking-tight">
+              <h3 className="text-[13.5px] font-bold text-[#0B1B3A] mb-3 tracking-tight">
                 Features
-              </h4>
+              </h3>
               <ul className="space-y-2 text-[13px] text-[#475569]">
                 <li>
                   <Link href="/features/patient-records" className="hover:text-[#1D4ED8] transition-colors">
@@ -144,7 +141,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link href="/features/stock-and-expiry" className="hover:text-[#1D4ED8] transition-colors">
-                    Stock &amp; Expiry
+                    Stock and Expiry
                   </Link>
                 </li>
                 <li>
@@ -155,15 +152,15 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Practices Navigation */}
+            {/* Practice Types (4 spokes) */}
             <div>
-              <h4 className="text-[13.5px] font-bold text-[#0B1B3A] mb-3 tracking-tight">
+              <h3 className="text-[13.5px] font-bold text-[#0B1B3A] mb-3 tracking-tight">
                 Practice Types
-              </h4>
+              </h3>
               <ul className="space-y-2 text-[13px] text-[#475569]">
                 <li>
                   <Link href="/for/solo-doctors" className="hover:text-[#1D4ED8] transition-colors">
-                    Solo Doctors
+                    Solo Practices
                   </Link>
                 </li>
                 <li>
@@ -184,15 +181,15 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Resources & Contact */}
+            {/* Resources (FAQ, Fact sheet, About, Contact, Blog, Privacy, Terms) */}
             <div>
-              <h4 className="text-[13.5px] font-bold text-[#0B1B3A] mb-3 tracking-tight">
+              <h3 className="text-[13.5px] font-bold text-[#0B1B3A] mb-3 tracking-tight">
                 Resources
-              </h4>
+              </h3>
               <ul className="space-y-2 text-[13px] text-[#475569]">
                 <li>
                   <Link href="/faq" className="hover:text-[#1D4ED8] transition-colors">
-                    FAQ Directory
+                    FAQ
                   </Link>
                 </li>
                 <li>
@@ -202,24 +199,34 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link href="/about" className="hover:text-[#1D4ED8] transition-colors">
-                    About Suwenzo
+                    About
                   </Link>
                 </li>
                 <li>
                   <Link href="/contact" className="hover:text-[#1D4ED8] transition-colors">
-                    Contact Team
+                    Contact
                   </Link>
                 </li>
                 <li>
                   <Link href="/blog" className="hover:text-[#1D4ED8] transition-colors">
-                    Clinical Blog
+                    Blog
                   </Link>
                 </li>
                 <li>
+                  <Link href="/privacy" className="hover:text-[#1D4ED8] transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms" className="hover:text-[#1D4ED8] transition-colors">
+                    Terms of Service
+                  </Link>
+                </li>
+                <li className="pt-1">
                   <a
                     href={demoUrl}
                     rel="nofollow noopener"
-                    className="text-[#1D4ED8] font-semibold hover:underline inline-flex items-center gap-1 pt-1"
+                    className="text-[#1D4ED8] font-semibold hover:underline inline-flex items-center gap-1"
                   >
                     <span>Book 20-min demo</span>
                     <span aria-hidden="true">&rarr;</span>
@@ -240,7 +247,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Suwenzo. All rights reserved.
           </div>
           <div className="text-slate-500">
-            Colombo, Sri Lanka &middot; Clinic software built for Sri Lanka
+            Colombo, Sri Lanka, Clinic software built for Sri Lanka
           </div>
         </div>
 

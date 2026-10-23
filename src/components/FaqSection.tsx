@@ -3,51 +3,21 @@ import JsonLd from "@/components/JsonLd";
 import HomeFaqAccordion from "@/components/HomeFaqAccordion";
 import { getFaqPageSchema } from "@/lib/schemas";
 import { getWhatsAppRedirectUrl } from "@/lib/site";
+import { getHomepageFaqs } from "@/content/site";
 
 export default function FaqSection() {
   const whatsappUrl = getWhatsAppRedirectUrl("faq-section", "question");
+  const homeFaqs = getHomepageFaqs();
 
-  const faqs = [
-    {
-      question: "What does the founding clinic offer include?",
-      answer:
-        "The first 10 clinics in Colombo get 3 months free. Founding clinics also get direct engineering support and help shape future software features. Pricing is shared during the demo.",
-    },
-    {
-      question: "How long does setup take, and who does it?",
-      answer:
-        "We do it with you. We enter your stock list, connect your printer and train your dispenser, so you start with a working system, not an empty one. Most clinics are ready within 48 hours of the demo, and we stay on WhatsApp for the first weeks to help your dispenser settle in.",
-    },
-    {
-      question: "What hardware do I need to buy to get started?",
-      answer:
-        "You need a tablet for the doctor's desk, a label printer at the dispensary, and an internet connection. Before you buy anything, we share the list of printers that work with Suwenzo so nothing is wasted.",
-    },
-    {
-      question: "Does Suwenzo work without internet?",
-      answer:
-        "Suwenzo needs an internet connection. A standard mobile hotspot or 4G clinic router is enough. If your connection temporarily drops, prescriptions are safely queued and resume the moment signal reconnects.",
-    },
-    {
-      question: "What does Suwenzo remember about my patients?",
-      answer:
-        "Suwenzo keeps each patient's visits, prescriptions and notes in one record, so any doctor in the clinic can see the history before the consultation starts. This includes past diagnoses, prescribed medicines, dosages, allergies, and vital signs, with nothing lost between visits.",
-    },
-    {
-      question: "How do WhatsApp reminders work, and do patients have to agree?",
-      answer:
-        "When a patient's course is ending, Suwenzo sends a WhatsApp reminder, but only to patients who have agreed to receive them. Consent is captured with a single tap during consultation or registration, and reminder messaging is fully included in your subscription.",
-    },
-  ];
-
-  const faqJsonLd = getFaqPageSchema(faqs);
+  const faqJsonLd = getFaqPageSchema(
+    homeFaqs.map((f) => ({ question: f.question, answer: f.answer }))
+  );
 
   return (
     <section
-      className="bg-[linear-gradient(180deg,#F0F7FF_0%,#E6F1FE_100%)] py-[96px] sm:py-[110px] px-4 sm:px-6 w-full flex flex-col items-center relative overflow-hidden"
+      className="bg-[linear-gradient(180deg,#F0F7FF_0%,#E6F1FE_100%)] py-[84px] sm:py-[104px] px-4 sm:px-6 w-full flex flex-col items-center relative overflow-hidden"
       id="faq"
     >
-      {/* Server-Rendered FAQ Schema */}
       <JsonLd data={faqJsonLd} />
 
       {/* Ambient background soft glow */}
@@ -58,12 +28,12 @@ export default function FaqSection() {
         
         {/* Left Column: Heading & Note */}
         <div className="lg:col-span-5 lg:sticky lg:top-28 text-left">
-          <span className="bg-[#0f172a] text-white py-1.5 px-4 rounded-full text-[0.8125rem] font-medium inline-block mb-6 sm:mb-8 tracking-[0.02em] shadow-xs uppercase">
+          <span className="bg-[#0f172a] text-white py-1.5 px-4 rounded-full text-[0.8125rem] font-medium inline-block mb-4 sm:mb-6 tracking-[0.02em] uppercase">
             FAQ
           </span>
           
-          <h2 className="text-[2rem] sm:text-[clamp(2.25rem,4.5vw,3rem)] font-normal text-[#0B1B3A] leading-[1.15] mb-5 tracking-[-0.03em]">
-            Questions doctors ask before they book a demo
+          <h2 className="text-[2rem] sm:text-[clamp(2.25rem,4.5vw,3rem)] font-normal text-[#0B1B3A] leading-[1.15] mb-4 tracking-[-0.03em]">
+            Clinic software FAQ for Sri Lankan doctors
           </h2>
 
           <p className="text-[1.05rem] text-[#475569] leading-[1.6] mb-6">
@@ -75,7 +45,7 @@ export default function FaqSection() {
               href="/faq"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-blue-200 text-[#1D4ED8] text-[13.5px] font-semibold shadow-2xs hover:bg-blue-50 transition-colors"
             >
-              <span>Explore all 20+ questions in FAQ directory</span>
+              <span>See all questions</span>
               <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
@@ -102,9 +72,14 @@ export default function FaqSection() {
           </div>
         </div>
 
-        {/* Right Column: Accessible Interactive Accordion */}
+        {/* Right Column: 6 Interactive Accordion FAQs */}
         <div className="lg:col-span-7 w-full">
-          <HomeFaqAccordion items={faqs} />
+          <HomeFaqAccordion
+            faqs={homeFaqs.map((f) => ({
+              question: f.question,
+              answer: f.answer,
+            }))}
+          />
         </div>
 
       </div>
