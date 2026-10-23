@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
@@ -93,6 +94,16 @@ export default function SoloDoctorsPage() {
               <p className="text-[15px] sm:text-[16px] text-[#1E293B] font-medium leading-[1.65] bg-blue-50/70 border border-blue-100 p-4 rounded-xl mb-6">
                 Suwenzo is right for a solo practice if you want fast tablet prescribing, instant patient visit history by phone number, and automated WhatsApp follow-ups without managing paper files. It is not designed for hospital inpatient wards, surgical theatres, or large multi-department laboratory operations.
               </p>
+
+              <div className="mb-6 flex justify-center">
+                <Image
+                  src="/illustration-solo.png"
+                  alt="Solo doctor outpatient practice setup with single-room efficiency, digital records, and 48-hour onboarding"
+                  width={600}
+                  height={450}
+                  className="rounded-2xl border border-slate-200/90 shadow-xs max-w-full h-auto"
+                />
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="p-4 rounded-xl bg-emerald-50/60 border border-emerald-100">

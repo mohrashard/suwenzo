@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0F7FF" />
+      <stop offset="100%" stop-color="#E0EFFF" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" rx="24" fill="url(#bgGrad2)" />
+
+  <!-- Doctor's Tablet Mockup -->
+  <g transform="translate(60, 60)">
+    <rect x="0" y="0" width="260" height="330" rx="18" fill="#FFFFFF" stroke="#0B1B3A" stroke-width="4" />
+    <rect x="15" y="15" width="230" height="30" rx="8" fill="#1D4ED8" />
+    <text x="25" y="35" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">Tablet Prescribing</text>
+
+    <!-- Medicine Selection Rows -->
+    <rect x="15" y="55" width="230" height="50" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+    <text x="25" y="74" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0B1B3A">Amoxicillin 500mg</text>
+    <text x="25" y="92" font-family="Arial, sans-serif" font-size="11" fill="#16A34A">Stock: 420 caps | Shelf A2</text>
+
+    <rect x="15" y="112" width="230" height="50" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+    <text x="25" y="131" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0B1B3A">Paracetamol 500mg</text>
+    <text x="25" y="149" font-family="Arial, sans-serif" font-size="11" fill="#16A34A">Stock: 1,200 tabs | Shelf B1</text>
+
+    <rect x="15" y="170" width="230" height="50" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+    <text x="25" y="189" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0B1B3A">Cetirizine 10mg</text>
+    <text x="25" y="207" font-family="Arial, sans-serif" font-size="11" fill="#16A34A">Stock: 180 tabs | Shelf C3</text>
+
+    <!-- Action Button -->
+    <rect x="15" y="250" width="230" height="42" rx="10" fill="#1D4ED8" />
+    <text x="130" y="276" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Send to Dispensary →</text>
+  </g>
+
+  <!-- Sync Arrow Stream -->
+  <g transform="translate(325, 200)">
+    <line x1="0" y1="0" x2="35" y2="0" stroke="#1D4ED8" stroke-width="3" stroke-dasharray="6 4" />
+    <polygon points="35,-6 47,0 35,6" fill="#1D4ED8" />
+    <text x="20" y="-12" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1D4ED8" text-anchor="middle">&lt; 2s</text>
+  </g>
+
+  <!-- Auto-Printed Thermal Packet Label -->
+  <g transform="translate(375, 80)">
+    <!-- Thermal Printer -->
+    <rect x="10" y="0" width="160" height="70" rx="12" fill="#334155" />
+    <rect x="30" y="55" width="120" height="10" rx="4" fill="#0F172A" />
+    <text x="90" y="35" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#94A3B8" text-anchor="middle">Thermal Printer</text>
+
+    <!-- Emerging Printed Sticker -->
+    <g transform="translate(0, 62)">
+      <rect x="0" y="0" width="180" height="230" rx="10" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5" />
+      <rect x="10" y="12" width="160" height="24" fill="#0B1B3A" rx="4" />
+      <text x="90" y="28" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SUWENZO CLINIC</text>
+
+      <text x="15" y="54" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0B1B3A">Sample patient: K. Perera</text>
+      <text x="15" y="70" font-family="Arial, sans-serif" font-size="10" fill="#64748B">Date: 23 Oct 2026</text>
+
+      <line x1="15" y1="80" x2="165" y2="80" stroke="#E2E8F0" stroke-width="1" />
+
+      <text x="15" y="100" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1D4ED8">Amoxicillin 500mg</text>
+      <text x="15" y="120" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0B1B3A">1 capsule - 3 times daily</text>
+      <text x="15" y="136" font-family="Arial, sans-serif" font-size="10" fill="#475569">After meals for 5 days (15 caps)</text>
+
+      <line x1="15" y1="150" x2="165" y2="150" stroke="#E2E8F0" stroke-width="1" />
+
+      <text x="15" y="170" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#DC2626">Complete the full antibiotic course.</text>
+      <text x="15" y="195" font-family="Arial, sans-serif" font-size="9" fill="#64748B">Prescribed by Dr. Bandara</text>
+    </g>
+  </g>
+</svg>

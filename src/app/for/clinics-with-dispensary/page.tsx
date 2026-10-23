@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
@@ -91,6 +92,16 @@ export default function ClinicsWithDispensaryPage() {
               <p className="text-[15px] sm:text-[16px] text-[#1E293B] font-medium leading-[1.65] bg-blue-50/70 border border-blue-100 p-4 rounded-xl mb-6">
                 Suwenzo works for a clinic with a dispensary by connecting the doctor&apos;s prescribing tablet directly to the dispensary fulfillment screen in real time. The doctor prescribes with shelf stock visible, the dispensary screen updates within seconds, an auto-printed thermal label produces packet instructions, and inventory balances deduct automatically.
               </p>
+
+              <div className="mb-6 flex justify-center">
+                <Image
+                  src="/illustration-dispensary.png"
+                  alt="Connected clinic workflow connecting doctor desk prescribing to dispensary order queue and thermal packet label printing"
+                  width={600}
+                  height={450}
+                  className="rounded-2xl border border-slate-200/90 shadow-xs max-w-full h-auto"
+                />
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">

@@ -12,11 +12,9 @@
   </defs>
 
   <rect width="1200" height="630" fill="url(#ogBg)" />
-
-  <!-- Outer frame border -->
   <rect x="24" y="24" width="1152" height="582" rx="28" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" />
 
-  <!-- Top-left Brand Badge -->
+  <!-- Brand Signature -->
   <g transform="translate(80, 68)">
     <rect x="0" y="0" width="64" height="64" rx="16" fill="url(#frameGrad)" />
     <rect x="2" y="2" width="60" height="60" rx="14" fill="#FFFFFF" />
@@ -218,50 +216,42 @@
 <path d="M0 0 C0.99 0 1.98 0 3 0 C3.33 2.31 3.66 4.62 4 7 C2.35 5.35 0.7 3.7 -1 2 C-0.67 1.34 -0.34 0.68 0 0 Z " fill="#1C4CC6" transform="translate(987,404)"/>
 </g>
     <text x="80" y="44" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#0B1B3A" letter-spacing="-1">Suwenzo</text>
-    <text x="235" y="44" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#1D4ED8">• Clinic Software for Sri Lanka</text>
+    <text x="235" y="44" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#1D4ED8">: Clinic Software for Sri Lanka</text>
   </g>
 
-  <!-- Central Content (Inside Safe Area) -->
+  <!-- Central Messaging -->
   <g transform="translate(80, 185)">
-    <!-- Eyebrow Pill -->
-    <rect x="0" y="0" width="180" height="34" rx="17" fill="#0F172A" />
+    <rect x="0" y="0" width="220" height="34" rx="17" fill="#0F172A" />
     <text x="16" y="23" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1">KNOWLEDGE BASE</text>
 
-    <!-- Main Headline -->
-    <text x="0" y="86" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="46" font-weight="800" fill="#0B1B3A" letter-spacing="-1.5">20 Verified Questions Answered for Doctors</text>
-
-    <!-- Subtext -->
-    <text x="0" y="136" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="20" font-weight="400" fill="#475569">Clear, honest answers about setup, hardware, offline sync and WhatsApp reminders.</text>
+    <text x="0" y="86" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="44" font-weight="800" fill="#0B1B3A" letter-spacing="-1.5">Verified Questions Answered for Doctors</text>
+    <text x="0" y="136" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="20" font-weight="400" fill="#475569">Clear answers about setup time, hardware, internet dropouts, and WhatsApp consent.</text>
   </g>
 
-  <!-- 4-Node Connected Graphic: Doctor's Desk, Records, Dispensary, Reminders -->
+  <!-- 4 Connected Stations Graphic -->
   <g transform="translate(80, 390)">
     <line x1="120" y1="40" x2="350" y2="40" stroke="#93C5FD" stroke-width="2" stroke-dasharray="4 4" />
     <line x1="390" y1="40" x2="620" y2="40" stroke="#93C5FD" stroke-width="2" stroke-dasharray="4 4" />
     <line x1="660" y1="40" x2="890" y2="40" stroke="#93C5FD" stroke-width="2" stroke-dasharray="4 4" />
 
-    <!-- Node 1: Doctor's Desk -->
     <rect x="0" y="8" width="160" height="64" rx="16" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
     <circle cx="28" cy="40" r="12" fill="#1D4ED8" />
     <text x="28" y="45" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">1</text>
     <text x="48" y="36" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B1B3A">Doctor Desk</text>
     <text x="48" y="52" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" fill="#64748B">Tablet Prescribing</text>
 
-    <!-- Node 2: Records -->
     <rect x="270" y="8" width="160" height="64" rx="16" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
     <circle cx="298" cy="40" r="12" fill="#1D4ED8" />
     <text x="298" y="45" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">2</text>
     <text x="318" y="36" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B1B3A">Patient Files</text>
     <text x="318" y="52" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" fill="#64748B">Instant History</text>
 
-    <!-- Node 3: Dispensary -->
     <rect x="540" y="8" width="160" height="64" rx="16" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
     <circle cx="568" cy="40" r="12" fill="#1D4ED8" />
     <text x="568" y="45" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3</text>
     <text x="588" y="36" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#0B1B3A">Dispensary</text>
     <text x="588" y="52" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" fill="#64748B">Label Printing</text>
 
-    <!-- Node 4: Reminders -->
     <rect x="810" y="8" width="170" height="64" rx="16" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5" />
     <circle cx="838" cy="40" r="12" fill="#16A34A" />
     <text x="838" y="45" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">4</text>
@@ -269,7 +259,7 @@
     <text x="858" y="52" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="11" fill="#16A34A">Return Reminders</text>
   </g>
 
-  <!-- Bottom Brand Signature Strip -->
-  <text x="80" y="540" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#64748B">Colombo, Sri Lanka • https://www.suwenzo.com</text>
+  <!-- Footer Info -->
+  <text x="80" y="540" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#64748B">Colombo, Sri Lanka : www.suwenzo.com</text>
   <text x="960" y="540" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#1D4ED8">Ready in 48 hours →</text>
 </svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <defs>
+    <linearGradient id="bgGradP3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0F7FF" />
+      <stop offset="100%" stop-color="#E0EFFF" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" rx="24" fill="url(#bgGradP3)" />
+
+  <rect x="70" y="50" width="460" height="350" rx="20" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" />
+  
+  <rect x="70" y="50" width="460" height="54" rx="20" fill="#0B1B3A" />
+  <rect x="70" y="80" width="460" height="24" fill="#0B1B3A" />
+  <text x="100" y="82" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Solo Doctor Outpatient Practices</text>
+
+  <!-- Solo Doctor Features Grid -->
+  <g transform="translate(95, 125)">
+    <rect x="0" y="0" width="195" height="105" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5" />
+    <text x="14" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8">Single-Room Efficiency</text>
+    <text x="14" y="46" font-family="Arial, sans-serif" font-size="11" fill="#475569">Consult, prescribe, and dispense or print from one compact desk tablet.</text>
+
+    <rect x="215" y="0" width="195" height="105" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5" />
+    <text x="229" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8">No Carbon Books</text>
+    <text x="229" y="46" font-family="Arial, sans-serif" font-size="11" fill="#475569">Retire handwriting pads and paper registers. Keep all patient records secure.</text>
+
+    <rect x="0" y="120" width="195" height="105" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5" />
+    <text x="14" y="146" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8">Automated Retention</text>
+    <text x="14" y="166" font-family="Arial, sans-serif" font-size="11" fill="#475569">WhatsApp reminders return chronic patients automatically without phone calls.</text>
+
+    <rect x="215" y="120" width="195" height="105" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5" />
+    <text x="229" y="146" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8">48-Hour Setup</text>
+    <text x="229" y="166" font-family="Arial, sans-serif" font-size="11" fill="#475569">We configure your medicine list and printer. Start seeing patients in 2 days.</text>
+  </g>
+</svg>

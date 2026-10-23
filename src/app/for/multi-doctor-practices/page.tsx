@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
@@ -93,6 +94,16 @@ export default function MultiDoctorPracticesPage() {
               <p className="text-[15px] sm:text-[16px] text-[#1E293B] font-medium leading-[1.65] bg-blue-50/70 border border-blue-100 p-4 rounded-xl mb-6">
                 Suwenzo works for several doctors by providing independent logins with private clinical observation notes, while routing all orders into a shared dispensary queue. Doctors review unified patient histories recorded across previous shifts, and dispensary staff fulfill prescriptions with clear attribution to the issuing physician.
               </p>
+
+              <div className="mb-6 flex justify-center">
+                <Image
+                  src="/illustration-multi-doctor.png"
+                  alt="Multi-doctor outpatient clinic architecture with independent doctor logins, central patient history, and shared dispensary order queue"
+                  width={600}
+                  height={450}
+                  className="rounded-2xl border border-slate-200/90 shadow-xs max-w-full h-auto"
+                />
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">

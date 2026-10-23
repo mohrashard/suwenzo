@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <defs>
+    <linearGradient id="bgGradP2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0F7FF" />
+      <stop offset="100%" stop-color="#E0EFFF" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" rx="24" fill="url(#bgGradP2)" />
+
+  <rect x="70" y="50" width="460" height="350" rx="20" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" />
+  
+  <rect x="70" y="50" width="460" height="54" rx="20" fill="#0B1B3A" />
+  <rect x="70" y="80" width="460" height="24" fill="#0B1B3A" />
+  <text x="100" y="82" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Consulting-Only Practices (No In-House Stock)</text>
+
+  <!-- Central Workstation Card -->
+  <g transform="translate(100, 130)">
+    <rect x="0" y="0" width="400" height="85" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5" />
+    <circle cx="36" cy="42" r="18" fill="#1D4ED8" />
+    <text x="36" y="47" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Rx</text>
+    <text x="68" y="34" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#0B1B3A">Sri Lankan Medicine Formulary</text>
+    <text x="68" y="54" font-family="Arial, sans-serif" font-size="11" fill="#475569">Prescribe from registered Sri Lankan brands and generics without entering inventory.</text>
+  </g>
+
+  <!-- Dual Prescription Output Option -->
+  <g transform="translate(100, 235)">
+    <!-- Option A: Thermal / A5 Printed Prescription -->
+    <rect x="0" y="0" width="190" height="120" rx="12" fill="#F0F7FF" stroke="#93C5FD" stroke-width="1.5" />
+    <text x="16" y="28" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8">Printed Prescriptions</text>
+    <text x="16" y="52" font-family="Arial, sans-serif" font-size="11" fill="#334155">Hand clean, legible printed slips to patients for outside pharmacy dispensing.</text>
+    <rect x="16" y="82" width="158" height="26" rx="6" fill="#1D4ED8" />
+    <text x="95" y="99" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Standard A5 / Thermal</text>
+
+    <!-- Option B: WhatsApp Prescription Delivery -->
+    <rect x="210" y="0" width="190" height="120" rx="12" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5" />
+    <text x="226" y="28" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#065F46">WhatsApp Delivery</text>
+    <text x="226" y="52" font-family="Arial, sans-serif" font-size="11" fill="#334155">Send digital prescription slips directly to patient WhatsApp with one tap.</text>
+    <rect x="226" y="82" width="158" height="26" rx="6" fill="#16A34A" />
+    <text x="305" y="99" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Paperless Delivery</text>
+  </g>
+</svg>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
@@ -91,6 +92,16 @@ export default function WhatsAppRemindersPage() {
               <p className="text-[15px] sm:text-[16px] text-[#1E293B] font-medium leading-[1.65] bg-blue-50/70 border border-blue-100 p-4 rounded-xl mb-6">
                 WhatsApp reminders work by scheduling an automated follow-up message based on the duration of the prescribed medicine course. Suwenzo monitors prescription end dates and sends a polite message to consenting patients, inviting them to check in on their recovery or schedule their return visit without manual reception phone calls.
               </p>
+
+              <div className="mb-6 flex justify-center">
+                <Image
+                  src="/illustration-reminders.png"
+                  alt="Consent capture on doctor tablet and automated WhatsApp patient follow-up reminder notification"
+                  width={600}
+                  height={450}
+                  className="rounded-2xl border border-slate-200/90 shadow-xs max-w-full h-auto"
+                />
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">

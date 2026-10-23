@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <defs>
+    <linearGradient id="bgGradP1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0F7FF" />
+      <stop offset="100%" stop-color="#E0EFFF" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" rx="24" fill="url(#bgGradP1)" />
+
+  <!-- Outer Practice Architecture -->
+  <rect x="60" y="50" width="480" height="350" rx="20" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" />
+  
+  <rect x="60" y="50" width="480" height="54" rx="20" fill="#0B1B3A" />
+  <rect x="60" y="80" width="480" height="24" fill="#0B1B3A" />
+  <text x="90" y="82" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Clinics with In-House Dispensary</text>
+
+  <!-- Left: Doctor Desk Station -->
+  <g transform="translate(85, 125)">
+    <rect x="0" y="0" width="195" height="235" rx="14" fill="#F8FAFC" stroke="#93C5FD" stroke-width="1.5" />
+    <rect x="15" y="15" width="165" height="32" rx="8" fill="#1D4ED8" />
+    <text x="97" y="36" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Doctor Desk</text>
+    
+    <text x="15" y="70" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0B1B3A">Live stock visibility</text>
+    <text x="15" y="88" font-family="Arial, sans-serif" font-size="10.5" fill="#64748B">Prescribe from real inventory</text>
+
+    <text x="15" y="120" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0B1B3A">Past patient history</text>
+    <text x="15" y="138" font-family="Arial, sans-serif" font-size="10.5" fill="#64748B">Allergies and chronic files</text>
+
+    <text x="15" y="170" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0B1B3A">1-tap dispensary send</text>
+    <text x="15" y="188" font-family="Arial, sans-serif" font-size="10.5" fill="#64748B">Direct transmission in 2s</text>
+  </g>
+
+  <!-- Sync Stream Line -->
+  <g transform="translate(285, 230)">
+    <line x1="0" y1="0" x2="30" y2="0" stroke="#1D4ED8" stroke-width="3" stroke-dasharray="4 4" />
+    <polygon points="30,-5 40,0 30,5" fill="#1D4ED8" />
+  </g>
+
+  <!-- Right: Dispensary Counter -->
+  <g transform="translate(325, 125)">
+    <rect x="0" y="0" width="195" height="235" rx="14" fill="#F8FAFC" stroke="#93C5FD" stroke-width="1.5" />
+    <rect x="15" y="15" width="165" height="32" rx="8" fill="#0B1B3A" />
+    <text x="97" y="36" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Dispensary Counter</text>
+    
+    <text x="15" y="70" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0B1B3A">Dispensary order queue</text>
+    <text x="15" y="88" font-family="Arial, sans-serif" font-size="10.5" fill="#64748B">Orders appear instantly</text>
+
+    <text x="15" y="120" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0B1B3A">Auto-printed labels</text>
+    <text x="15" y="138" font-family="Arial, sans-serif" font-size="10.5" fill="#64748B">Direct thermal packet stickers</text>
+
+    <text x="15" y="170" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0B1B3A">Live stock deduction</text>
+    <text x="15" y="188" font-family="Arial, sans-serif" font-size="10.5" fill="#64748B">Shelf counts decrease live</text>
+  </g>
+</svg>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
@@ -91,6 +92,16 @@ export default function DigitalPrescriptionsPage() {
               <p className="text-[15px] sm:text-[16px] text-[#1E293B] font-medium leading-[1.65] bg-blue-50/70 border border-blue-100 p-4 rounded-xl mb-6">
                 A prescription reaches the dispensary through real-time web synchronization the instant the doctor confirms it on their tablet. Suwenzo displays the complete order on the dispensary counter screen within seconds, eliminating paper slips and ensuring the assistant dispenses verified medications with exact dosage instructions.
               </p>
+
+              <div className="mb-6 flex justify-center">
+                <Image
+                  src="/illustration-prescriptions.png"
+                  alt="Doctor prescribing on tablet with prescription reaching dispensary counter screen and thermal label printer within seconds"
+                  width={600}
+                  height={450}
+                  className="rounded-2xl border border-slate-200/90 shadow-xs max-w-full h-auto"
+                />
+              </div>
 
               <ol className="list-decimal pl-5 space-y-3 text-[14.5px] text-[#475569] leading-[1.6]">
                 <li><strong>Doctor taps confirm:</strong> The order is instantly validated against available shelf stock and allergy alerts.</li>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0F7FF" />
+      <stop offset="100%" stop-color="#E0EFFF" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" rx="24" fill="url(#bgGrad3)" />
+
+  <!-- Dispensary Shelf Layout Card -->
+  <rect x="70" y="50" width="460" height="350" rx="20" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" />
+  
+  <rect x="70" y="50" width="460" height="56" rx="20" fill="#0B1B3A" />
+  <rect x="70" y="80" width="460" height="26" fill="#0B1B3A" />
+  <text x="100" y="84" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Dispensary Stock &amp; 60-Day Expiry Warnings</text>
+
+  <!-- 60-Day Expiry Alert Banner -->
+  <g transform="translate(95, 120)">
+    <rect x="0" y="0" width="410" height="40" rx="8" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1.5" />
+    <circle cx="20" cy="20" r="9" fill="#F59E0B" />
+    <text x="20" y="24" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">!</text>
+    <text x="38" y="25" font-family="Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#B45309">2 batches approaching expiry within 60 days</text>
+  </g>
+
+  <!-- Shelf Inventory Table Header -->
+  <g transform="translate(95, 175)">
+    <rect x="0" y="0" width="410" height="28" fill="#F1F5F9" rx="6" />
+    <text x="14" y="18" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#475569">MEDICINE &amp; BATCH</text>
+    <text x="190" y="18" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#475569">LOCATION</text>
+    <text x="280" y="18" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#475569">STOCK</text>
+    <text x="340" y="18" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#475569">EXPIRY</text>
+
+    <!-- Row 1: Healthy Stock -->
+    <rect x="0" y="34" width="410" height="50" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <text x="14" y="54" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0B1B3A">Paracetamol 500mg</text>
+    <text x="14" y="70" font-family="Arial, sans-serif" font-size="10" fill="#64748B">Batch: PR-2601</text>
+    <text x="190" y="62" font-family="Arial, sans-serif" font-size="12" fill="#0B1B3A">Shelf B1</text>
+    <text x="280" y="62" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#16A34A">1,200</text>
+    <text x="340" y="62" font-family="Arial, sans-serif" font-size="11" fill="#475569">Dec 2027</text>
+
+    <!-- Row 2: Near Expiry Warning -->
+    <rect x="0" y="90" width="410" height="50" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1" />
+    <text x="14" y="110" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0B1B3A">Ciprofloxacin 500mg</text>
+    <text x="14" y="126" font-family="Arial, sans-serif" font-size="10" fill="#92400E">Batch: CP-2490</text>
+    <text x="190" y="118" font-family="Arial, sans-serif" font-size="12" fill="#0B1B3A">Shelf A3</text>
+    <text x="280" y="118" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#D97706">90</text>
+    <text x="340" y="118" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#D97706">Nov 2026</text>
+
+    <!-- Row 3: Live Deducted -->
+    <rect x="0" y="146" width="410" height="50" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <text x="14" y="166" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0B1B3A">Amoxicillin 500mg</text>
+    <text x="14" y="182" font-family="Arial, sans-serif" font-size="10" fill="#64748B">Batch: AM-2512</text>
+    <text x="190" y="174" font-family="Arial, sans-serif" font-size="12" fill="#0B1B3A">Shelf A2</text>
+    <text x="280" y="174" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#16A34A">420</text>
+    <text x="340" y="174" font-family="Arial, sans-serif" font-size="11" fill="#475569">Aug 2027</text>
+  </g>
+</svg>

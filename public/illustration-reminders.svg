@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0F7FF" />
+      <stop offset="100%" stop-color="#E0EFFF" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" rx="24" fill="url(#bgGrad4)" />
+
+  <!-- Consent Step Indicator on Left -->
+  <g transform="translate(60, 90)">
+    <rect x="0" y="0" width="200" height="270" rx="16" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" />
+    <rect x="0" y="0" width="200" height="44" rx="16" fill="#0B1B3A" />
+    <rect x="0" y="24" width="200" height="20" fill="#0B1B3A" />
+    <text x="20" y="28" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">1-Tap Consent Capture</text>
+
+    <text x="15" y="66" font-family="Arial, sans-serif" font-size="11" fill="#475569">Captured during consultation on tablet:</text>
+
+    <!-- Consent Toggle Mockup -->
+    <rect x="15" y="90" width="170" height="54" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5" />
+    <text x="25" y="112" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#065F46">WhatsApp Opt-in</text>
+    <text x="25" y="128" font-family="Arial, sans-serif" font-size="10" fill="#16A34A">Patient agreed</text>
+    <circle cx="160" cy="117" r="12" fill="#16A34A" />
+    <polyline points="154,117 158,121 166,113" fill="none" stroke="#FFFFFF" stroke-width="2" />
+
+    <text x="15" y="170" font-family="Arial, sans-serif" font-size="10" fill="#64748B">Course duration: 5 days</text>
+    <text x="15" y="190" font-family="Arial, sans-serif" font-size="10" fill="#64748B">Scheduled date: 28 Oct 2026</text>
+    <text x="15" y="210" font-family="Arial, sans-serif" font-size="10" fill="#64748B">Trigger: Automatic</text>
+  </g>
+
+  <!-- Mobile Phone Screen with WhatsApp Reminder -->
+  <g transform="translate(290, 45)">
+    <rect x="0" y="0" width="250" height="360" rx="24" fill="#0B1B3A" stroke="#334155" stroke-width="3" />
+    <rect x="8" y="8" width="234" height="344" rx="18" fill="#ECE5DD" />
+
+    <!-- WhatsApp Header -->
+    <rect x="8" y="8" width="234" height="48" rx="18" fill="#075E54" />
+    <rect x="8" y="36" width="234" height="20" fill="#075E54" />
+    <circle cx="35" cy="32" r="14" fill="#25D366" />
+    <text x="35" y="37" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">S</text>
+    <text x="58" y="28" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">Suwenzo Clinic</text>
+    <text x="58" y="42" font-family="Arial, sans-serif" font-size="10" fill="#A7F3D0">Verified Medical Practice</text>
+
+    <!-- Date Bubble -->
+    <rect x="85" y="68" width="80" height="18" rx="9" fill="#E2E8F0" />
+    <text x="125" y="81" font-family="Arial, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">TODAY</text>
+
+    <!-- Message Bubble -->
+    <g transform="translate(18, 96)">
+      <rect x="0" y="0" width="214" height="150" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+      <text x="12" y="20" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0B1B3A">Sample patient: K. Perera</text>
+      <text x="12" y="40" font-family="Arial, sans-serif" font-size="10.5" fill="#334155">Your 5-day course of Amoxicillin</text>
+      <text x="12" y="56" font-family="Arial, sans-serif" font-size="10.5" fill="#334155">prescribed on 23 Oct ends today.</text>
+      <text x="12" y="80" font-family="Arial, sans-serif" font-size="10.5" fill="#334155">If symptoms persist or Dr. Bandara</text>
+      <text x="12" y="96" font-family="Arial, sans-serif" font-size="10.5" fill="#334155">recommended a review, please reply</text>
+      <text x="12" y="112" font-family="Arial, sans-serif" font-size="10.5" fill="#334155">to confirm your follow-up slot.</text>
+
+      <text x="170" y="138" font-family="Arial, sans-serif" font-size="9" fill="#94A3B8">09:00 AM</text>
+    </g>
+
+    <!-- Quick Reply CTA -->
+    <rect x="18" y="260" width="214" height="34" rx="8" fill="#25D366" />
+    <text x="125" y="282" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Confirm follow-up consultation</text>
+  </g>
+</svg>
