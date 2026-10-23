@@ -3,72 +3,55 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
-import { getBreadcrumbSchema, getSoftwareApplicationSchema } from "@/lib/schemas";
-import { SITE_URL, getWhatsAppRedirectUrl } from "@/lib/site";
+import { buildMetadata } from "@/lib/metadata";
+import {
+  getBreadcrumbSchema,
+  getFaqPageSchema,
+  buildGraphSchema,
+} from "@/lib/schemas";
+import { BRAND, DEFINITION, getFaqsByGroup } from "@/content/site";
+import { getWhatsAppRedirectUrl } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Digital Prescriptions for Sri Lanka Clinics",
+export const metadata: Metadata = buildMetadata({
+  title: "Digital Prescription Software for Sri Lankan Clinics",
   description:
-    "Eliminate handwritten prescription errors in Sri Lankan clinics. Prescriptions appear on the dispensary screen within seconds for fast dispensing.",
-  alternates: {
-    canonical: `${SITE_URL}/features/digital-prescriptions`,
-    languages: {
-      "en-LK": `${SITE_URL}/features/digital-prescriptions`,
-      "x-default": `${SITE_URL}/features/digital-prescriptions`,
-    },
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_LK",
-    url: `${SITE_URL}/features/digital-prescriptions`,
-    siteName: "Suwenzo",
-    title: "Digital Prescriptions for Sri Lankan Clinics | Suwenzo",
-    description:
-      "Eliminate handwritten prescription errors in Sri Lankan clinics. Prescriptions appear on the dispensary screen within seconds for fast dispensing.",
-    images: [
-      {
-        url: "/og-features.png",
-        width: 1200,
-        height: 630,
-        alt: "Suwenzo Digital Prescriptions",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Digital Prescriptions for Sri Lankan Clinics | Suwenzo",
-    description:
-      "Eliminate handwritten prescription errors in Sri Lankan clinics. Prescriptions appear on the dispensary screen within seconds for fast dispensing.",
-    images: ["/og-features.png"],
-  },
-};
+    "Prescribe on a tablet with live stock beside each medicine. The prescription reaches the dispensary screen within seconds and the label prints.",
+  path: "/features/digital-prescriptions",
+  ogImage: "/og-features.png",
+});
 
 export default function DigitalPrescriptionsPage() {
   const whatsappUrl = getWhatsAppRedirectUrl("feature-digital-prescriptions", "demo");
-  const breadcrumbSchema = getBreadcrumbSchema([
-    { name: "Home", item: "/" },
-    { name: "Features", item: "/#features" },
-    { name: "Digital Prescriptions", item: "/features/digital-prescriptions" },
+  const prescriptionFaqs = getFaqsByGroup("Prescriptions and dispensary").slice(0, 4);
+
+  const graphSchema = buildGraphSchema([
+    getBreadcrumbSchema([
+      { name: "Home", item: "/" },
+      { name: "Features", item: "/features" },
+      { name: "Digital Prescriptions", item: "/features/digital-prescriptions" },
+    ]),
+    getFaqPageSchema(
+      prescriptionFaqs.map((f) => ({ question: f.question, answer: f.answer }))
+    ),
   ]);
-  const softwareSchema = getSoftwareApplicationSchema();
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema} />
-      <JsonLd data={softwareSchema} />
+      <JsonLd data={graphSchema} />
       <Navbar />
 
-      <main className="min-h-screen bg-[linear-gradient(180deg,#F0F7FF_0%,#E6F1FE_60%,#FAFCFF_100%)] pt-[120px] sm:pt-[140px] pb-[80px] px-4 sm:px-6 relative overflow-hidden">
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-gradient-to-b from-blue-200/40 via-white/50 to-transparent blur-[120px] pointer-events-none rounded-full" />
-
-        <div className="max-w-[960px] mx-auto relative z-10">
+      <main
+        id="main-content"
+        className="min-h-screen bg-[linear-gradient(180deg,#F0F7FF_0%,#E6F1FE_60%,#FAFCFF_100%)] pt-[120px] sm:pt-[140px] pb-[80px] px-4 sm:px-6 relative overflow-hidden"
+      >
+        <div className="max-w-[960px] mx-auto relative z-10 text-left">
           {/* Breadcrumb Navigation */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[13px] text-slate-500 mb-6">
             <Link href="/" className="hover:text-[#1D4ED8] transition-colors">
               Home
             </Link>
             <span>/</span>
-            <Link href="/#features" className="hover:text-[#1D4ED8] transition-colors">
+            <Link href="/features" className="hover:text-[#1D4ED8] transition-colors">
               Features
             </Link>
             <span>/</span>
@@ -76,122 +59,138 @@ export default function DigitalPrescriptionsPage() {
           </nav>
 
           {/* Header */}
-          <div className="text-left mb-8">
-            <span className="bg-[#0f172a] text-white py-1.5 px-4 rounded-full text-[0.8125rem] font-medium inline-block mb-4 tracking-[0.02em] shadow-xs uppercase">
-              Clinic Feature
+          <div className="mb-8">
+            <span className="bg-[#0f172a] text-white py-1.5 px-4 rounded-full text-[0.8125rem] font-medium inline-block mb-4 uppercase tracking-wider">
+              Feature Spoke &bull; Connected Dispensary
             </span>
-            <h1 className="text-[2.25rem] sm:text-[clamp(2.5rem,4.5vw,3.25rem)] font-normal text-[#0B1B3A] leading-[1.12] mb-4 tracking-[-0.03em]">
-              Digital Prescriptions &amp; Dispensing
+            <h1 className="text-[2.25rem] sm:text-[3.25rem] font-normal text-[#0B1B3A] leading-[1.12] mb-3 tracking-tight">
+              Digital prescription software for Sri Lankan clinics
             </h1>
+            <p className="text-[13px] text-slate-500">
+              Last updated: {BRAND.lastUpdated} &bull; Prescription-to-dispensary workflow for private medical clinics
+            </p>
           </div>
 
-          {/* Answer-First Definition Block */}
-          <div className="bg-white/95 border border-blue-100 rounded-2xl p-5 sm:p-6 mb-10 shadow-[0_4px_20px_-4px_rgba(29,78,216,0.06)] text-left">
+          {/* Canonical Definition Box */}
+          <div className="bg-white/95 border border-blue-100 rounded-2xl p-5 sm:p-6 mb-10 shadow-xs">
             <p className="text-[16px] sm:text-[17.5px] font-semibold text-[#0B1B3A] leading-snug mb-2">
-              Suwenzo turns doctors&apos; prescription entries into instant dispensary orders, eliminating illegible handwriting and manual tallying.
+              {DEFINITION}
             </p>
-            <p className="text-[14px] sm:text-[15px] text-[#475569] leading-relaxed">
-              When the doctor selects a medication and frequency on a tablet, prescriptions appear on the dispensary screen within seconds. Dispensers see exact dosages, frequencies, and printed label instructions ready to pack.
+            <p className="text-[14px] text-[#475569] leading-relaxed">
+              Eliminate rushed handwriting and manual transcription. Prescriptions reach the dispensary counter in real time.
             </p>
           </div>
 
-          {/* Editorial Content Body */}
-          <div className="space-y-10 text-left">
-            {/* Section 1 */}
+          <div className="space-y-12">
+            {/* H2 1: How does a prescription reach the dispensary? */}
             <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
-              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-3 leading-snug">
-                How digital prescriptions flow from doctor&apos;s desk to dispensary
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-4">
+                How does a prescription reach the dispensary?
               </h2>
-              <p className="text-[14.5px] sm:text-[15.5px] text-[#475569] leading-[1.7] mb-4">
-                Rather than sending patients across the clinic holding handwritten paper chits, Suwenzo connects the consultation room directly to the pharmacy counter over your clinic network:
+              {/* Answer block: 40-60 words */}
+              <p className="text-[15px] sm:text-[16px] text-[#1E293B] font-medium leading-[1.65] bg-blue-50/70 border border-blue-100 p-4 rounded-xl mb-6">
+                A prescription reaches the dispensary through real-time web synchronization the instant the doctor confirms it on their tablet. Suwenzo displays the complete order on the dispensary counter screen within seconds, eliminating paper slips and ensuring the assistant dispenses verified medications with exact dosage instructions.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-[13.5px]">
-                <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
-                  <div className="w-7 h-7 rounded-full bg-[#1D4ED8] text-white flex items-center justify-center font-bold text-xs mb-2">1</div>
-                  <h3 className="font-semibold text-[#0B1B3A] mb-1">Doctor selects drug</h3>
-                  <p className="text-[#64748B]">Taps medication name, dosage frequency (e.g. BD, TDS), duration, and food timing on a tablet or PC.</p>
-                </div>
-                <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
-                  <div className="w-7 h-7 rounded-full bg-[#1D4ED8] text-white flex items-center justify-center font-bold text-xs mb-2">2</div>
-                  <h3 className="font-semibold text-[#0B1B3A] mb-1">Live queue update</h3>
-                  <p className="text-[#64748B]">Prescriptions appear on the dispensary screen within seconds with patient name, age, and stock status.</p>
-                </div>
-                <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
-                  <div className="w-7 h-7 rounded-full bg-[#1D4ED8] text-white flex items-center justify-center font-bold text-xs mb-2">3</div>
-                  <h3 className="font-semibold text-[#0B1B3A] mb-1">One-click label print</h3>
-                  <p className="text-[#64748B]">Dispenser packs items, prints stick-on envelope labels with clear dosing instructions, and marks as ready.</p>
-                </div>
-              </div>
+
+              <ol className="list-decimal pl-5 space-y-3 text-[14.5px] text-[#475569] leading-[1.6]">
+                <li><strong>Doctor taps confirm:</strong> The order is instantly validated against available shelf stock and allergy alerts.</li>
+                <li><strong>Dispensary screen alerts:</strong> The order appears at the top of the dispensary queue with patient details and doctor attribution.</li>
+                <li><strong>Assistant prepares packets:</strong> With clear digital font on screen, there is zero handwriting ambiguity.</li>
+              </ol>
             </section>
 
-            {/* Comparison Table */}
+            {/* H2 2: Prescribing with live stock beside every medicine */}
             <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
-              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-4 leading-snug">
-                Handwritten prescription slips vs. Suwenzo digital workflow
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-4">
+                Prescribing with live stock beside every medicine
               </h2>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-[13.5px] sm:text-[14px] border-collapse">
-                  <thead>
-                    <tr className="border-b border-slate-200 bg-slate-50/70">
-                      <th className="py-3 px-4 font-semibold text-[#0B1B3A]">Dispensing Step</th>
-                      <th className="py-3 px-4 font-semibold text-[#0B1B3A]">Handwritten Paper Slips</th>
-                      <th className="py-3 px-4 font-semibold text-[#1D4ED8]">Suwenzo Digital Workflow</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100 text-[#475569]">
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#0B1B3A]">Doctor-dispenser transmission</td>
-                      <td className="py-3 px-4">Carried physically by patient</td>
-                      <td className="py-3 px-4 text-[#1D4ED8] font-medium">Appears on screen within seconds</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#0B1B3A]">Legibility &amp; dosing errors</td>
-                      <td className="py-3 px-4">Subject to misread handwritten instructions</td>
-                      <td className="py-3 px-4 text-[#1D4ED8] font-medium">Typed dosages with pre-configured strengths</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#0B1B3A]">Envelope labelling</td>
-                      <td className="py-3 px-4">Handwritten per drug packet</td>
-                      <td className="py-3 px-4 text-[#1D4ED8] font-medium">Clear label printed with one click</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#0B1B3A]">Stock awareness</td>
-                      <td className="py-3 px-4">Doctor prescribes unaware of stock out</td>
-                      <td className="py-3 px-4 text-[#1D4ED8] font-medium">Live pill count badge next to drug name</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <p className="text-[14.5px] text-[#475569] mb-4 leading-[1.6]">
+                Doctors frequently prescribe medicines only to hear later from the dispensary that stock ran out. Suwenzo solves this directly on the consultation screen:
+              </p>
+
+              <ul className="list-disc pl-5 space-y-2 text-[14.5px] text-[#475569]">
+                <li><strong>Real-time shelf counts:</strong> Each drug item displays current shelf quantities (for example: &quot;120 on shelf&quot;) right next to the search result.</li>
+                <li><strong>No interrupted consultations:</strong> You never have to pause a patient visit to ask your dispensary assistant if a brand is in stock.</li>
+                <li><strong>Automatic deduction:</strong> As soon as medicines are dispensed, balances update across the entire practice.</li>
+              </ul>
             </section>
 
-            {/* Section 2 */}
+            {/* H2 3: Labels that print automatically */}
             <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
-              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-3 leading-snug">
-                What happens if the clinic internet disconnects?
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-4">
+                Labels that print automatically
               </h2>
-              <p className="text-[14.5px] sm:text-[15.5px] text-[#475569] leading-[1.7]">
-                Suwenzo operates as a web-based clinical platform requiring an active internet connection (such as a 4G/fiber router or mobile hotspot). If connectivity drops, we recommend switching to a phone hotspot. No offline mode is currently supported, keeping all data synchronized in real time without conflicting version merges.
+              <p className="text-[14.5px] text-[#475569] mb-4 leading-[1.6]">
+                Handwriting instructions on paper drug envelopes takes valuable time and leads to patient confusion. Suwenzo pairs with standard thermal label printers:
+              </p>
+
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 mb-5">
+                <ul className="space-y-1.5 text-[13.5px] text-[#334155]">
+                  <li>&bull; Patient full name and sample identification clearly printed</li>
+                  <li>&bull; Drug generic name, brand, and exact strength</li>
+                  <li>&bull; Formatted timing instructions (e.g., &quot;1 tablet after meals three times daily&quot;)</li>
+                  <li>&bull; Duration of treatment and clinic contact details</li>
+                </ul>
+              </div>
+              <p className="text-[13.5px] text-[#64748B]">
+                Labels print on durable, smudge-resistant thermal adhesive paper sized for standard medicine envelopes.
               </p>
             </section>
 
-            {/* Related Features & CTA */}
+            {/* H2 4: No dispensary? Printed and WhatsApp prescriptions */}
+            <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-4">
+                No dispensary? Printed and WhatsApp prescriptions
+              </h2>
+              <p className="text-[14.5px] text-[#475569] mb-4 leading-[1.6]">
+                For consulting-only physicians whose patients fill prescriptions at retail pharmacies:
+              </p>
+
+              <ul className="list-disc pl-5 space-y-2 text-[14.5px] text-[#475569]">
+                <li><strong>Sri Lankan medicine list:</strong> Prescribe from the comprehensive national directory of approved generics and brands.</li>
+                <li><strong>Printed slips:</strong> Print clean, legible prescription slips with your doctor header and registration details.</li>
+                <li><strong>WhatsApp dispatch:</strong> Send digital prescription summaries directly to the patient&apos;s phone via WhatsApp.</li>
+              </ul>
+            </section>
+
+            {/* FAQ Block */}
+            <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-6">
+                Frequently asked questions on digital prescribing
+              </h2>
+              <div className="space-y-4">
+                {prescriptionFaqs.map((faq) => (
+                  <div key={faq.id} className="border-b border-slate-100 pb-4">
+                    <h3 className="text-[15.5px] font-bold text-[#0B1B3A] mb-1.5">
+                      {faq.question}
+                    </h3>
+                    <p className="text-[14px] text-[#475569] leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Related Features & Demo CTA (Section 7 Internal Linking) */}
             <section className="bg-gradient-to-r from-blue-50 to-indigo-50/40 border border-blue-200 rounded-[24px] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
                 <h3 className="text-[17px] sm:text-[19px] font-bold text-[#0B1B3A] mb-2">
-                  Ready to eliminate handwriting from your dispensary?
+                  See digital prescriptions live in 20 minutes
                 </h3>
                 <p className="text-[14px] text-[#475569] max-w-[500px]">
-                  Experience how digital prescribing streamlines outpatient consultations. Pricing is shared during the demo. The first 10 founding clinics in Colombo get 3 months free.
+                  Book an in-person or remote demo. We can test tablet prescribing and automatic label printing directly at your clinic in Colombo.
                 </p>
+                {/* Related block: 3 links max */}
                 <div className="mt-3 flex flex-wrap gap-3 text-[13px] font-medium text-[#1D4ED8]">
+                  <Link href="/features" className="hover:underline">
+                    &larr; All Features
+                  </Link>
                   <Link href="/features/patient-records" className="hover:underline">
                     &rarr; Patient Records
                   </Link>
                   <Link href="/features/stock-and-expiry" className="hover:underline">
-                    &rarr; Stock &amp; Expiry
-                  </Link>
-                  <Link href="/features/whatsapp-reminders" className="hover:underline">
-                    &rarr; WhatsApp Reminders
+                    &rarr; Stock and Expiry
                   </Link>
                 </div>
               </div>

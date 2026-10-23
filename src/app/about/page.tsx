@@ -3,64 +3,44 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
-import { getBreadcrumbSchema, getOrganizationSchema } from "@/lib/schemas";
-import { SITE_URL, CANONICAL_DEFINITION, getWhatsAppRedirectUrl } from "@/lib/site";
+import { buildMetadata } from "@/lib/metadata";
+import {
+  getBreadcrumbSchema,
+  getAboutPageSchema,
+  buildGraphSchema,
+} from "@/lib/schemas";
+import { BRAND, DEFINITION } from "@/content/site";
+import { getWhatsAppRedirectUrl } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "About Suwenzo Clinic Software",
+export const metadata: Metadata = buildMetadata({
+  title: "About Suwenzo | Clinic Software Built in Colombo",
   description:
-    "Learn about Suwenzo, the Colombo-based clinic software platform designed for private practices in Sri Lanka to connect consultations and dispensaries.",
-  alternates: {
-    canonical: `${SITE_URL}/about`,
-    languages: {
-      "en-LK": `${SITE_URL}/about`,
-      "x-default": `${SITE_URL}/about`,
-    },
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_LK",
-    url: `${SITE_URL}/about`,
-    siteName: "Suwenzo",
-    title: "About Suwenzo | Clinic Software for Sri Lanka",
-    description:
-      "Learn about Suwenzo, the Colombo-based clinic software platform designed for private practices in Sri Lanka to connect consultations and dispensaries.",
-    images: [
-      {
-        url: "/og-about.png",
-        width: 1200,
-        height: 630,
-        alt: "About Suwenzo",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Suwenzo | Clinic Software for Sri Lanka",
-    description:
-      "Learn about Suwenzo, the Colombo-based clinic software platform designed for private practices in Sri Lanka to connect consultations and dispensaries.",
-    images: ["/og-about.png"],
-  },
-};
+    "Why Suwenzo exists: one connected system for private clinics in Sri Lanka, built in Colombo to replace paper, carbon copies and lost records.",
+  path: "/about",
+  ogImage: "/og-about.png",
+});
 
 export default function AboutPage() {
   const whatsappUrl = getWhatsAppRedirectUrl("about", "demo");
-  const breadcrumbSchema = getBreadcrumbSchema([
-    { name: "Home", item: "/" },
-    { name: "About", item: "/about" },
+
+  const graphSchema = buildGraphSchema([
+    getBreadcrumbSchema([
+      { name: "Home", item: "/" },
+      { name: "About", item: "/about" },
+    ]),
+    getAboutPageSchema(),
   ]);
-  const organizationSchema = getOrganizationSchema();
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema} />
-      <JsonLd data={organizationSchema} />
+      <JsonLd data={graphSchema} />
       <Navbar />
 
-      <main className="min-h-screen bg-[linear-gradient(180deg,#F0F7FF_0%,#E6F1FE_60%,#FAFCFF_100%)] pt-[120px] sm:pt-[140px] pb-[80px] px-4 sm:px-6 relative overflow-hidden">
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-gradient-to-b from-blue-200/40 via-white/50 to-transparent blur-[120px] pointer-events-none rounded-full" />
-
-        <div className="max-w-[960px] mx-auto relative z-10">
+      <main
+        id="main-content"
+        className="min-h-screen bg-[linear-gradient(180deg,#F0F7FF_0%,#E6F1FE_60%,#FAFCFF_100%)] pt-[120px] sm:pt-[140px] pb-[80px] px-4 sm:px-6 relative overflow-hidden"
+      >
+        <div className="max-w-[960px] mx-auto relative z-10 text-left">
           {/* Breadcrumb Navigation */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[13px] text-slate-500 mb-6">
             <Link href="/" className="hover:text-[#1D4ED8] transition-colors">
@@ -71,93 +51,119 @@ export default function AboutPage() {
           </nav>
 
           {/* Header */}
-          <div className="text-left mb-8">
-            <span className="bg-[#0f172a] text-white py-1.5 px-4 rounded-full text-[0.8125rem] font-medium inline-block mb-4 tracking-[0.02em] shadow-xs uppercase">
+          <div className="mb-8">
+            <span className="bg-[#0f172a] text-white py-1.5 px-4 rounded-full text-[0.8125rem] font-medium inline-block mb-4 uppercase tracking-wider">
               About Us
             </span>
-            <h1 className="text-[2.25rem] sm:text-[clamp(2.5rem,4.5vw,3.25rem)] font-normal text-[#0B1B3A] leading-[1.12] mb-4 tracking-[-0.03em]">
+            <h1 className="text-[2.25rem] sm:text-[3.25rem] font-normal text-[#0B1B3A] leading-[1.12] mb-3 tracking-tight">
               About Suwenzo
             </h1>
+            <p className="text-[13px] text-slate-500">
+              Last updated: {BRAND.lastUpdated} &bull; Built in Colombo for private medical practices
+            </p>
           </div>
 
-          {/* Answer-First Definition Block */}
-          <div className="bg-white/95 border border-blue-100 rounded-2xl p-5 sm:p-6 mb-10 shadow-[0_4px_20px_-4px_rgba(29,78,216,0.06)] text-left">
+          {/* Canonical Definition Box */}
+          <div className="bg-white/95 border border-blue-100 rounded-2xl p-5 sm:p-6 mb-10 shadow-xs">
             <p className="text-[16px] sm:text-[17.5px] font-semibold text-[#0B1B3A] leading-snug mb-2">
-              {CANONICAL_DEFINITION}
+              {DEFINITION}
             </p>
-            <p className="text-[14px] sm:text-[15px] text-[#475569] leading-relaxed">
+            <p className="text-[14px] text-[#475569] leading-relaxed">
               Based in Colombo, Sri Lanka, Suwenzo was created specifically for the workflow of local private medical practices, replacing handwriting fatigue and lost paper charts with a fast, modern web platform.
             </p>
           </div>
 
-          {/* Editorial Content Body */}
-          <div className="space-y-10 text-left">
-            {/* Section 1: Who We Are & Why Suwenzo Was Built */}
+          <div className="space-y-10">
+            {/* The Story in Full */}
             <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
-              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-3 leading-snug">
-                Why was Suwenzo built for Sri Lankan clinics?
+              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-4">
+                Why we built Suwenzo
               </h2>
-              <p className="text-[14.5px] sm:text-[15.5px] text-[#475569] leading-[1.7] mb-4">
-                Most clinical software in the global market is engineered for multi-floor hospitals with massive billing departments and IT teams. Sri Lankan outpatient clinics operate very differently: doctors need to record consultations in under two minutes, coordinate with a fast-paced dispensary, and keep patients returning for follow-ups without administrative friction.
-              </p>
-              <p className="text-[14.5px] sm:text-[15.5px] text-[#475569] leading-[1.7]">
-                The Suwenzo team designed the system from direct observations of Sri Lankan general practices and specialist rooms. By focusing strictly on what matters in daily outpatient care—patient history, prescription clarity, stock tracking, and WhatsApp follow-up reminders—Suwenzo keeps consultations personal and efficient.
-              </p>
+              <div className="space-y-4 text-[14.5px] sm:text-[15.5px] text-[#334155] leading-[1.75]">
+                <p>
+                  In private medical practices across Sri Lanka, evening consultation sessions are intense. A doctor routinely sees thirty to fifty patients in three hours. Every minute spent searching a drawer for a past prescription or scribbling notes is a minute stolen from diagnosis and patient care.
+                </p>
+                <p>
+                  Meanwhile, at the dispensary counter, a dedicated assistant is left squinting at rushed cursive handwriting, manually rewriting dosages onto paper envelopes, and hoping the patient does not return confused. And when regular patients come back three months later, nobody knows which antibiotic or antihypertensive worked best, because the consultation starts from scratch.
+                </p>
+                <p>
+                  Paper was not failing because doctors or dispensers were careless. It was failing because three separate people were forced to operate from disconnected fragments of information. We built Suwenzo to give private clinics one calm, connected system.
+                </p>
+              </div>
             </section>
 
-            {/* Section 2: Who Suwenzo is For */}
+            {/* The Three Problems We Solve */}
             <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
-              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-3 leading-snug">
-                Who does Suwenzo serve?
+              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-4">
+                The three problems Suwenzo resolves
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[14px]">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-                  <h3 className="font-semibold text-[#0B1B3A] mb-1">Solo General Practitioners</h3>
-                  <p className="text-[#64748B]">Doctors running evening surgeries who need instant patient record lookup and fast prescription entry on a tablet.</p>
+                  <div className="text-[12px] font-bold text-red-600 mb-1">Problem 1</div>
+                  <div className="font-bold text-[#0B1B3A] mb-1">Prescriptions Written Twice</div>
+                  <p className="text-[13px] text-[#64748B] m-0">
+                    Doctors write on paper, then dispensers rewrite dosages on envelopes. Suwenzo prints thermal labels directly from the tablet order.
+                  </p>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-                  <h3 className="font-semibold text-[#0B1B3A] mb-1">Clinics with Attached Dispensaries</h3>
-                  <p className="text-[#64748B]">Practices where prescriptions flow to the pharmacy counter within seconds for instant label printing and live stock tracking.</p>
+                  <div className="text-[12px] font-bold text-red-600 mb-1">Problem 2</div>
+                  <div className="font-bold text-[#0B1B3A] mb-1">Prescribing Without Seeing Stock</div>
+                  <p className="text-[13px] text-[#64748B] m-0">
+                    Doctors prescribe blindly, only to find out the shelf is empty. Suwenzo shows shelf balances beside each medicine on screen.
+                  </p>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-                  <h3 className="font-semibold text-[#0B1B3A] mb-1">Consulting-Only Practices</h3>
-                  <p className="text-[#64748B]">Urban consultation rooms generating clean printed prescription slips for external pharmacies without inventory management.</p>
-                </div>
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-                  <h3 className="font-semibold text-[#0B1B3A] mb-1">Multi-Doctor Group Clinics</h3>
-                  <p className="text-[#64748B]">Group practices where doctors share patient history across shifts and route orders to a unified dispensary queue.</p>
+                  <div className="text-[12px] font-bold text-red-600 mb-1">Problem 3</div>
+                  <div className="font-bold text-[#0B1B3A] mb-1">Every Visit Starts from Zero</div>
+                  <p className="text-[13px] text-[#64748B] m-0">
+                    Past treatments and allergy reactions get lost in old drawers. Suwenzo maintains an instant patient visit history by phone number.
+                  </p>
                 </div>
               </div>
             </section>
 
-            {/* Section 3: Our Location and Deployment */}
+            {/* How We Work with Founding Clinics */}
             <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
-              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-3 leading-snug">
-                Where is Suwenzo based and how quickly is it deployed?
+              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-4">
+                How we work with founding clinics
               </h2>
-              <p className="text-[14.5px] sm:text-[15.5px] text-[#475569] leading-[1.7] mb-3">
-                Suwenzo is based in Colombo, Sri Lanka. Our team provides hands-on onboarding for clinics across the Colombo district and remote setup assistance nationwide.
+              <p className="text-[14.5px] sm:text-[15.5px] text-[#475569] leading-[1.7] mb-4">
+                We work directly with the first 10 founding clinics in Colombo. The offer includes 3 months free of licensing charges, direct engineering support, and full onboarding setup:
               </p>
-              <p className="text-[14.5px] sm:text-[15.5px] text-[#475569] leading-[1.7]">
-                Most clinics are ready within 48 hours of the demo. Setup includes pre-loading your clinic&apos;s standard drug formulary and configuring label printer settings so your consultation desk and dispensary are operational without disruption.
-              </p>
+              <ul className="list-disc pl-5 space-y-2 text-[14px] text-[#475569] mb-5">
+                <li>We enter your entire clinic stock list and batch expiries before day one.</li>
+                <li>We connect and test your dispensary thermal label printer.</li>
+                <li>We train your dispenser in person until they are confident with the screen.</li>
+                <li>We stay available on WhatsApp during your live evening sessions.</li>
+              </ul>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-[13px] font-semibold text-[#0B1B3A]">
+                  Team: The Suwenzo team &bull; Colombo, Sri Lanka
+                </span>
+                <Link
+                  href="/contact"
+                  className="text-[13px] font-semibold text-[#1D4ED8] hover:underline"
+                >
+                  Contact our team &rarr;
+                </Link>
+              </div>
             </section>
 
-            {/* Related Features & CTA */}
+            {/* Related Links & Demo CTA */}
             <section className="bg-gradient-to-r from-blue-50 to-indigo-50/40 border border-blue-200 rounded-[24px] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
                 <h3 className="text-[17px] sm:text-[19px] font-bold text-[#0B1B3A] mb-2">
                   Meet with the Suwenzo team
                 </h3>
                 <p className="text-[14px] text-[#475569] max-w-[500px]">
-                  Book an in-person or remote 20-minute demonstration. Pricing is shared during the demo. The first 10 founding clinics in Colombo get 3 months free.
+                  Book a 20-minute demonstration. We can demo directly at your clinic in Colombo.
                 </p>
                 <div className="mt-3 flex flex-wrap gap-3 text-[13px] font-medium text-[#1D4ED8]">
                   <Link href="/facts" className="hover:underline">
-                    &rarr; Clinic Fact Sheet
+                    &rarr; Fact Sheet
                   </Link>
                   <Link href="/faq" className="hover:underline">
-                    &rarr; Clinic FAQ
+                    &rarr; FAQ
                   </Link>
                   <Link href="/contact" className="hover:underline">
                     &rarr; Contact Us

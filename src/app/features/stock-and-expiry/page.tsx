@@ -3,176 +3,182 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
-import { getBreadcrumbSchema, getSoftwareApplicationSchema } from "@/lib/schemas";
-import { SITE_URL, getWhatsAppRedirectUrl } from "@/lib/site";
+import { buildMetadata } from "@/lib/metadata";
+import {
+  getBreadcrumbSchema,
+  getFaqPageSchema,
+  buildGraphSchema,
+} from "@/lib/schemas";
+import { BRAND, DEFINITION, getFaqsByGroup } from "@/content/site";
+import { getWhatsAppRedirectUrl } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Dispensary Stock & Expiry Tracking",
+export const metadata: Metadata = buildMetadata({
+  title: "Clinic Stock and Expiry Tracking Software | Suwenzo",
   description:
-    "Track dispensary inventory, pill counts and batch expiries automatically in Sri Lankan clinics. Prevent stock-outs and eliminate expired drug waste.",
-  alternates: {
-    canonical: `${SITE_URL}/features/stock-and-expiry`,
-    languages: {
-      "en-LK": `${SITE_URL}/features/stock-and-expiry`,
-      "x-default": `${SITE_URL}/features/stock-and-expiry`,
-    },
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_LK",
-    url: `${SITE_URL}/features/stock-and-expiry`,
-    siteName: "Suwenzo",
-    title: "Dispensary Stock & Expiry Tracking | Suwenzo",
-    description:
-      "Track dispensary inventory, pill counts and batch expiries automatically in Sri Lankan clinics. Prevent stock-outs and eliminate expired drug waste.",
-    images: [
-      {
-        url: "/og-features.png",
-        width: 1200,
-        height: 630,
-        alt: "Suwenzo Stock and Expiry Tracking",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Dispensary Stock & Expiry Tracking | Suwenzo",
-    description:
-      "Track dispensary inventory, pill counts and batch expiries automatically in Sri Lankan clinics. Prevent stock-outs and eliminate expired drug waste.",
-    images: ["/og-features.png"],
-  },
-};
+    "See shelf stock before you prescribe and get 60-day expiry warnings. Medicine stock tracking built for clinics with an in-house dispensary.",
+  path: "/features/stock-and-expiry",
+  ogImage: "/og-features.png",
+});
 
 export default function StockAndExpiryPage() {
   const whatsappUrl = getWhatsAppRedirectUrl("feature-stock-and-expiry", "demo");
-  const breadcrumbSchema = getBreadcrumbSchema([
-    { name: "Home", item: "/" },
-    { name: "Features", item: "/#features" },
-    { name: "Stock & Expiry", item: "/features/stock-and-expiry" },
+  const stockFaqs = getFaqsByGroup("Stock and expiry").slice(0, 4);
+
+  const graphSchema = buildGraphSchema([
+    getBreadcrumbSchema([
+      { name: "Home", item: "/" },
+      { name: "Features", item: "/features" },
+      { name: "Stock and Expiry", item: "/features/stock-and-expiry" },
+    ]),
+    getFaqPageSchema(
+      stockFaqs.map((f) => ({ question: f.question, answer: f.answer }))
+    ),
   ]);
-  const softwareSchema = getSoftwareApplicationSchema();
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema} />
-      <JsonLd data={softwareSchema} />
+      <JsonLd data={graphSchema} />
       <Navbar />
 
-      <main className="min-h-screen bg-[linear-gradient(180deg,#F0F7FF_0%,#E6F1FE_60%,#FAFCFF_100%)] pt-[120px] sm:pt-[140px] pb-[80px] px-4 sm:px-6 relative overflow-hidden">
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-gradient-to-b from-blue-200/40 via-white/50 to-transparent blur-[120px] pointer-events-none rounded-full" />
-
-        <div className="max-w-[960px] mx-auto relative z-10">
+      <main
+        id="main-content"
+        className="min-h-screen bg-[linear-gradient(180deg,#F0F7FF_0%,#E6F1FE_60%,#FAFCFF_100%)] pt-[120px] sm:pt-[140px] pb-[80px] px-4 sm:px-6 relative overflow-hidden"
+      >
+        <div className="max-w-[960px] mx-auto relative z-10 text-left">
           {/* Breadcrumb Navigation */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[13px] text-slate-500 mb-6">
             <Link href="/" className="hover:text-[#1D4ED8] transition-colors">
               Home
             </Link>
             <span>/</span>
-            <Link href="/#features" className="hover:text-[#1D4ED8] transition-colors">
+            <Link href="/features" className="hover:text-[#1D4ED8] transition-colors">
               Features
             </Link>
             <span>/</span>
-            <span className="text-[#0B1B3A] font-semibold">Stock &amp; Expiry</span>
+            <span className="text-[#0B1B3A] font-semibold">Stock and Expiry</span>
           </nav>
 
           {/* Header */}
-          <div className="text-left mb-8">
-            <span className="bg-[#0f172a] text-white py-1.5 px-4 rounded-full text-[0.8125rem] font-medium inline-block mb-4 tracking-[0.02em] shadow-xs uppercase">
-              Dispensary Feature
+          <div className="mb-8">
+            <span className="bg-[#0f172a] text-white py-1.5 px-4 rounded-full text-[0.8125rem] font-medium inline-block mb-4 uppercase tracking-wider">
+              Feature Spoke &bull; Dispensary Inventory
             </span>
-            <h1 className="text-[2.25rem] sm:text-[clamp(2.5rem,4.5vw,3.25rem)] font-normal text-[#0B1B3A] leading-[1.12] mb-4 tracking-[-0.03em]">
-              Dispensary Stock &amp; Expiry Tracking
+            <h1 className="text-[2.25rem] sm:text-[3.25rem] font-normal text-[#0B1B3A] leading-[1.12] mb-3 tracking-tight">
+              Medicine stock and expiry tracking for clinics
             </h1>
+            <p className="text-[13px] text-slate-500">
+              Last updated: {BRAND.lastUpdated} &bull; Dispensary inventory management for Sri Lankan medical clinics
+            </p>
           </div>
 
-          {/* Answer-First Definition Block */}
-          <div className="bg-white/95 border border-blue-100 rounded-2xl p-5 sm:p-6 mb-10 shadow-[0_4px_20px_-4px_rgba(29,78,216,0.06)] text-left">
+          {/* Canonical Definition Box */}
+          <div className="bg-white/95 border border-blue-100 rounded-2xl p-5 sm:p-6 mb-10 shadow-xs">
             <p className="text-[16px] sm:text-[17.5px] font-semibold text-[#0B1B3A] leading-snug mb-2">
-              Suwenzo automatically deducts stock with every filled prescription and warns staff about low supplies and upcoming batch expiries.
+              {DEFINITION}
             </p>
-            <p className="text-[14px] sm:text-[15px] text-[#475569] leading-relaxed">
-              Dispensers no longer need manual logbooks or end-of-month tallying. Pill counts update the moment a prescription is packed, while the doctor&apos;s prescribing screen highlights exactly which medications are running low.
+            <p className="text-[14px] text-[#475569] leading-relaxed">
+              Real-time shelf inventory prevents prescribing out-of-stock drugs and eliminates expired medicine waste.
             </p>
           </div>
 
-          {/* Editorial Content Body */}
-          <div className="space-y-10 text-left">
-            {/* Section 1 */}
+          <div className="space-y-12">
+            {/* H2 1: How does live stock tracking work? */}
             <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
-              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-3 leading-snug">
-                How dispensary inventory updates as prescriptions are filled
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-4">
+                How does live stock tracking work?
               </h2>
-              <p className="text-[14.5px] sm:text-[15.5px] text-[#475569] leading-[1.7] mb-4">
-                In a typical private practice with an attached dispensary, stock discrepancies happen when dispensing relies on memory or manual ledgers. Suwenzo ties inventory directly to clinical prescribing:
+              {/* Answer block: 40-60 words */}
+              <p className="text-[15px] sm:text-[16px] text-[#1E293B] font-medium leading-[1.65] bg-blue-50/70 border border-blue-100 p-4 rounded-xl mb-6">
+                Live stock tracking works by maintaining real-time quantity balances between the doctor&apos;s prescribing screen and the dispensary shelf. Suwenzo displays exact pill counts beside each medicine while prescribing. When the dispensary fulfills the order, stock levels deduct automatically, eliminating manual paper register tallies and stock discrepancies.
               </p>
-              <ul className="space-y-3 text-[14px] sm:text-[14.5px] text-[#334155]">
-                <li className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] mt-2 shrink-0" />
-                  <span><strong>Prescription-linked deduction:</strong> Dispensing 20 tablets of Amoxicillin immediately deducts 20 units from the selected batch.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] mt-2 shrink-0" />
-                  <span><strong>Low-stock visual flags:</strong> When item inventory crosses your clinic&apos;s reorder threshold, it highlights in amber on the stock dashboard.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] mt-2 shrink-0" />
-                  <span><strong>Batch expiry visibility:</strong> Batches approaching expiration are surfaced first so older stock is used before newer shipments.</span>
-                </li>
-              </ul>
-            </section>
 
-            {/* Comparison Table */}
-            <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
-              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-4 leading-snug">
-                Manual dispensary ledger vs. Suwenzo automated tracking
-              </h2>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-[13.5px] sm:text-[14px] border-collapse">
-                  <thead>
-                    <tr className="border-b border-slate-200 bg-slate-50/70">
-                      <th className="py-3 px-4 font-semibold text-[#0B1B3A]">Stock Control Task</th>
-                      <th className="py-3 px-4 font-semibold text-[#0B1B3A]">Manual Paper Ledgers</th>
-                      <th className="py-3 px-4 font-semibold text-[#1D4ED8]">Suwenzo Automated Tracking</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100 text-[#475569]">
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#0B1B3A]">Counting after dispensing</td>
-                      <td className="py-3 px-4">Tally books updated at closing or weekly</td>
-                      <td className="py-3 px-4 text-[#1D4ED8] font-medium">Automatic deduction upon packing</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#0B1B3A]">Prescribing out-of-stock items</td>
-                      <td className="py-3 px-4">Doctor prescribes; dispenser returns to ask for substitute</td>
-                      <td className="py-3 px-4 text-[#1D4ED8] font-medium">Doctor sees live counts while writing prescription</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#0B1B3A]">Expiry tracking</td>
-                      <td className="py-3 px-4">Manual bottle inspections or surprise expired items</td>
-                      <td className="py-3 px-4 text-[#1D4ED8] font-medium">Upcoming batch expiries flagged proactively</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#0B1B3A]">Setup and loading</td>
-                      <td className="py-3 px-4">Handwritten index cards</td>
-                      <td className="py-3 px-4 text-[#1D4ED8] font-medium">Ready within 48 hours of demo</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                  <div className="text-[12px] font-bold text-[#1D4ED8] mb-1">Prescribing View</div>
+                  <div className="font-bold text-[#0B1B3A] mb-1">Pill Counts on Screen</div>
+                  <p className="text-[12.5px] text-[#64748B] m-0">Doctors see current physical shelf stock before confirming each item.</p>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                  <div className="text-[12px] font-bold text-[#1D4ED8] mb-1">Fulfillment</div>
+                  <div className="font-bold text-[#0B1B3A] mb-1">Instant Deduction</div>
+                  <p className="text-[12.5px] text-[#64748B] m-0">Dispensary confirmations immediately deduct batch quantities.</p>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                  <div className="text-[12px] font-bold text-[#1D4ED8] mb-1">Audit</div>
+                  <div className="font-bold text-[#0B1B3A] mb-1">Zero Manual Registers</div>
+                  <p className="text-[12.5px] text-[#64748B] m-0">No evening notebook reconciliations or lost prescription counterfoils.</p>
+                </div>
               </div>
             </section>
 
-            {/* Related Features & CTA */}
+            {/* H2 2: How do 60-day expiry warnings work? */}
+            <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-4">
+                How do 60-day expiry warnings work?
+              </h2>
+              <p className="text-[14.5px] text-[#475569] mb-4 leading-[1.6]">
+                Expired medicine is a direct financial loss for clinics and a patient safety risk. Suwenzo continuously audits batch dates:
+              </p>
+
+              <ul className="list-disc pl-5 space-y-2 text-[14.5px] text-[#475569] mb-6">
+                <li><strong>60-day alert window:</strong> Batches reaching expiry within 60 days are highlighted on the dispensary dashboard.</li>
+                <li><strong>Color-coded urgency:</strong> Yellow badges indicate batches expiring within 60 days; red flags indicate critical near-expiry.</li>
+                <li><strong>First-expiry rotation:</strong> The system automatically suggests dispensing older batches first (FEFO method).</li>
+                <li><strong>Supplier returns:</strong> Clinics can pull near-expiry batches early for credit returns to pharmaceutical distributors.</li>
+              </ul>
+            </section>
+
+            {/* H2 3: Who loads the stock list? We do */}
+            <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-4">
+                Who loads the stock list? We do
+              </h2>
+              <p className="text-[14.5px] text-[#475569] mb-4 leading-[1.6]">
+                The biggest hurdle in switching clinic software is manual data entry. With Suwenzo, you never start with an empty screen:
+              </p>
+
+              <div className="p-5 rounded-2xl bg-blue-50/70 border border-blue-100 text-[14px] text-[#1E293B] space-y-2">
+                <p>
+                  <strong>Our team enters your full inventory:</strong> Hand us your existing stock register, drug list, or supplier invoices. Our onboarding specialists enter your brands, strengths, pack sizes, and batch dates.
+                </p>
+                <p>
+                  Most clinics are ready within 48 hours of the demo, with their own physical shelf stock verified before opening the first digital patient consultation.
+                </p>
+              </div>
+            </section>
+
+            {/* FAQ Block */}
+            <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-6">
+                Frequently asked questions on clinic stock tracking
+              </h2>
+              <div className="space-y-4">
+                {stockFaqs.map((faq) => (
+                  <div key={faq.id} className="border-b border-slate-100 pb-4">
+                    <h3 className="text-[15.5px] font-bold text-[#0B1B3A] mb-1.5">
+                      {faq.question}
+                    </h3>
+                    <p className="text-[14px] text-[#475569] leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Related Features & Demo CTA (Section 7 Internal Linking) */}
             <section className="bg-gradient-to-r from-blue-50 to-indigo-50/40 border border-blue-200 rounded-[24px] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
                 <h3 className="text-[17px] sm:text-[19px] font-bold text-[#0B1B3A] mb-2">
-                  Take control of your clinic&apos;s dispensary inventory
+                  See live stock tracking in a 20-minute demo
                 </h3>
                 <p className="text-[14px] text-[#475569] max-w-[500px]">
-                  Schedule a 20-minute demonstration to see live stock tracking in action. Pricing is shared during the demo. The first 10 founding clinics in Colombo get 3 months free.
+                  Book an in-person or remote demo. We will show you shelf count visibility, automatic deduction, and expiry alert reports.
                 </p>
+                {/* Related block: 3 links max */}
                 <div className="mt-3 flex flex-wrap gap-3 text-[13px] font-medium text-[#1D4ED8]">
-                  <Link href="/features/patient-records" className="hover:underline">
-                    &rarr; Patient Records
+                  <Link href="/features" className="hover:underline">
+                    &larr; All Features
                   </Link>
                   <Link href="/features/digital-prescriptions" className="hover:underline">
                     &rarr; Digital Prescriptions

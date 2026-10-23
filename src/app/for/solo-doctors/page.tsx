@@ -3,182 +3,201 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
-import { getBreadcrumbSchema, getSoftwareApplicationSchema } from "@/lib/schemas";
-import { SITE_URL, getWhatsAppRedirectUrl } from "@/lib/site";
+import { buildMetadata } from "@/lib/metadata";
+import {
+  getBreadcrumbSchema,
+  getFaqPageSchema,
+  buildGraphSchema,
+} from "@/lib/schemas";
+import { BRAND, DEFINITION, getFaqsByGroup } from "@/content/site";
+import { getWhatsAppRedirectUrl } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Clinic Software for Solo Doctors",
+export const metadata: Metadata = buildMetadata({
+  title: "Software for Solo Doctors in Sri Lanka | Suwenzo",
   description:
-    "Streamline your solo medical practice in Sri Lanka. Manage patient records, quick prescription entry and WhatsApp follow-up reminders on a single tablet.",
-  alternates: {
-    canonical: `${SITE_URL}/for/solo-doctors`,
-    languages: {
-      "en-LK": `${SITE_URL}/for/solo-doctors`,
-      "x-default": `${SITE_URL}/for/solo-doctors`,
-    },
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_LK",
-    url: `${SITE_URL}/for/solo-doctors`,
-    siteName: "Suwenzo",
-    title: "Clinic Software for Solo Doctors in Sri Lanka | Suwenzo",
-    description:
-      "Streamline your solo medical practice in Sri Lanka. Manage patient records, quick prescription entry and WhatsApp follow-up reminders on a single tablet.",
-    images: [
-      {
-        url: "/og-for-clinics.png",
-        width: 1200,
-        height: 630,
-        alt: "Suwenzo for Solo Doctors in Sri Lanka",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Clinic Software for Solo Doctors in Sri Lanka | Suwenzo",
-    description:
-      "Streamline your solo medical practice in Sri Lanka. Manage patient records, quick prescription entry and WhatsApp follow-up reminders on a single tablet.",
-    images: ["/og-for-clinics.png"],
-  },
-};
+    "Run a solo practice with patient history, digital prescriptions and WhatsApp follow-ups, without paper files or carbon copies.",
+  path: "/for/solo-doctors",
+  ogImage: "/og-for.png",
+});
 
 export default function SoloDoctorsPage() {
   const whatsappUrl = getWhatsAppRedirectUrl("for-solo-doctors", "demo");
-  const breadcrumbSchema = getBreadcrumbSchema([
-    { name: "Home", item: "/" },
-    { name: "For Clinics", item: "/#who-and-why" },
-    { name: "Solo Doctors", item: "/for/solo-doctors" },
+  const soloFaqs = getFaqsByGroup("Practice types").filter(
+    (f) => f.id === "solo-doctor-fit" || f.id === "change-practise-style" || f.id === "switch-from-paper"
+  );
+
+  const graphSchema = buildGraphSchema([
+    getBreadcrumbSchema([
+      { name: "Home", item: "/" },
+      { name: "Who It's For", item: "/for" },
+      { name: "Solo Doctors", item: "/for/solo-doctors" },
+    ]),
+    getFaqPageSchema(
+      soloFaqs.map((f) => ({ question: f.question, answer: f.answer }))
+    ),
   ]);
-  const softwareSchema = getSoftwareApplicationSchema();
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema} />
-      <JsonLd data={softwareSchema} />
+      <JsonLd data={graphSchema} />
       <Navbar />
 
-      <main className="min-h-screen bg-[linear-gradient(180deg,#F0F7FF_0%,#E6F1FE_60%,#FAFCFF_100%)] pt-[120px] sm:pt-[140px] pb-[80px] px-4 sm:px-6 relative overflow-hidden">
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-gradient-to-b from-blue-200/40 via-white/50 to-transparent blur-[120px] pointer-events-none rounded-full" />
-
-        <div className="max-w-[960px] mx-auto relative z-10">
+      <main
+        id="main-content"
+        className="min-h-screen bg-[linear-gradient(180deg,#F0F7FF_0%,#E6F1FE_60%,#FAFCFF_100%)] pt-[120px] sm:pt-[140px] pb-[80px] px-4 sm:px-6 relative overflow-hidden"
+      >
+        <div className="max-w-[960px] mx-auto relative z-10 text-left">
           {/* Breadcrumb Navigation */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[13px] text-slate-500 mb-6">
             <Link href="/" className="hover:text-[#1D4ED8] transition-colors">
               Home
             </Link>
             <span>/</span>
-            <Link href="/#who-and-why" className="hover:text-[#1D4ED8] transition-colors">
-              For Clinics
+            <Link href="/for" className="hover:text-[#1D4ED8] transition-colors">
+              Who It&apos;s For
             </Link>
             <span>/</span>
             <span className="text-[#0B1B3A] font-semibold">Solo Doctors</span>
           </nav>
 
           {/* Header */}
-          <div className="text-left mb-8">
-            <span className="bg-[#0f172a] text-white py-1.5 px-4 rounded-full text-[0.8125rem] font-medium inline-block mb-4 tracking-[0.02em] shadow-xs uppercase">
-              Practice Type
+          <div className="mb-8">
+            <span className="bg-[#0f172a] text-white py-1.5 px-4 rounded-full text-[0.8125rem] font-medium inline-block mb-4 uppercase tracking-wider">
+              Practice Spoke &bull; Solo General Practice
             </span>
-            <h1 className="text-[2.25rem] sm:text-[clamp(2.5rem,4.5vw,3.25rem)] font-normal text-[#0B1B3A] leading-[1.12] mb-4 tracking-[-0.03em]">
-              Clinic Software for Solo Doctors in Sri Lanka
+            <h1 className="text-[2.25rem] sm:text-[3.25rem] font-normal text-[#0B1B3A] leading-[1.12] mb-3 tracking-tight">
+              Clinic software for solo doctors in Sri Lanka
             </h1>
+            <p className="text-[13px] text-slate-500">
+              Last updated: {BRAND.lastUpdated} &bull; Clinical workflow for independent medical practitioners
+            </p>
           </div>
 
-          {/* Answer-First Definition Block */}
-          <div className="bg-white/95 border border-blue-100 rounded-2xl p-5 sm:p-6 mb-10 shadow-[0_4px_20px_-4px_rgba(29,78,216,0.06)] text-left">
+          {/* Canonical Definition Box */}
+          <div className="bg-white/95 border border-blue-100 rounded-2xl p-5 sm:p-6 mb-10 shadow-xs">
             <p className="text-[16px] sm:text-[17.5px] font-semibold text-[#0B1B3A] leading-snug mb-2">
-              Suwenzo gives solo practitioners a lightweight clinical system to record consultations, issue prescriptions, and schedule follow-ups without complex IT overhead.
+              {DEFINITION}
             </p>
-            <p className="text-[14px] sm:text-[15px] text-[#475569] leading-relaxed">
-              Designed for individual general practitioners and specialists in Sri Lanka, the interface runs smoothly on a single tablet or laptop. Consultations stay fast, patient records are instantly retrievable, and patient return visits are managed via WhatsApp.
+            <p className="text-[14px] text-[#475569] leading-relaxed">
+              Designed for solo general practitioners managing evening surgeries without administrative staff or physical paper file cabinets.
             </p>
           </div>
 
-          {/* Editorial Content Body */}
-          <div className="space-y-10 text-left">
-            {/* Section 1 */}
+          <div className="space-y-12">
+            {/* H2 1: Is Suwenzo right for a solo practice? */}
             <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
-              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-3 leading-snug">
-                Why solo doctors need software built for consultation speed
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-4">
+                Is Suwenzo right for a solo practice?
               </h2>
-              <p className="text-[14.5px] sm:text-[15.5px] text-[#475569] leading-[1.7] mb-4">
-                Solo practitioners handle consultations, examinations, and note-taking entirely on their own during peak evening sessions. Traditional hospital software is cluttered with dozens of unnecessary billing and administrative menus that slow doctors down:
+              {/* Answer block: 40-60 words */}
+              <p className="text-[15px] sm:text-[16px] text-[#1E293B] font-medium leading-[1.65] bg-blue-50/70 border border-blue-100 p-4 rounded-xl mb-6">
+                Suwenzo is right for a solo practice if you want fast tablet prescribing, instant patient visit history by phone number, and automated WhatsApp follow-ups without managing paper files. It is not designed for hospital inpatient wards, surgical theatres, or large multi-department laboratory operations.
               </p>
-              <ul className="space-y-3 text-[14px] sm:text-[14.5px] text-[#334155]">
-                <li className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] mt-2 shrink-0" />
-                  <span><strong>Single-screen consultation:</strong> Diagnosis, past history, and medications reside on one clean view with minimal typing.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] mt-2 shrink-0" />
-                  <span><strong>Past visit memory:</strong> Instantly look up what antibiotic or dose was given during the patient&apos;s previous visit.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] mt-2 shrink-0" />
-                  <span><strong>Automated follow-up scheduling:</strong> Click a review interval (e.g. 7 days) to queue a WhatsApp reminder for the patient.</span>
-                </li>
-              </ul>
-            </section>
 
-            {/* Comparison Table */}
-            <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
-              <h2 className="text-[1.35rem] sm:text-[1.55rem] font-bold text-[#0B1B3A] mb-4 leading-snug">
-                Paper files vs. Suwenzo for solo practitioners
-              </h2>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-[13.5px] sm:text-[14px] border-collapse">
-                  <thead>
-                    <tr className="border-b border-slate-200 bg-slate-50/70">
-                      <th className="py-3 px-4 font-semibold text-[#0B1B3A]">Practice Need</th>
-                      <th className="py-3 px-4 font-semibold text-[#0B1B3A]">Handwritten Paper Notes</th>
-                      <th className="py-3 px-4 font-semibold text-[#1D4ED8]">Suwenzo for Solo Doctors</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100 text-[#475569]">
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#0B1B3A]">Hardware needed</td>
-                      <td className="py-3 px-4">Filing cabinets, binders, physical slips</td>
-                      <td className="py-3 px-4 text-[#1D4ED8] font-medium">Any tablet or laptop with web browser</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#0B1B3A]">Patient visit retrieval</td>
-                      <td className="py-3 px-4">Searching physical folders between consultations</td>
-                      <td className="py-3 px-4 text-[#1D4ED8] font-medium">Search by name or mobile number in seconds</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#0B1B3A]">Review visit return rate</td>
-                      <td className="py-3 px-4">Patients forget verbal instructions</td>
-                      <td className="py-3 px-4 text-[#1D4ED8] font-medium">WhatsApp reminders ensure timely returns</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4 font-medium text-[#0B1B3A]">Onboarding time</td>
-                      <td className="py-3 px-4">Manual setup</td>
-                      <td className="py-3 px-4 text-[#1D4ED8] font-medium">Ready within 48 hours of demo</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 rounded-xl bg-emerald-50/60 border border-emerald-100">
+                  <h3 className="text-[14px] font-bold text-emerald-900 mb-1">Who it fits:</h3>
+                  <ul className="space-y-1 text-[13px] text-emerald-800">
+                    <li>&bull; Solo GPs running evening surgeries (30-50 patients in 3 hours)</li>
+                    <li>&bull; Practices with or without an attached dispensary counter</li>
+                    <li>&bull; Doctors wanting continuous patient records without paper clutter</li>
+                  </ul>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <h3 className="text-[14px] font-bold text-slate-800 mb-1">Who it does not fit:</h3>
+                  <ul className="space-y-1 text-[13px] text-slate-600">
+                    <li>&bull; Multi-floor hospitals with inpatient ward management</li>
+                    <li>&bull; Clinics requiring offline mode without internet</li>
+                    <li>&bull; Retail pharmacies selling front-of-house consumer goods</li>
+                  </ul>
+                </div>
               </div>
             </section>
 
-            {/* Related Clinics & CTA */}
+            {/* H2 2: A solo doctor's session with Suwenzo */}
+            <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-4">
+                A solo doctor&apos;s session with Suwenzo
+              </h2>
+              <p className="text-[14.5px] text-[#475569] mb-4 leading-[1.6]">
+                During a busy 3-hour evening session, every second saved on administration is time returned to patient examination:
+              </p>
+
+              <div className="space-y-3">
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                  <div className="text-[12px] font-bold text-[#1D4ED8] mb-0.5">Lookup in 5 seconds</div>
+                  <p className="text-[13.5px] text-[#334155] m-0">
+                    Search the patient by mobile number. Past visit notes, allergies, and previous medications appear immediately.
+                  </p>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                  <div className="text-[12px] font-bold text-[#1D4ED8] mb-0.5">Prescribe with shelf stock on screen</div>
+                  <p className="text-[13.5px] text-[#334155] m-0">
+                    Choose medicines with shelf quantities visible. If you run your own dispensary, the label printer prints packet stickers automatically.
+                  </p>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                  <div className="text-[12px] font-bold text-[#1D4ED8] mb-0.5">Automated follow-up</div>
+                  <p className="text-[13.5px] text-[#334155] m-0">
+                    With one-tap consent, WhatsApp reminders are scheduled automatically when the prescribed course ends.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* H2 3: What a solo doctor needs to start */}
+            <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-4">
+                What a solo doctor needs to start
+              </h2>
+              <ul className="list-disc pl-5 space-y-2 text-[14.5px] text-[#475569] mb-5">
+                <li><strong>A tablet or computer:</strong> Prescribe from an iPad, an Android tablet, or your existing laptop.</li>
+                <li><strong>An internet connection:</strong> Use a clinic 4G Wi-Fi router or phone mobile hotspot.</li>
+                <li><strong>Optional thermal label printer:</strong> If you dispense medicines, we provide the list of compatible label printers.</li>
+              </ul>
+              <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-100 text-[13.5px] text-[#1E293B]">
+                <strong>We set it up for you:</strong> Most solo clinics are ready within 48 hours of the demo. We load your medicine list and configure printer settings before your first session.
+              </div>
+            </section>
+
+            {/* FAQ Block */}
+            <section className="bg-white border border-slate-200/90 rounded-[24px] p-6 sm:p-8 shadow-xs">
+              <h2 className="text-[1.45rem] sm:text-[1.7rem] font-bold text-[#0B1B3A] mb-6">
+                Frequently asked questions for solo doctors
+              </h2>
+              <div className="space-y-4">
+                {soloFaqs.map((faq) => (
+                  <div key={faq.id} className="border-b border-slate-100 pb-4">
+                    <h3 className="text-[15.5px] font-bold text-[#0B1B3A] mb-1.5">
+                      {faq.question}
+                    </h3>
+                    <p className="text-[14px] text-[#475569] leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Related Practices & Demo CTA (Section 7 Internal Linking) */}
             <section className="bg-gradient-to-r from-blue-50 to-indigo-50/40 border border-blue-200 rounded-[24px] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
                 <h3 className="text-[17px] sm:text-[19px] font-bold text-[#0B1B3A] mb-2">
-                  Modernize your solo practice in under 48 hours
+                  See how Suwenzo runs in a solo practice
                 </h3>
                 <p className="text-[14px] text-[#475569] max-w-[500px]">
-                  Book a quick 20-minute demonstration tailored to solo doctors. Pricing is shared during the demo. The first 10 founding clinics in Colombo get 3 months free.
+                  Book an in-person or remote 20-minute demo. The first 10 founding clinics in Colombo receive 3 months free with setup and training included.
                 </p>
+                {/* Related block: 3 links max */}
                 <div className="mt-3 flex flex-wrap gap-3 text-[13px] font-medium text-[#1D4ED8]">
+                  <Link href="/for" className="hover:underline">
+                    &larr; All Practice Types
+                  </Link>
                   <Link href="/for/clinics-with-dispensary" className="hover:underline">
-                    &rarr; Clinics with Dispensary
+                    &rarr; With Dispensary
                   </Link>
                   <Link href="/for/consulting-only-practices" className="hover:underline">
-                    &rarr; Consulting-Only Practices
-                  </Link>
-                  <Link href="/features/digital-prescriptions" className="hover:underline">
-                    &rarr; Digital Prescriptions
+                    &rarr; Consulting Only
                   </Link>
                 </div>
               </div>
